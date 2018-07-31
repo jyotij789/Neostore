@@ -1,0 +1,84 @@
+page-my-account {
+    .scroll-content{
+        padding:0px !important;
+    }
+    ion-content{
+        background-image: url('../../assets/imgs/Android_bg.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+    
+    .profileimg{
+        padding:80px;
+        // height:2vh;
+        // width:2vw;
+        background-color:#ffffff;
+        border-radius:50px;        
+    }
+    
+    form{
+        padding-left:20px;
+        padding-right:20px;
+
+    }
+    ion-row{
+        align-items: center;
+        text-align: center;
+    }
+    ion-input {
+        font-size: 2rem;
+        color: #ffffff;
+        height: 6.8vh;
+    }.ion-text{
+        font-size: 4rem;
+    }
+    .custom-register-label input[type]{
+        margin-left: 0px;
+    }
+    .custom-login-label i {
+        position: absolute;
+    }
+    ion-label{
+        font-size: 20px;
+        color: #ffffff;
+    }
+    .innericon{
+        position: relative;
+        border:1px solid #ffffff;
+        border-radius: 0px !important;
+        font-size:6vw;
+    }
+    .innericon ion-icon{
+        float: left;
+        height: 100%;
+        display: block;
+        padding:13px;
+    }
+    .ion-text{
+        font-size: 4rem;
+    }
+    .text-input::-webkit-input-placeholder { 
+        color: #ffffff;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .spacetag{
+        height:10px;
+    }
+    .text-input-md {
+        margin: 10px 8px;
+        padding: 0.2rem;
+        width: calc(100% - 8px - 8px);
+    }
+    .editBtn{
+        border:1px solid #ffffff;
+        border-radius: 5px;
+        color:#E91C1A;
+        font-size:15px;
+    }
+    .resetBtn{
+        border:1px solid #ffffff;
+        color:#4f4f4f;
+        font-size:15px;
+    }
+}

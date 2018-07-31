@@ -1,0 +1,88 @@
+page-login {
+    ion-content{
+        background-image: url('../../assets/imgs/Android_bg.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
+    }
+    .scroll-content{
+        padding:0px !important;
+    }
+    .login-head{
+        padding-bottom:2px 0px 2px 0px;
+        color:#ffffff;
+        font-size: 40px;
+        font-weight: bold;
+        font-family:'Franklin Gothic Medium',sans-serif;
+        flex-wrap: nowrap;
+        margin-top:100px;
+    }
+    form{
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        padding:30px;
+    }
+    ion-row {
+        align-items: center;
+        text-align: center;
+      }
+      ion-input{
+        font-size: 2rem;
+        color: #ffffff;
+        height: 7vh;
+        color:#ffffff;
+        
+    }
+    .innericon{
+        position: relative;
+        border:1px solid #ffffff;
+        border-radius: 0px !important;
+        font-size:6vw;
+    }
+    .innericon ion-icon{
+        float: left;
+        height: 100%;
+        display: block;
+        padding:12px;
+    }
+    .text-input::-webkit-input-placeholder { 
+        color: #ffffff;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    .ion-text::placeholder { 
+        color: #ffffff;
+        opacity: 1; 
+    }
+    
+    .custom-login-label input[type]{
+        margin-left: 0px;
+    }
+    .custom-login-label i {
+        position: absolute;
+        bottom: 12px;
+    }
+    .text-input-md {
+        padding: 0.2rem;
+        width: calc(100% - 8px - 8px);
+    }
+    .ion-text{
+        font-size:2rem;
+    }
+     b, strong {
+            font-weight: bold;
+            font-size: 15px;
+    }
+    .login-btn{
+        border:2px solid #ffffff;
+        border-radius: 5px;
+        background:#ffffff;
+        color:#E91C1A;
+        font-size: 25px;
+    }
+    .Accountdiv{
+        padding-top:20vh;
+
+    }
+    
+}
