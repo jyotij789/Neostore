@@ -2,6 +2,9 @@ page-my-account {
     .scroll-content{
         padding:0px !important;
     }
+    ion-title{
+        padding-left:55px;
+    }
     ion-content{
         background-image: url('../../assets/imgs/Android_bg.jpg');
         background-repeat: no-repeat;
@@ -10,8 +13,6 @@ page-my-account {
     
     .profileimg{
         padding:80px;
-        // height:2vh;
-        // width:2vw;
         background-color:#ffffff;
         border-radius:50px;        
     }
@@ -20,6 +21,10 @@ page-my-account {
         padding-left:20px;
         padding-right:20px;
 
+    }
+    .label-md {
+        margin:0;
+        padding:10px 0px 15px 0px;
     }
     ion-row{
         align-items: center;
@@ -54,9 +59,6 @@ page-my-account {
         display: block;
         padding:13px;
     }
-    .ion-text{
-        font-size: 4rem;
-    }
     .text-input::-webkit-input-placeholder { 
         color: #ffffff;
         font-size: 2rem;
@@ -65,6 +67,9 @@ page-my-account {
     .spacetag{
         height:10px;
     }
+    // .spacetag2{
+    //     height:10px;
+    // }
     .text-input-md {
         margin: 10px 8px;
         padding: 0.2rem;
@@ -80,5 +85,6 @@ page-my-account {
         border:1px solid #ffffff;
         color:#4f4f4f;
         font-size:15px;
+        border:5px solid #ffffff;
     }
 }

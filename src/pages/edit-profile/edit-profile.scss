@@ -2,6 +2,9 @@ page-edit-profile {
     .scroll-content{
         padding:0px !important;
     }
+    ion-title{
+        padding-left: 55px;
+    }
     ion-content{
         background-image: url('../../assets/imgs/Android_bg.jpg');
         background-repeat: no-repeat;
@@ -10,8 +13,6 @@ page-edit-profile {
     
     .profileimg{
         padding:80px;
-        // height:2vh;
-        // width:2vw;
         background-color:#ffffff;
         border-radius:50px;        
     }
@@ -60,7 +61,6 @@ page-edit-profile {
     .text-input::-webkit-input-placeholder { 
         color: #ffffff;
         font-size: 2rem;
-        font-weight: bold;
     }
     .spacetag{
         height:10px;
@@ -70,15 +70,11 @@ page-edit-profile {
         padding: 0.2rem;
         width: calc(100% - 8px - 8px);
     }
-    .editBtn{
+    .submitBtn{
         border:1px solid #ffffff;
         border-radius: 5px;
         color:#E91C1A;
-        font-size:15px;
+        font-size:2rem;
     }
-    .resetBtn{
-        border:1px solid #ffffff;
-        color:#4f4f4f;
-        font-size:15px;
-    }
+    
 }

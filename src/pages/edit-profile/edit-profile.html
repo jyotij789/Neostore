@@ -11,7 +11,7 @@
 <ion-content padding>
     <div class="spacetag"></div>  
     <div class="spacetag"></div> 
-  <form name="MyProfile">
+  <form>
     <ion-row>
       <ion-col class="profileimg"></ion-col>
     </ion-row>
@@ -21,35 +21,35 @@
       <ion-label ion-text class="custom-register-label">
           <div class="innericon">
             <ion-icon color="light" name="contact"></ion-icon>
-            <ion-input type="text" placeholder="First Name" name=""></ion-input>
+            <ion-input type="text" placeholder="First Name" name= "firstname" [(ngModel)]="fname"></ion-input>
           </div>
 
           <div class="spacetag"></div>
           <div class="innericon">
               <ion-icon color="light" name="contact"></ion-icon>
-              <ion-input type="text" placeholder="Last Name" name=""></ion-input>
+              <ion-input type="text" placeholder="Last Name" name= "lastname" [(ngModel)]="lname"></ion-input>
             </div>
 
             <div class="spacetag"></div>
           <div class="innericon">
               <ion-icon color="light" name="mail"></ion-icon>
-              <ion-input type="text" placeholder="Email" name=""></ion-input>
+              <ion-input type="text" placeholder="Email" name= "email" [(ngModel)]="email"></ion-input>
             </div>
 
             <div class="spacetag"></div>
           <div class="innericon">
               <ion-icon color="light" name="phone-portrait"></ion-icon>
-              <ion-input type="text" placeholder="Phone Number" name=""></ion-input>
+              <ion-input type="text" placeholder="Phone Number" name= "phone" [(ngModel)]="phnumber"></ion-input>
             </div>
 
             <div class="spacetag"></div>
           <div class="innericon">
-              <ion-icon color="light" name="dob"></ion-icon>
-              <ion-input type="text" placeholder="DOB" name=""></ion-input>
+              <ion-icon class="fa fa-birthday-cake" color="light" aria-hidden="true"></ion-icon>
+              <ion-input type="date" placeholder="DOB" name= "dob" [(ngModel)]="dob"></ion-input>
             </div>
 
             <div class="spacetag"></div>  
-          <button class="submitBtn" color="light" ion-button block (click)="submitProfile()">SUBMIT</button>
+          <button class="submitBtn" color="light" ion-button block (click)="submitprofile()">SUBMIT</button>
         </ion-label>
       </ion-col>
     </ion-row>

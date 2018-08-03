@@ -1,1 +1,66 @@
+page-home{
+    ion-title{
+        padding-left:55px;
+        font-weight:bold;
+    }
+    ion-content{
+        ion-slides{
+            width:auto;
+            height:40vh;
+        }
+       
+          ion-slide ion-img {
+            height: -webkit-fill-available;
+            width: -webkit-fill-available;
+          }
+        
+          .divcontainer{
+              padding:15px
+          }
+        ion-row{
+            padding:0px 0px 0px 0px;
+        }
+        .label-md {
+            margin: 0px 0px 0px 0px;;
+        }
+        ion-item{
+            height:20vh;
+            width:10vw;
+            position: relative;
+        }
+          .table{
+            
+            display: inline-flex;
+            background-color: #e91b1a;
+        }
+                
+          .sofa{            
+            background-color: #e91b1a;
+        }
+        .chairs{
+            background-color: #e91b1a;
+        }
+                
+          .cupboards{
+            display:inline-flex;
+            background-color: #e91b1a;
+        }
+        .item-md h5{
+            font-size: 2.2rem;
+            font-weight: bold;
+            line-height: normal;
+            color: white;
+            display:block;
+            margin:0px 0px;
+    }
+    .item-md.item-block .item-inner {
+        padding-right: 0px;
+        border-bottom: 0px;
+    }
 
+    .item-md {
+     padding-left: 0px; 
+    }
+}
+
+}

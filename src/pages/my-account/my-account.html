@@ -1,6 +1,9 @@
 <ion-header>
 
   <ion-navbar color="danger">
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
     <ion-title>MyAccount</ion-title>
   </ion-navbar>
 
@@ -53,8 +56,10 @@
         </ion-col>
       </ion-row>
     </form>
+    <ion-footer>
       <ion-row>
             <button class="resetBtn" ion-button color="light" full (click)="resetPassword()">Reset Password</button>
-  
         </ion-row>
+      </ion-footer>
+
 </ion-content>

@@ -20,7 +20,11 @@ page-login {
         margin: 0;
         font: inherit;
         color: inherit;
-        padding:30px;
+        padding-top:25px;
+        padding-left:25px;
+        padding-right:25px;
+        padding-bottom:0px;
+
     }
     ion-row {
         align-items: center;
@@ -48,7 +52,6 @@ page-login {
     .text-input::-webkit-input-placeholder { 
         color: #ffffff;
         font-size: 2rem;
-        font-weight: bold;
     }
     .ion-text::placeholder { 
         color: #ffffff;
@@ -63,7 +66,7 @@ page-login {
         bottom: 12px;
     }
     .text-input-md {
-        padding: 0.2rem;
+        padding:0px;
         width: calc(100% - 8px - 8px);
     }
     .ion-text{
@@ -80,9 +83,14 @@ page-login {
         color:#E91C1A;
         font-size: 25px;
     }
+    .button-block-md {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px;
+    }
     .Accountdiv{
-        padding-top:20vh;
-
+        padding-left:15px;
+        padding-right:15px;
     }
     
 }

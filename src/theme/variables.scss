@@ -11,9 +11,15 @@ $font-path: "../assets/fonts";
 // http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
 
+$radio-md-color-off: (
+darken(#ffffff, 0%)
+);@import "ionic.globals";
 
-@import "ionic.globals";
+// $item-divider-bg
+// $item-divider-color:#2c2b2b;
 
+// $item-default-active-bg        
+// $item-default-active-border:#2c2b2b;
 
 // Shared Variables
 // --------------------------------------------------
@@ -39,6 +45,10 @@ $colors: (
   danger:     #e91b1a,
   light:      #ffffff,
   dark:       #4f4f4f,
+  danger2:    #9e0100,
+  dark2:      #2c2b2b,
+  dark3:      #4F4F4F,
+  dark4:      #111111,
 );
 
 

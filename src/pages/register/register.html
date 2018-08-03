@@ -7,8 +7,8 @@
 </ion-header>
 
 
-<ion-content padding class="screen_bg">
-  <form class="form">
+<ion-content padding>
+  <form>
     <ion-row>
       <ion-col class="labelhead">
         NeoSTORE
@@ -19,57 +19,57 @@
         <ion-label ion-text class="custom-register-label">
             <div class="innericon">
                 <ion-icon color="light" name="contact" large></ion-icon>
-                <ion-input type="text" placeholder="First Name" name="firstname" required>
+                <ion-input type="text" placeholder="First Name" name="firstname" [(ngModel)]="firstName" required>
                 </ion-input>
           </div>
           <div class="spacetag"></div>
           <div class="innericon">
           <ion-icon color="light" name="contact" large></ion-icon>
-          <ion-input type="text" placeholder="Last Name" name="lastname" required>
+          <ion-input type="text" placeholder="Last Name" name="lastname" [(ngModel)]="lastName" required>
           </ion-input>
           </div>
 
           <div class="spacetag"></div>
           <div class="innericon">
           <ion-icon color="light" name="mail" large></ion-icon>
-          <ion-input type="text" placeholder="Email" name="email" required>
+          <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
           </ion-input>
         </div>
 
           <div class="spacetag"></div>
           <div class="innericon">
               <ion-icon color="light" name="lock" large></ion-icon>
-              <ion-input type="text" placeholder="Password" name="password" required>
+              <ion-input type="text" placeholder="Password" name="password" [(ngModel)]="password" required>
           </ion-input>
           </div>
 
           <div class="spacetag"></div>
           <div class="innericon">
               <ion-icon color="light" name="lock" large></ion-icon>
-              <ion-input type="text" placeholder="Confirm Password" name="confirm password" required>
+              <ion-input type="text" placeholder="Confirm Password" name="confirm password" [(ngModel)]="confirmPassword" required>
           </ion-input>
           </div>
 
-          <div class="spacetag"></div>              
-              <ion-list radio-group ion-text><span>Gender</span>
-              <ion-radio color="light" value="male"></ion-radio>  Male
+              <ion-list radio-group ion-text name="male"><span class="genderspan">Gender</span>
+              <span class="radiospan"><ion-radio color="light" value="male"> </ion-radio> Male 
               <ion-radio color="light" value="female"></ion-radio>  Female
-              </ion-list>
+              </span>
+            </ion-list>
               
           <div class="innericon">
               <ion-icon color="light" name="phone-portrait" large></ion-icon>
-          <ion-input type="text" placeholder="Phone Number" name="phone number" required>
+          <ion-input type="text" placeholder="Phone Number" name="phone number" [(ngModel)]="phoneNumber" required>
           </ion-input>
           </div>
 
           <div class="spacetag"></div>
           <div>   
-          <ion-checkbox style="float:left;" color="light"></ion-checkbox>
+          <ion-checkbox style="float:left;" color="light" name="term" [(ngModel)]="term" (ionChange)="termsChecked($event)"></ion-checkbox>
           <h6>I agree the terms & conditions</h6>
           </div>
 
           <div class="spacetag"></div>  
-          <button color="light" ion-button block>REGISTER</button>
+          <button color="light" ion-button block (click)="registeruser()">REGISTER</button>
         </ion-label>
       </ion-col>
       </ion-row>

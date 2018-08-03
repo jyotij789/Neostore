@@ -1,22 +1,31 @@
+ion-app.md [padding] .scroll-content {
+    padding: 0px;
+}
 page-register {
-    .screen_bg{
+    page-register .scroll-content {
+        padding: 0px;
+    }
+    ion-content{
         background-image: url('../../assets/imgs/Android_bg.jpg');
         background-repeat: no-repeat;
         background-size:cover;
     }
+    .label-md {
+        margin:0;
+    }
     .labelhead{
-        padding:2px 0px 2px 0px;
+        padding:20px 0px 20px 0px;
         color:#ffffff;
         font-size: 45px;
         font-weight: bold;
         font-family:'Franklin Gothic Medium',sans-serif;
         flex-wrap: nowrap;
-        margin-top:20px;
     }
     
-    .form{
+    form{
         padding-left:20px;
         padding-right:20px;
+        padding-bottom:0px;
 
     }
     ion-title{
@@ -32,20 +41,25 @@ page-register {
         color: #ffffff;
         height: 6.8vh;
     }
+    ion-list{
+        padding-top:12px
+    }
+    .genderspan{
+        padding-right:15px;
+    }
+    .radiospan{
+        padding-right: 15px;
+        float:right;
+    }
     .text-input::-webkit-input-placeholder { 
         color: #ffffff;
         font-size: 2rem;
-        font-weight: bold;
-    }
-    ion-app.md [padding] .scroll-content {
-        padding:0px;
     }
     .spacetag{
         height:10px;
     }
     .text-input-md {
         margin: 10px 8px;
-        padding: 0.2rem;
         width: calc(100% - 8px - 8px);
     }
     .ion-text{
@@ -60,6 +74,7 @@ page-register {
     ion-label{
         font-size: 20px;
         color: #ffffff;
+        padding-bottom:0px; 
     }
     .button-md-light {
         color: #E91C1A;
@@ -67,6 +82,11 @@ page-register {
         font-size: 25px;
         border:1px solid #ffffff;
         border-radius: 5px;
+    }
+    .button-block-md {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px;
     }
     ion-checkbox{
         border:1px solid #ffffff;
@@ -81,6 +101,6 @@ page-register {
         float: left;
         height: 100%;
         display: block;
-        padding:13px;
+        padding:10px;
     }
 }

@@ -14,3 +14,56 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+ion-menu{
+    ion-label{
+        background-color: #2b2b2b;
+        font-size: 20px;
+    }
+    ion-label ion-img{
+        text-align: center;
+        border:2px solid white;
+        border-radius:50%;
+        height:13vh;
+        width:22vw;
+        background-image: url("../../assets/imgs/profile.jpg");
+        background-repeat: no-repeat;
+        // background-position: cover;
+        margin-left: 110px;
+        margin-top: 53px;
+    }
+    ion-label .div2{
+        color:#ffffff;
+        text-align: center;
+        font-size: 25px;
+        font-weight: bold;
+        padding:20px 0px 0px 0px; 
+    }
+    ion-label .div3{
+        color:#ffffff;
+        text-align: center;
+        font-size: 15px;
+        font-weight: normal;
+        padding:5px 0px 0px 0px; 
+
+    }
+    .label-md {
+        margin:0;
+        padding:7px;
+    }
+    .list-md {
+        margin: 0px 0 0px;
+        padding:14px 0 0 0;
+    }
+    ion-list{
+        background-color: #2b2b2b;
+    }
+    ion-item {
+        border-bottom-color: black;
+        
+    }
+    .list-md .item-block .item-inner {
+        border-bottom: 1px solid black;
+        padding-right:0;
+    }
+ }
