@@ -4,6 +4,7 @@ import { AlertController } from 'ionic-angular';
 import { ProvidersUrl } from '../../providers/providers/url';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice} from '../../providers/providers/apiservice'
+import { LoginPage } from '../login/login';
 // import { ProvidersApiservice } from '../../providers/providers/apiservice';
 @IonicPage()
 @Component({
@@ -17,34 +18,31 @@ export class RegisterPage {
   public email: string;
   public password: string;
   public confirmPassword: string;
-  public phoneNumber: string;
+  public phoneNumber:any;
   public autoManufacturers: any;
   public term: any;
-  public gender:string='M';
+  public gender:string='F';
   constructor(private alertCtrl: AlertController,public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams, public providerurl:ProvidersUrl, public apiservice: ProvidersApiservice) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterPage');
-    console.log(this.providerurl.register);
-
-    // console.log(this.female);
   }
+
   registeruser() {
     let regex = /^[a-zA-Z]{2,30}$/;
     let phoneRegex = /^[0-9#*+]{10,12}$/;
     let emailRegex=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
-    let requestData={
-      first_name: this.firstName,
-      last_name:this.lastName ,
-      email: this.email,
-      password: this.password,
-      confirm_password: this.confirmPassword,
-      gender: this.gender,
-      phone_no: this.phoneNumber,
-    }
+    let body =new FormData();
+    body.append('first_name', this.firstName);
+    body.append('last_name', this.lastName);
+    body.append('email',  this.email);
+    body.append('password', this.password);
+    body.append('confirm_password', this.confirmPassword);
+    body.append('gender', this.firstName);
+    body.append('phone_no', this.phoneNumber);
+
     if (this.firstName == null || this.firstName == "") {
-      //return this.firstnameError();
       this.providerglobal.alertMessage("Enter First Name");
     }
     else if (!regex.test(this.firstName)) {
@@ -69,7 +67,7 @@ export class RegisterPage {
     else if (this.confirmPassword == null || this.confirmPassword == "") {
       this.providerglobal.alertMessage("Enter Confirm password");
     }
-    else if (this.phoneNumber == null || this.phoneNumber == "") {
+    else if (this.phoneNumber == null) {
       this.providerglobal.alertMessage("Enter Phone Number");
     }
     else if(this.password != this.confirmPassword)
@@ -81,14 +79,16 @@ export class RegisterPage {
       this.providerglobal.alertMessage("Phone number must be between of 10-12 digits");
     }
     else{
-      this.apiservice.globalApiRequest('post',this.providerurl.register, requestData, this.callback);
+      this.apiservice.globalApiRequest('post',this.providerurl.register, body, this.callback);
     }
     
 
   }
 
-  callback(response){
-    console.log(response);
+  callback = (data)=> {
+    console.log("registration",data);
+    debugger;
+    this.navCtrl.setRoot(LoginPage);
   }
   termsChecked($event){
     if(!$event.checked){

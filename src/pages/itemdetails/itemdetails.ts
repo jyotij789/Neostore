@@ -1,22 +1,20 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ItemdetailsPage } from '../itemdetails/itemdetails';
+
 
 
 @IonicPage()
 @Component({
-  selector: 'page-tables',
-  templateUrl: 'tables.html',
+  selector: 'page-itemdetails',
+  templateUrl: 'itemdetails.html',
 })
-export class TablesPage {
+export class ItemdetailsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TablesPage');
+    console.log('ionViewDidLoad ItemdetailsPage');
   }
-openItemDetails(){
-  this.navCtrl.push(ItemdetailsPage);
-}
+
 }

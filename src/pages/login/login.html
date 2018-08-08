@@ -10,13 +10,13 @@
             <ion-icon color="light" name="contact"></ion-icon>
             <ion-input ion-text type="text" placeholder="Username" name="username" [(ngModel)]="email"></ion-input>
           </div>
-          <br>
+          <div class="spacetag"></div>
           <div class="innericon">
             <ion-icon color="light" name="lock"></ion-icon>
             <ion-input ion-text type="password" placeholder="Password" name="password" [(ngModel)]="password"></ion-input>
           </div>
           <br><br>
-          <button class="login-btn" ion-button block (click)="getHome()">LOGIN</button>
+          <button class="login-btn" type="submit" ion-button block (click)="getHome()">LOGIN</button>
         </ion-label>
 
       </ion-col>

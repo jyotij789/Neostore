@@ -14,58 +14,61 @@ import { ProvidersApiservice } from '../providers/providers/apiservice';
 import { MyAccountPage } from '../pages/my-account/my-account';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-import { NavController } from 'ionic-angular';
 import { AddressPage } from '../pages/address/address';
 import { MycartPage } from '../pages/mycart/mycart';
-import { TablesPage} from '../pages/tables/tables';
+import { TablesPage } from '../pages/tables/tables';
 import { Network } from '@ionic-native/network';
 import { HttpModule } from '@angular/http';
-
+import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';
 import { ProvidersGlobal } from '../providers/providers/global';
+import { HTTP } from '@ionic-native/http';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    LoginPage,
-    RegisterPage,
-    ForgotpasswordPage,
-    MyAccountPage,
-    EditProfilePage,
-    ResetPasswordPage,
-    AddressPage,
-    MycartPage,
-    TablesPage
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    LoginPage,
-    RegisterPage,
-    ForgotpasswordPage,
-    MyAccountPage,
-    EditProfilePage,
-    ResetPasswordPage,
-    AddressPage,
-    MycartPage,
-    TablesPage,
+    declarations: [
+        MyApp,
+        HomePage,
+        LoginPage,
+        RegisterPage,
+        ForgotpasswordPage,
+        MyAccountPage,
+        EditProfilePage,
+        ResetPasswordPage,
+        AddressPage,
+        MycartPage,
+        TablesPage,
+        ItemdetailsPage
+    ],
+    imports: [
+        BrowserModule,
+        HttpModule,
+        IonicModule.forRoot(MyApp)
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        HomePage,
+        LoginPage,
+        RegisterPage,
+        ForgotpasswordPage,
+        MyAccountPage,
+        EditProfilePage,
+        ResetPasswordPage,
+        AddressPage,
+        MycartPage,
+        TablesPage,
+        ItemdetailsPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        Keyboard,
+        { provide: ErrorHandler, useClass: IonicErrorHandler },
+        ProvidersUrl,
+        ProvidersApiservice,
+        ProvidersGlobal,
+        Network,
+        HTTP
 
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    Keyboard,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ProvidersUrl,
-    ProvidersApiservice,
-    ProvidersGlobal,
-    Network
-  ]
+    ]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,0 +1,27 @@
+page-itemdetails {
+ion-list{
+
+        h1{
+            color:map-get($colors,dark4);
+        }
+        h2, h6{
+            color:color($colors,dark3,base);
+        }
+    
+}
+ion-footer{
+    ion-row{
+        padding-left:5px;
+        padding-right:5px;
+    }
+    button{
+        border-radius: 5px;
+        text-align:center;
+    }
+    a ion-label, button ion-label {
+        pointer-events: none;
+        text-align: center;
+        font-weight: bold;
+}
+}
+}

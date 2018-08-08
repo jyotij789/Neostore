@@ -30,7 +30,7 @@ page-login {
         align-items: center;
         text-align: center;
       }
-      ion-input{
+      .innericon  ion-input{
         font-size: 2rem;
         color: #ffffff;
         height: 7vh;
@@ -43,11 +43,14 @@ page-login {
         border-radius: 0px !important;
         font-size:6vw;
     }
+    .spacetag{
+        height: 10px;
+    }
     .innericon ion-icon{
         float: left;
         height: 100%;
         display: block;
-        padding:12px;
+        padding:12px 0px 12px 12px;
     }
     .text-input::-webkit-input-placeholder { 
         color: #ffffff;
@@ -66,7 +69,8 @@ page-login {
         bottom: 12px;
     }
     .text-input-md {
-        padding:0px;
+        margin:0px !important;
+        padding: 12px 0px 12px 12px;
         width: calc(100% - 8px - 8px);
     }
     .ion-text{
