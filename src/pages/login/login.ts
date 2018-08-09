@@ -18,18 +18,26 @@ export class LoginPage {
     public email: string;
     public password: string;
     public userInfo: {};
+    public formattedResponse: any;
+    public status: number;
+    public responseType: string;
+    public accessToken: any;
+
     constructor(public navCtrl: NavController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, private alertCtrl: AlertController, public apiservice: ProvidersApiservice) {
         // this.callback = this.callback.bind(this);
     }
 
     getHome() {
         let regex = /^[a-zA-Z]{2,30}$/;
-        let body = new FormData();
-        body.append('email', this.email);
-        body.append('password', this.password);
-
+        // let body = new FormData();
+        // body.append('email', this.email);
+        // body.append('password', this.password);
         console.log('email:', this.email);
         console.log('password:', this.password);
+        let data = {
+            'email': this.email,
+            'password': this.password
+        }
 
         if (this.email == null || this.email == "") {
             this.providerGlobal.alertMessage("Enter Username");
@@ -38,33 +46,56 @@ export class LoginPage {
             this.providerGlobal.alertMessage("Enter password");
         }
         else {
-            this.apiservice.globalApiRequest('post', this.providerUrl.login, body, this.callback);
+            this.apiservice.globalApiRequest('post', this.providerUrl.login, data, this.callback);
 
         }
     }
     callback = (response) => {
-        var formattedResponse = JSON.parse(response._body);
-        console.log(formattedResponse.status);
-        if (formattedResponse.status == 200) {
-            localStorage.setItem("formattedResponse", JSON.stringify(formattedResponse.data));
-            var formattedAccessToken = formattedResponse.data.access_token;
-            console.log(formattedResponse.data.access_token);
-            this.navCtrl.setRoot(HomePage);
-        }
-        else if (formattedResponse.status == 401) {
-            this.providerGlobal.alertMessage(formattedResponse.message + formattedResponse.user_msg);
-        }
-        else if (formattedResponse.status == 500) {
-            this.providerGlobal.alertMessage(formattedResponse.message);
+        let platform = this.providerGlobal.platformDetect();
+        if (platform == "other") {
+            console.log(response);
+            let formattedData = JSON.parse(response.data);
+            console.log("device formattedData", formattedData);
+            this.status = response.status;
+            console.log("device status", this.status);
+            console.log(formattedData.data);
+            this.accessToken = formattedData.data.access_token;
+            console.log("device accessToken", this.accessToken);
+            localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
+            return this.gotoHome(this.status);
+
         }
         else {
-            this.providerGlobal.alertMessage(formattedResponse.message);
+            this.formattedResponse = JSON.parse(response._body);
+            this.status = this.formattedResponse.status;
+            console.log("browser status", this.status);
+            this.accessToken = this.formattedResponse.data.access_token;
+            console.log("browser access token", this.formattedResponse.data.access_token);
+            localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
+            return this.gotoHome(this.status);
+        }
+
+
+    }
+    public gotoHome(status) {
+        console.log("status", status);
+        console.log("home navigation method");
+        if (status == 200) {
+            this.navCtrl.setRoot(HomePage);
+        }
+        else if (status == 401) {
+            this.providerGlobal.alertMessage("Data missing..");
+        }
+        else if (status == 500) {
+            this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again");
+        }
+        else {
+            this.providerGlobal.alertMessage("Something is wrong");
         }
     }
+
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
-        // var platform = this.providerGlobal.platformCheck();
-        // console.log(platform);
 
     }
 

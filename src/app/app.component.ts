@@ -44,11 +44,11 @@ export class MyApp {
                 formattedData = [];
             }
             else {
-                apiToken = formattedData.access_token;
-                console.log(apiToken);
+                apiToken = formattedData;
+                console.log('apiToken', apiToken);
 
                 if (apiToken != null) {
-                    this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, apiToken, this.callback);
+                    // this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, apiToken, this.callback);
                     this.nav.setRoot(HomePage);
                 }
 

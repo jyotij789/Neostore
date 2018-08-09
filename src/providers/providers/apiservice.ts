@@ -10,20 +10,20 @@ import { Platform, IonicPage, Nav, NavParams } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 @Injectable()
 export class ProvidersApiservice {
+    public i: number;
+    public name: any;
+
     @ViewChild(Nav) nav: Nav;
     constructor(public HTTP: HTTP, public http: Http, public platformGlobal: ProvidersGlobal) {
         console.log('Hello ProvidersProvider Provider');
-        // if (this.platform.is('cordova')) {
-        //     // You're on a device, call the native plugins.
-        // } else {
-        //     // You're testing in browser, do nothing or mock the plugins' behaviour.
-        // }
+
     }
 
     // 
     globalApiRequest(method, url, data, callback) {
         console.log(data);
-        // let headers = new Headers(data);
+        // let name = Object.keys(data)[0];
+        // let headers = new Headers({ "Content-Type": "application/x-www-form-urlencoded" });
         // console.log(headers);
         // let options = new RequestOptions({ headers: headers });
         let platform = this.platformGlobal.platformDetect();
@@ -46,21 +46,37 @@ export class ProvidersApiservice {
                 console.log("post");
                 console.log(url);
                 console.log(data);
-                this.HTTP.post(url, { email: "aaaa99@gmail.com", password: "aaaa123" }, {})
+                console.log(typeof (data));
+                console.log(this.HTTP.getDataSerializer());
+                this.HTTP.setDataSerializer("urlencoded");
+                this.HTTP.post(url, data, {})
                     .then(data => {
                         console.log("GlobalpostwithHeader_service success", data);
-                        // return callback(data);
+                        return callback(data);
 
                     })
                     .catch(error => {
                         console.log("GlobalpostwithHeader_service error", error);
-                        // return callback(error);
+                        return callback(error);
 
                     });
             }
         }
 
         else {
+            let body2 = new FormData();
+            console.log(Object.keys(data));
+            let body = new FormData();
+            if (Object.keys(data).length > 0) {
+                for (this.i = 0; this.i < Object.keys(data).length; this.i++) {
+                    body.append(Object.keys(data)[this.i], (<any>Object).values(data)[this.i]);
+                    console.log(body);
+                }
+
+            }
+            else {
+                alert("empty body");
+            }
             if (method == 'get') {
                 return new Promise((resolve, reject) => {
                     this.http.get(url, data)
@@ -78,12 +94,13 @@ export class ProvidersApiservice {
             else {
                 console.log("post");
                 console.log(url);
-                console.log(data);
+                console.log(body);
                 return new Promise((resolve, reject) => {
-                    this.http.post(url, data)
-                        .subscribe(data => {
-                            console.log("GlobalpostwithHeader_service success", data);
-                            return callback(data);
+                    this.http.post(url, body)
+                        .subscribe(datavalue => {
+                            console.log("GlobalpostwithHeader_service success", datavalue);
+                            return callback(datavalue);
+
 
                         },
                             error => {
