@@ -22,6 +22,7 @@ import { HttpModule } from '@angular/http';
 import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';
 import { ProvidersGlobal } from '../providers/providers/global';
 import { HTTP } from '@ionic-native/http';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -67,7 +68,8 @@ import { HTTP } from '@ionic-native/http';
         ProvidersApiservice,
         ProvidersGlobal,
         Network,
-        HTTP
+        HTTP,
+
 
     ]
 })

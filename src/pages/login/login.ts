@@ -62,26 +62,28 @@ export class LoginPage {
             this.accessToken = formattedData.data.access_token;
             console.log("device accessToken", this.accessToken);
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
-            return this.gotoHome(this.status);
+            return this.gotoHome(this.status, this.accessToken);
 
         }
         else {
-            this.formattedResponse = JSON.parse(response._body);
-            this.status = this.formattedResponse.status;
+            this.formattedResponse = response._body;
+            console.log(this.formattedResponse);
+            this.status = response.status;
             console.log("browser status", this.status);
-            this.accessToken = this.formattedResponse.data.access_token;
-            console.log("browser access token", this.formattedResponse.data.access_token);
+            this.accessToken = this.formattedResponse.access_token;
+            console.log("browser access token", this.formattedResponse.access_token);
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
-            return this.gotoHome(this.status);
+            return this.gotoHome(this.status, this.accessToken);
         }
 
 
     }
-    public gotoHome(status) {
+    public gotoHome(status, token) {
         console.log("status", status);
         console.log("home navigation method");
         if (status == 200) {
             this.navCtrl.setRoot(HomePage);
+            this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, token, this.homepageCallback);
         }
         else if (status == 401) {
             this.providerGlobal.alertMessage("Data missing..");
@@ -93,7 +95,9 @@ export class LoginPage {
             this.providerGlobal.alertMessage("Something is wrong");
         }
     }
-
+    homepageCallback = (response) => {
+        console.log(response);
+    }
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
 

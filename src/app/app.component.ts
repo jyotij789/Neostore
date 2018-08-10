@@ -19,6 +19,7 @@ import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';
 import { ProvidersGlobal } from '../providers/providers/global';
 import { ProvidersApiservice } from '../providers/providers/apiservice'
 import { ProvidersUrl } from '../providers/providers/url';
+import { Http } from '@angular/http';
 
 @Component({
     templateUrl: 'app.html',
