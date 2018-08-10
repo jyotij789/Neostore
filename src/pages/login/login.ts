@@ -55,22 +55,18 @@ export class LoginPage {
         if (platform == "other") {
             console.log(response);
             let formattedData = JSON.parse(response.data);
-            console.log("device formattedData", formattedData);
             this.status = response.status;
-            console.log("device status", this.status);
-            console.log(formattedData.data);
-            this.accessToken = formattedData.data.access_token;
+            this.accessToken = formattedData.access_token;
             console.log("device accessToken", this.accessToken);
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
             return this.gotoHome(this.status, this.accessToken);
 
         }
         else {
-            this.formattedResponse = response._body;
-            console.log(this.formattedResponse);
+            console.log(response);
+            this.formattedResponse = JSON.parse(response._body);
             this.status = response.status;
-            console.log("browser status", this.status);
-            this.accessToken = this.formattedResponse.access_token;
+            this.accessToken = this.formattedResponse.data.access_token;
             console.log("browser access token", this.formattedResponse.access_token);
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
             return this.gotoHome(this.status, this.accessToken);
@@ -83,6 +79,7 @@ export class LoginPage {
         console.log("home navigation method");
         if (status == 200) {
             this.navCtrl.setRoot(HomePage);
+            console.log(token);
             this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, token, this.homepageCallback);
         }
         else if (status == 401) {

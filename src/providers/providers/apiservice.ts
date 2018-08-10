@@ -1,5 +1,5 @@
 import { Injectable, ViewChild } from '@angular/core';
-// import {  HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+// import { HttpClientModule, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod } from '@angular/http';
 import { HTTP } from '@ionic-native/http';
 import { LoadingController, AlertController, Header } from 'ionic-angular';
@@ -25,14 +25,13 @@ export class ProvidersApiservice {
         console.log(data);
 
         // let name = Object.keys(data)[0];
-        // let headers = new Headers({ "Content-Type": "application/x-www-form-urlencoded" });
-        // console.log(headers);
-        // let options = new RequestOptions({ headers: headers });
+
         let platform = this.platformGlobal.platformDetect();
         console.log("platform", platform);
         if (platform == "other") {
+
             if (method == 'get') {
-                this.HTTP.get(url, data, {})
+                this.HTTP.get(url, {}, { 'access_token': data })
                     .then(data => {
                         console.log("GlobalpostwithHeader_service success", data);
                         return callback(data);
@@ -68,37 +67,22 @@ export class ProvidersApiservice {
         else {
 
             if (method == 'get') {
-                //let headers = new HttpHeaders().set('access_token', data);
-                // headers.append('access_token', data);
-                // headers.append('Content-Type', 'application/json');
-                // const params = new HttpParams().set('access_token', data)
-                // console.log("authheaders", data);
+
                 console.log(typeof (data));
-                // const header = new HttpHeaders({
-                //     'access_token': data,
-                //     'Access-Control-Allow-Headers': 'X-Custom-Header'
-                // })
-                // let authheaders = new Headers();
-                // authheaders.append('access_token', data);
-                // let options = new RequestOptions({ headers: authheaders })
-
-                var headers = new Headers();
-                headers.append('Access-Control-Allow-Origin', '*');
-                headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-                headers.append('Accept', 'application/json');
-                headers.append('content-type', 'application/json');
-                let options = new RequestOptions({ headers: headers });
-
+                const header = new Headers({
+                    'access_token': data,
+                    'Access-Control-Allow-Headers': 'X-Custom-Header'
+                })
 
                 return new Promise((resolve, reject) => {
-                    this.http.get(url, options)
+                    this.http.get(url, { headers: header })
                         .subscribe(datavalue => {
                             console.log("GlobalpostwithHeader_service success", datavalue);
-                            // return callback(datavalue);
+                            return callback(datavalue);
                         },
                             error => {
                                 console.log("GlobalpostwithHeader_service error", error);
-                                // return callback(error);
+                                return callback(error);
 
                             });
                 })
