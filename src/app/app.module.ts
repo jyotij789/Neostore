@@ -68,8 +68,8 @@ import { Http } from '@angular/http';
         ProvidersApiservice,
         ProvidersGlobal,
         Network,
+        HomePage,
         HTTP
-
     ]
 })
 export class AppModule { }

@@ -49,8 +49,7 @@ export class MyApp {
                 console.log('apiToken', apiToken);
 
                 if (apiToken != null) {
-                    // this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, apiToken, this.callback);
-                    this.nav.setRoot(HomePage);
+                    this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, apiToken, this.callback);
                 }
 
             }
@@ -58,7 +57,7 @@ export class MyApp {
     }
 
     callback = (response) => {
-        console.log(response);
+        this.nav.setRoot(HomePage, { homeData: response });
     }
     // openPage(page) {
     // Reset the content nav to have just this page
@@ -76,6 +75,7 @@ export class MyApp {
 
     }
     logout() {
+        localStorage.removeItem("formattedResponse");
         this.nav.setRoot(LoginPage);
 
     }

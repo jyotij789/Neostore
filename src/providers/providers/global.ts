@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, Platform } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 

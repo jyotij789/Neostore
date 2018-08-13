@@ -19,13 +19,8 @@ export class ProvidersApiservice {
         console.log('Hello ProvidersProvider Provider');
 
     }
-
-    // 
     globalApiRequest(method, url, data, callback) {
         console.log(data);
-
-        // let name = Object.keys(data)[0];
-
         let platform = this.platformGlobal.platformDetect();
         console.log("platform", platform);
         if (platform == "other") {
@@ -45,9 +40,6 @@ export class ProvidersApiservice {
             }
             else {
                 console.log("post");
-                console.log(url);
-                console.log(data);
-                console.log(typeof (data));
                 console.log(this.HTTP.getDataSerializer());
                 this.HTTP.setDataSerializer("urlencoded");
                 this.HTTP.post(url, data, {})
@@ -67,8 +59,6 @@ export class ProvidersApiservice {
         else {
 
             if (method == 'get') {
-
-                console.log(typeof (data));
                 const header = new Headers({
                     'access_token': data,
                     'Access-Control-Allow-Headers': 'X-Custom-Header'
@@ -94,7 +84,6 @@ export class ProvidersApiservice {
                 if (Object.keys(data).length > 0) {
                     for (this.i = 0; this.i < Object.keys(data).length; this.i++) {
                         body.append(Object.keys(data)[this.i], (<any>Object).values(data)[this.i]);
-                        console.log("body", body);
                     }
 
                 }
@@ -102,8 +91,6 @@ export class ProvidersApiservice {
                     alert("empty body");
                 }
                 console.log("post");
-                console.log(url);
-                console.log("body", body);
                 return new Promise((resolve, reject) => {
                     this.http.post(url, body)
                         .subscribe(datavalue => {

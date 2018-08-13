@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { ForgotpasswordPage } from '../forgotpassword/forgotpassword';
 import { MyAccountPage } from '../my-account/my-account';
@@ -56,7 +56,7 @@ export class LoginPage {
             console.log(response);
             let formattedData = JSON.parse(response.data);
             this.status = response.status;
-            this.accessToken = formattedData.access_token;
+            this.accessToken = formattedData.data.access_token;
             console.log("device accessToken", this.accessToken);
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
             return this.gotoHome(this.status, this.accessToken);
@@ -78,8 +78,7 @@ export class LoginPage {
         console.log("status", status);
         console.log("home navigation method");
         if (status == 200) {
-            this.navCtrl.setRoot(HomePage);
-            console.log(token);
+
             this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, token, this.homepageCallback);
         }
         else if (status == 401) {
@@ -93,7 +92,7 @@ export class LoginPage {
         }
     }
     homepageCallback = (response) => {
-        console.log(response);
+        this.navCtrl.setRoot(HomePage, { homeData: response });
     }
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
