@@ -64,7 +64,6 @@ export class LoginPage {
 
     public gotoHome(status, token) {
         console.log("status", status);
-        console.log("home navigation method");
         if (status == 200) {
             let data = null;
             this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, token, this.homepageCallback);

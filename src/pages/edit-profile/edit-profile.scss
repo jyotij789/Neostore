@@ -70,11 +70,23 @@ page-edit-profile {
         padding: 0.2rem;
         width: calc(100% - 8px - 8px);
     }
+    .datetime-md {
+        margin: 10px 8px;
+        padding: 0px;
+    }
     .submitBtn{
         border:1px solid #ffffff;
         border-radius: 5px;
         color:#E91C1A;
         font-size:2rem;
     }
+    ion-datetime {
+        
+        display: table;
+        overflow: hidden;
+       
+    }
+    
+    
     
 }

@@ -12,7 +12,6 @@ import { HomePage } from '../home/home';
 export class MyAccountPage {
     public userFormattedData = [];
     constructor(public navCtrl: NavController, public navParams: NavParams) {
-
     }
 
     ionViewDidLoad() {
@@ -21,6 +20,7 @@ export class MyAccountPage {
     }
     getUserdetails() {
         let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
+        console.log(formattedData);
         this.userFormattedData.push(formattedData.user_data);
         console.log("userFormattedData", this.userFormattedData);
 

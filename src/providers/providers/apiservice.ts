@@ -42,7 +42,6 @@ export class ProvidersApiservice {
 
                 this.HTTP.get(url, this.body, { headers: header })
                     .then(response => {
-                        console.log("TEST");
                         var formattedResponse = JSON.parse(response.data);
                         return callback(formattedResponse);
                     })
