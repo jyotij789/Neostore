@@ -18,25 +18,24 @@ export class HomePage {
     public imagesArray = [];
     public TitleArray: Array<{}>;
     public titles: any;
-    public firstname = "sagar";
+    public formattedData;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
-        console.log(navParams.get('homeData'));
 
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad HomePage');
         this.getUserDetails();
-        // this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, "5b6937da7d73d", this.getUserDetails);
+
     }
 
     getUserDetails() {
         console.log("User account details", this.navParams.get('homeData'));
         // console.log(JSON.stringify(this.imagesArray));
-        let formattedData = (this.navParams.get('homeData').json());
-        this.imagesArray = formattedData.data.product_categories;
-        console.log(JSON.stringify(this.imagesArray));
-        console.log(formattedData.data.product_categories[0].icon_image);
+        this.formattedData = this.navParams.get('homeData');
+        this.imagesArray = this.formattedData.product_categories;
+        // console.log(JSON.stringify(this.imagesArray));
+        // console.log(formattedData.product_categories[0].icon_image);
     }
 
     openTablesPage() {

@@ -1,65 +1,65 @@
 <ion-header>
 
-  <ion-navbar color="danger">
-      <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
+    <ion-navbar color="danger">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
         </button>
-    <ion-title>MyAccount</ion-title>
-  </ion-navbar>
+        <ion-title>MyAccount</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <div class="spacetag"></div>  
-    <div class="spacetag"></div> 
-  <form name="MyAccount">
-    <ion-row>
-      <ion-col class="profileimg"></ion-col>
-    </ion-row>
+    <div class="spacetag"></div>
+    <div class="spacetag"></div>
+    <form name="MyAccount">
+        <ion-row>
+            <ion-col class="profileimg"></ion-col>
+        </ion-row>
 
-    <ion-row>
-      <ion-col>
-      <ion-label ion-text class="custom-register-label">
-          <div class="innericon">
-            <ion-icon color="light" name="contact"></ion-icon>
-            <ion-input name=""></ion-input>
-          </div>
+        <ion-row>
+            <ion-col>
+                <ion-label ion-text class="custom-register-label">
+                    <div class="innericon" *ngFor="let data of userFormattedData">
+                        <ion-icon color="light" name="contact"></ion-icon>
+                        <ion-input name="firstname" [(ngModel)]="data.first_name" [readonly]="true"></ion-input>
+                    </div>
 
-          <div class="spacetag"></div>
-          <div class="innericon">
-              <ion-icon color="light" name="contact"></ion-icon>
-              <ion-input name=""></ion-input>
-            </div>
+                    <div class="spacetag"></div>
+                    <div class="innericon" *ngFor="let data of userFormattedData">
+                        <ion-icon color="light" name="contact"></ion-icon>
+                        <ion-input name="lastname" [(ngModel)]="data.last_name" [readonly]="true"></ion-input>
+                    </div>
 
-            <div class="spacetag"></div>
-          <div class="innericon">
-              <ion-icon color="light" name="mail"></ion-icon>
-              <ion-input name=""></ion-input>
-            </div>
+                    <div class="spacetag"></div>
+                    <div class="innericon" *ngFor="let data of userFormattedData">
+                        <ion-icon color="light" name="mail"></ion-icon>
+                        <ion-input name="email" [(ngModel)]="data.email" [readonly]="true"></ion-input>
+                    </div>
 
-            <div class="spacetag"></div>
-          <div class="innericon">
-              <ion-icon color="light" name="phone-portrait"></ion-icon>
-              <ion-input name=""></ion-input>
-            </div>
+                    <div class="spacetag"></div>
+                    <div class="innericon" *ngFor="let data of userFormattedData">
+                        <ion-icon color="light" name="phone-portrait"></ion-icon>
+                        <ion-input name="phone_no" [(ngModel)]="data.phone_no" [readonly]="true"></ion-input>
+                    </div>
 
-            <div class="spacetag"></div>
-          <div class="innericon">
-              <ion-icon color="light" name="contact"></ion-icon>
-              <ion-input name=""></ion-input>
-            </div>
+                    <div class="spacetag"></div>
+                    <div class="innericon" *ngFor="let data of userFormattedData">
+                        <ion-icon class="fa fa-birthday-cake" color="light" aria-hidden="true"></ion-icon>
+                        <ion-input name="dob" [(ngModel)]="data.dob" [readonly]="true"></ion-input>
+                    </div>
 
-            <div class="spacetag"></div>  
-            <button class="editBtn" color="light" ion-button block (click)="editProfile()">Edit Profile</button>
-          </ion-label>
-        </ion-col>
-      </ion-row>
+                    <div class="spacetag"></div>
+                    <button class="editBtn" color="light" ion-button block (click)="editProfile()">Edit Profile</button>
+                </ion-label>
+            </ion-col>
+        </ion-row>
     </form>
     <ion-footer>
-      <ion-row>
+        <ion-row>
             <button class="resetBtn" ion-button color="light" full (click)="resetPassword()">Reset Password</button>
         </ion-row>
-      </ion-footer>
+    </ion-footer>
 
 </ion-content>

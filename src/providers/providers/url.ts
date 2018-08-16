@@ -14,12 +14,12 @@ export class ProvidersUrl {
 
     public login = this.getBaseUrl() + '/users/login';
     public register = this.getBaseUrl() + '/users/register';
-    //     forgotpass : this.baseUrl + '/users/forgot';
-    //       Changepass : this.baseUrl + '/users/change';
-    //         updateaccount : this.baseUrl + '/users/update';
+    public forgotpass = this.getBaseUrl() + '/users/forgot';
+    public changepass = this.getBaseUrl() + '/users/change';
+    public updateaccount = this.getBaseUrl() + '/users/update';
     public Fetchaccount = this.getBaseUrl() + '/users/getUserData';
 
-    //             getlist : this.baseUrl + '/products/getList';
+    // getlist : this.baseUrl + '/products/getList';
     // getDetail: this.baseUrl + '/products/getDetail';
     // setrating: this.baseUrl + '/products/setRating';
 

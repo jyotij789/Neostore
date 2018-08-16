@@ -13,9 +13,9 @@ export class ProvidersGlobal {
 
     }
 
-    alertMessage(message) {
+    alertMessage(message, title) {
         let alert = this.alertCtrl.create({
-            title: 'Error',
+            title: title,
             subTitle: message,
             buttons: ['Ok']
         });

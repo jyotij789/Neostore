@@ -22,7 +22,7 @@ export class RegisterPage {
     public autoManufacturers: any;
     public term: any;
     public gender: string = 'F';
-    constructor(private alertCtrl: AlertController, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams, public providerurl: ProvidersUrl, public apiservice: ProvidersApiservice) {
+    constructor(private alertCtrl: AlertController, public providerGlobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams, public providerurl: ProvidersUrl, public apiservice: ProvidersApiservice) {
     }
 
     ionViewDidLoad() {
@@ -53,40 +53,41 @@ export class RegisterPage {
         }
 
         if (this.firstName == null || this.firstName == "") {
-            this.providerglobal.alertMessage("Enter First Name");
+            this.providerGlobal.alertMessage("Enter First Name", "Error");
         }
         else if (!regex.test(this.firstName)) {
-            this.providerglobal.alertMessage("Enter First Name of 2-30 characters");
+            this.providerGlobal.alertMessage("Enter First Name of 2-30 characters", "Error");
         }
         else if (this.lastName == null || this.lastName == "") {
-            this.providerglobal.alertMessage("Enter Lastname");
+            this.providerGlobal.alertMessage("Enter Lastname", "Error");
         }
         else if (!regex.test(this.lastName)) {
-            this.providerglobal.alertMessage("Enter Last Name of 2-30 characters");
+            this.providerGlobal.alertMessage("Enter Last Name of 2-30 characters", "Error");
         }
         else if (this.email == null || this.email == "") {
-            this.providerglobal.alertMessage("Enter Valid Email");
+            this.providerGlobal.alertMessage("Enter Valid Email", "Error");
         }
         else if (!emailRegex.test(this.email)) {
-            this.providerglobal.alertMessage("Enter Valid Email");
+            this.providerGlobal.alertMessage("Enter Valid Email", "Error");
         }
         else if (this.password == null || this.password == "") {
-            this.providerglobal.alertMessage("Enter Password");
+            this.providerGlobal.alertMessage("Enter Password", "Error");
         }
         else if (this.confirmPassword == null || this.confirmPassword == "") {
-            this.providerglobal.alertMessage("Enter Confirm password");
+            this.providerGlobal.alertMessage("Enter Confirm password", "Error");
         }
         else if (this.phoneNumber == null) {
-            this.providerglobal.alertMessage("Enter Phone Number");
+            this.providerGlobal.alertMessage("Enter Phone Number", "Error");
         }
         else if (this.password != this.confirmPassword) {
-            this.providerglobal.alertMessage("Password must be same");
+            this.providerGlobal.alertMessage("Password must be same", "Error");
         }
         else if (!phoneRegex.test(this.phoneNumber)) {
-            this.providerglobal.alertMessage("Phone number must be between of 10-12 digits");
+            this.providerGlobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
         }
         else {
-            this.apiservice.globalApiRequest('post', this.providerurl.register, data, this.callback);
+            let token = "token";
+            this.apiservice.globalApiRequest('post', this.providerurl.register, data, token, this.callback);
         }
 
 

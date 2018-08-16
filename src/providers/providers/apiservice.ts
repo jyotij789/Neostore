@@ -11,102 +11,129 @@ import { Platform, IonicPage, Nav, NavParams } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 @Injectable()
 export class ProvidersApiservice {
-    public i: number;
     public name: any;
+    public i: number;
+    public apiToken: string;
+    public formattedData: string;
 
+    public body = {};
     @ViewChild(Nav) nav: Nav;
     constructor(public HTTP: HTTP, public http: Http, public platformGlobal: ProvidersGlobal) {
         console.log('Hello ProvidersProvider Provider');
+        this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
+
 
     }
-    globalApiRequest(method, url, data, callback) {
-        console.log(data);
+    // GlobalAPICall method
+    public globalApiRequest(method, url, data, token, callback) {
+        console.log(token);
+        data != null ? this.body = data : this.body = null;
+        token != null ? this.apiToken = this.formattedData : this.apiToken = null;
+
+        // Testing platform
         let platform = this.platformGlobal.platformDetect();
         console.log("platform", platform);
         if (platform == "other") {
-
+            //Device get method
             if (method == 'get') {
-                this.HTTP.get(url, {}, { 'access_token': data })
-                    .then(data => {
-                        console.log("GlobalpostwithHeader_service success", data);
-                        return callback(data);
+                let header = new Headers({
+                    'access_token': this.apiToken,
+                });
+
+                this.HTTP.get(url, this.body, { headers: header })
+                    .then(response => {
+                        console.log("TEST");
+                        var formattedResponse = JSON.parse(response.data);
+                        return callback(formattedResponse);
                     })
                     .catch(error => {
                         console.log("GlobalpostwithHeader_service error", error);
-                        return callback(error);
-
+                        var formattedResponse = JSON.parse(error.data);
+                        return callback(formattedResponse);
                     });
 
             }
             else {
+                let header = new Headers({
+                    'access_token': this.apiToken,
+                });
+                //Device post method
                 console.log("post");
                 console.log(this.HTTP.getDataSerializer());
                 this.HTTP.setDataSerializer("urlencoded");
-                this.HTTP.post(url, data, {})
-                    .then(data => {
-                        console.log("GlobalpostwithHeader_service success", data);
-                        return callback(data);
+                this.HTTP.post(url, this.body, { headers: header })
+                    .then(response => {
+                        var formattedResponse = JSON.parse(response.data);
+                        return callback(formattedResponse);
 
                     })
                     .catch(error => {
-                        console.log("GlobalpostwithHeader_service error", error);
-                        return callback(error);
+                        var formattedResponse = JSON.parse(error.data);
+                        return callback(formattedResponse);
 
                     });
             }
         }
 
         else {
-
+            // Browser get method
             if (method == 'get') {
                 const header = new Headers({
-                    'access_token': data,
+                    'access_token': this.apiToken,
                     'Access-Control-Allow-Headers': 'X-Custom-Header'
                 })
 
                 return new Promise((resolve, reject) => {
                     this.http.get(url, { headers: header })
-                        .subscribe(datavalue => {
-                            console.log("GlobalpostwithHeader_service success", datavalue);
-                            return callback(datavalue);
+                        .subscribe(response => {
+                            var formattedData = response.json();
+                            return callback(formattedData.data);
                         },
                             error => {
-                                console.log("GlobalpostwithHeader_service error", error);
-                                return callback(error);
-
+                                var formattedData = error.json();
+                                return callback(formattedData.data);
                             });
                 })
             }
             else {
-                console.log(Object.keys(data));
+                // Browser post method
+                console.log(Object.keys(this.body));
                 let body = new FormData();
-                console.log("length", Object.keys(data).length);
-                if (Object.keys(data).length > 0) {
-                    for (this.i = 0; this.i < Object.keys(data).length; this.i++) {
-                        body.append(Object.keys(data)[this.i], (<any>Object).values(data)[this.i]);
+                console.log("length", Object.keys(this.body).length);
+                if (Object.keys(this.body).length > 0) {
+                    for (this.i = 0; this.i < Object.keys(this.body).length; this.i++) {
+                        body.append(Object.keys(this.body)[this.i], (<any>Object).values(this.body)[this.i]);
                     }
 
                 }
                 else {
                     alert("empty body");
                 }
+                const header = new Headers({
+                    'access_token': this.apiToken,
+                    'Access-Control-Allow-Headers': 'X-Custom-Header'
+                })
                 console.log("post");
                 return new Promise((resolve, reject) => {
-                    this.http.post(url, body)
-                        .subscribe(datavalue => {
-                            console.log("GlobalpostwithHeader_service success", datavalue);
-                            return callback(datavalue);
+                    this.http.post(url, body, { headers: header })
+                        .subscribe(response => {
+                            console.log("success");
+                            let formattedData = response.json();
+                            return callback(formattedData);
 
 
                         },
                             error => {
-                                console.log("GlobalpostwithHeader_service error", error);
-                                return callback(error);
+                                console.log("error");
+                                let formattedData = error.json();
+                                return callback(formattedData);
 
                             });
                 });
             }
         }
+
+
     }
 }
 

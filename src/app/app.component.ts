@@ -30,7 +30,6 @@ export class MyApp {
     rootPage: any = LoginPage;
 
     pages: Array<{ title: string, component: any }>;
-
     constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
     }
@@ -39,8 +38,8 @@ export class MyApp {
     initializeApp() {
         this.platform.ready().then(() => {
             this.splashScreen.hide();
-            var apiToken = "";
-            var formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
+            let apiToken = "";
+            let formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
             if (!formattedData) {
                 formattedData = [];
             }
@@ -48,8 +47,9 @@ export class MyApp {
                 apiToken = formattedData;
                 console.log('apiToken', apiToken);
 
-                if (apiToken != null) {
-                    this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, apiToken, this.callback);
+                if (apiToken != null || apiToken != undefined) {
+                    let data = null;
+                    this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apiToken, this.callback);
                 }
 
             }
@@ -66,6 +66,7 @@ export class MyApp {
     // }
     openmyaccountpage() {
         this.nav.push(MyAccountPage);
+
     }
     opentablespage() {
         this.nav.push(TablesPage);

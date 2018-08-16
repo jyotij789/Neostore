@@ -40,59 +40,51 @@ export class LoginPage {
         }
 
         if (this.email == null || this.email == "") {
-            this.providerGlobal.alertMessage("Enter Username");
+            this.providerGlobal.alertMessage("Enter Username", "Error");
         }
         else if (this.password == null || this.password == "") {
-            this.providerGlobal.alertMessage("Enter password");
+            this.providerGlobal.alertMessage("Enter password", "Error");
         }
         else {
-            this.apiservice.globalApiRequest('post', this.providerUrl.login, data, this.callback);
+            let token = null;
+            this.apiservice.globalApiRequest('post', this.providerUrl.login, data, token, this.callback);
 
         }
     }
     callback = (response) => {
-        let platform = this.providerGlobal.platformDetect();
-        if (platform == "other") {
-            console.log(response);
-            let formattedData = JSON.parse(response.data);
-            this.status = response.status;
-            this.accessToken = formattedData.data.access_token;
-            console.log("device accessToken", this.accessToken);
-            localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
-            return this.gotoHome(this.status, this.accessToken);
-
-        }
-        else {
-            console.log(response);
-            this.formattedResponse = JSON.parse(response._body);
-            this.status = response.status;
-            this.accessToken = this.formattedResponse.data.access_token;
-            console.log("browser access token", this.formattedResponse.access_token);
-            localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
-            return this.gotoHome(this.status, this.accessToken);
-        }
-
+        console.log("login", response);
+        let formattedData = response;
+        this.status = formattedData.status;
+        this.accessToken = formattedData.data.access_token;
+        console.log("device accessToken", this.accessToken);
+        localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
+        return this.gotoHome(this.status, this.accessToken);
 
     }
+
     public gotoHome(status, token) {
         console.log("status", status);
         console.log("home navigation method");
         if (status == 200) {
+            let data = null;
+            this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, token, this.homepageCallback);
 
-            this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, token, this.homepageCallback);
         }
         else if (status == 401) {
-            this.providerGlobal.alertMessage("Data missing..");
+            this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
         else if (status == 500) {
-            this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again");
+            this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
         else {
-            this.providerGlobal.alertMessage("Something is wrong");
+            this.providerGlobal.alertMessage("Something is wrong", "Error");
         }
     }
+
     homepageCallback = (response) => {
+        console.log(response);
         this.navCtrl.setRoot(HomePage, { homeData: response });
+        localStorage.setItem("User_Account_Details", JSON.stringify(response));
     }
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
@@ -103,6 +95,7 @@ export class LoginPage {
         this.navCtrl.push(RegisterPage);
     }
     forgotPassword() {
+
         this.navCtrl.push(ForgotpasswordPage);
     }
 
