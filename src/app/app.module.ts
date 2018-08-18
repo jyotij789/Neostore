@@ -23,6 +23,10 @@ import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';
 import { ProvidersGlobal } from '../providers/providers/global';
 import { HTTP } from '@ionic-native/http';
 import { Http } from '@angular/http';
+import { File } from '@ionic-native/file';
+import { FileTransfer } from '@ionic-native/file-transfer';
+import { FilePath } from '@ionic-native/file-path';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
     declarations: [
@@ -62,6 +66,10 @@ import { Http } from '@angular/http';
     providers: [
         StatusBar,
         SplashScreen,
+        File,
+        FileTransfer,
+        Camera,
+        FilePath,
         Keyboard,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         ProvidersUrl,

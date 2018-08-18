@@ -21,14 +21,12 @@ export class ProvidersApiservice {
     constructor(public HTTP: HTTP, public http: Http, public platformGlobal: ProvidersGlobal) {
         console.log('Hello ProvidersProvider Provider');
         this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
-        console.log(this.formattedData);
 
     }
     // GlobalAPICall method
     public globalApiRequest(method, url, data, token, callback) {
         data != null ? this.body = data : this.body = null;
         token != null ? this.apiToken = this.formattedData : this.apiToken = null;
-        console.log(this.body);
         console.log(this.apiToken);
 
         // Testing platform
@@ -78,12 +76,14 @@ export class ProvidersApiservice {
         else {
             // Browser get method
             if (method == 'get') {
+                console.log('this.body', this.body);
+
                 const header = new Headers({
                     'access_token': this.apiToken,
                     'Access-Control-Allow-Headers': 'X-Custom-Header'
                 })
                 console.log("body", this.body);
-                let options = new RequestOptions({ headers: header, params: { 'product_category_id': this.body } });
+                let options = new RequestOptions({ headers: header, params: (this.body) });
                 console.log('options', options);
                 return new Promise((resolve, reject) => {
                     this.http.get(url, options)
