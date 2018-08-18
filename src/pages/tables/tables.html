@@ -1,28 +1,36 @@
-
 <ion-header>
 
-  <ion-navbar color="danger">
-    <ion-title>Tables</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only>
-      <ion-icon name="search"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+    <ion-navbar color="danger">
+        <ion-title>{{category_name}}</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-only>
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-    <ion-list>
-        <button ion-item (click)="openItemDetails()">
-          <ion-thumbnail item-start>
-            <img>
-          </ion-thumbnail>
-          <h2>Product</h2>
-          <p>Producer</p>
-          <h1 color="danger2">Cost</h1>
-          <!-- <span ion-label>ratings</span> -->
+    <ion-list *ngFor="let data of productlist">
+        <button full outline ion-item (click)="openItemDetails()">
+            <ion-thumbnail item-start>
+                <img src="{{data.product_images}}" />
+            </ion-thumbnail>
+            <h2>{{data.name}}</h2>
+            <p>{{data.producer}}</p>
+            <div>
+                <h1 style="float:left">Rs.{{data.cost}}</h1>
+                <i style="float:right">
+                    <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [name]="i < data.rating ? 'star' : 'star-outline'"></ion-icon>
+                </i>
+            </div>
         </button>
-      </ion-list>
+
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

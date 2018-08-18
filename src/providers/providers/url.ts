@@ -9,7 +9,7 @@ export class ProvidersUrl {
     }
 
     constructor(public http: HTTP) {
-        console.log('Hello ProvidersProvider Provider');
+        console.log('Hello ProvidersUrl Provider');
     }
 
     public login = this.getBaseUrl() + '/users/login';
@@ -19,7 +19,7 @@ export class ProvidersUrl {
     public updateaccount = this.getBaseUrl() + '/users/update';
     public Fetchaccount = this.getBaseUrl() + '/users/getUserData';
 
-    // getlist : this.baseUrl + '/products/getList';
+    public getlist = this.getBaseUrl() + '/products/getList';
     // getDetail: this.baseUrl + '/products/getDetail';
     // setrating: this.baseUrl + '/products/setRating';
 

@@ -28,10 +28,11 @@ export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
     rootPage: any = LoginPage;
-
+    public userFormattedData = [];
     pages: Array<{ title: string, component: any }>;
     constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
+        this.getUserData();
     }
 
 
@@ -64,12 +65,31 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     // this.nav.setRoot(page.component);
     // }
+
+    getUserData() {
+        let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
+        console.log(formattedData);
+        this.userFormattedData.push(formattedData.user_data);
+        console.log("userFormattedData", this.userFormattedData);
+    }
     openmyaccountpage() {
         this.nav.push(MyAccountPage);
 
     }
     opentablespage() {
-        this.nav.push(TablesPage);
+        this.nav.push(TablesPage, { product_category_id: 1, category_name: 'Table' });
+    }
+    openSofaPage() {
+        this.nav.push(TablesPage, { product_category_id: 2, category_name: 'Sofa' });
+
+    }
+    openChairPage() {
+        this.nav.push(TablesPage, { product_category_id: 3, category_name: 'Chairs' });
+
+    }
+    openCupboardPage() {
+        this.nav.push(TablesPage, { product_category_id: 4, category_name: 'Cupboard' });
+
     }
     openmycartpage() {
         this.nav.setRoot(MycartPage);

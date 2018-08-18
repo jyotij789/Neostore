@@ -81,12 +81,13 @@ page-edit-profile {
         font-size:2rem;
     }
     ion-datetime {
-        
+        font-size: 2rem;
         display: table;
         overflow: hidden;
        
     }
-    
-    
-    
+    .datetime-md .datetime-placeholder {
+        color:map-get($colors,backgroundlight);    
+        font-size: 2rem;
+    }
 }

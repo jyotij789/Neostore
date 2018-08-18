@@ -1,21 +1,30 @@
 <ion-menu side="left" [content]="content">
     <ion-content>
-            
-                    <ion-label>
-                            <ion-img></ion-img>
-                            <div class="div2">Kinjal Jain</div>
-                            <div class="div3">kinjal.jain@wwindia.com</div>
-                    </ion-label>
-            <ion-list>
-            <button ion-item color="dark2" menuClose (click)="openmycartpage()" icon-start><ion-icon name="cart"></ion-icon>My Cart</button>
-            <button ion-item color="dark2" menuClose (click)="opentablespage()" icon-start><ion-icon class="fa fa-cubes"></ion-icon>Tables</button>
-            <button ion-item color="dark2" menuClose (click)="opensofaspage()" icon-start><ion-icon class="fa fa-bed"></ion-icon>Sofas</button>
-            <button ion-item color="dark2" menuClose (click)="openchairspage()" icon-start><ion-icon class="fa fa-wheelchair"></ion-icon>Chairs</button>
-            <button ion-item color="dark2" menuClose (click)="opencupboardspage()" icon-start><ion-icon class="fa fa-trello"></ion-icon>Cupboards</button>
-            <button ion-item color="dark2" menuClose (click)="openmyaccountpage()" icon-start><ion-icon name="person"></ion-icon>My Account</button>
-            <button ion-item color="dark2" menuClose (click)="openstorelocatorpage()" icon-start><ion-icon name="pin"></ion-icon>Store Locator</button>
-            <button ion-item color="dark2" menuClose (click)="openmyorderspage()" icon-start><ion-icon name="list-box"></ion-icon>My Orders</button>
-            <button ion-item color="dark2" menuClose (click)="logout()" icon-start><ion-icon name="log-out"></ion-icon>Logout</button>
+
+        <ion-label>
+            <ion-img></ion-img>
+            <div class="div2" *ngFor="let data of userFormattedData">{{data.first_name}}&nbsp;{{data.last_name}}</div>
+            <div class="div3" *ngFor="let data of userFormattedData">{{data.email}}</div>
+        </ion-label>
+        <ion-list>
+            <button ion-item color="dark2" menuClose (click)="openmycartpage()" icon-start>
+                <ion-icon name="cart"></ion-icon>My Cart</button>
+            <button ion-item color="dark2" menuClose (click)="opentablespage()" icon-start>
+                <ion-icon class="fa fa-cubes"></ion-icon>Tables</button>
+            <button ion-item color="dark2" menuClose (click)="openSofaPage()" icon-start>
+                <ion-icon class="fa fa-bed"></ion-icon>Sofas</button>
+            <button ion-item color="dark2" menuClose (click)="openChairPage()" icon-start>
+                <ion-icon class="fa fa-wheelchair"></ion-icon>Chairs</button>
+            <button ion-item color="dark2" menuClose (click)="openCupboardPage()" icon-start>
+                <ion-icon class="fa fa-trello"></ion-icon>Cupboards</button>
+            <button ion-item color="dark2" menuClose (click)="openmyaccountpage()" icon-start>
+                <ion-icon name="person"></ion-icon>My Account</button>
+            <button ion-item color="dark2" menuClose (click)="openstorelocatorpage()" icon-start>
+                <ion-icon name="pin"></ion-icon>Store Locator</button>
+            <button ion-item color="dark2" menuClose (click)="openmyorderspage()" icon-start>
+                <ion-icon name="list-box"></ion-icon>My Orders</button>
+            <button ion-item color="dark2" menuClose (click)="logout()" icon-start>
+                <ion-icon name="log-out"></ion-icon>Logout</button>
 
         </ion-list>
     </ion-content>

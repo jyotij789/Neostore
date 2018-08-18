@@ -30,6 +30,7 @@ export class ProvidersApiservice {
         token != null ? this.apiToken = this.formattedData : this.apiToken = null;
         console.log(this.body);
         console.log(this.apiToken);
+
         // Testing platform
         let platform = this.platformGlobal.platformDetect();
         console.log("platform", platform);
@@ -46,8 +47,8 @@ export class ProvidersApiservice {
                     })
                     .catch(error => {
                         console.log("GlobalgetwithHeader_service error", error);
-                        var formattedResponse = JSON.parse(error);
-                        return callback(formattedResponse.data);
+                        var formattedResponse = JSON.parse(error.error);
+                        return callback(formattedResponse);
                     });
 
             }
@@ -55,6 +56,7 @@ export class ProvidersApiservice {
                 let header = new Headers();
                 // header.append('access_token', this.apiToken);
                 //Device post method
+
                 console.log("post");
                 console.log(this.HTTP.getDataSerializer());
                 this.HTTP.setDataSerializer("urlencoded");
@@ -80,9 +82,11 @@ export class ProvidersApiservice {
                     'access_token': this.apiToken,
                     'Access-Control-Allow-Headers': 'X-Custom-Header'
                 })
-
+                console.log("body", this.body);
+                let options = new RequestOptions({ headers: header, params: { 'product_category_id': this.body } });
+                console.log('options', options);
                 return new Promise((resolve, reject) => {
-                    this.http.get(url, { headers: header })
+                    this.http.get(url, options)
                         .subscribe(response => {
                             var formattedData = response.json();
                             return callback(formattedData.data);
@@ -111,6 +115,7 @@ export class ProvidersApiservice {
                     'access_token': this.apiToken,
                     'Access-Control-Allow-Headers': 'X-Custom-Header'
                 })
+
                 console.log("post");
                 return new Promise((resolve, reject) => {
                     this.http.post(url, body, { headers: header })

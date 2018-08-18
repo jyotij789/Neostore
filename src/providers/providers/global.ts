@@ -1,15 +1,15 @@
-import { IonicPage, NavController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, Platform, LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 
 @Injectable()
 export class ProvidersGlobal {
     public currentPlatform: any;
-    public plt: any
-    public android: string;
     public ios: string;
     public mobileweb: string;
-    constructor(public alertCtrl: AlertController, public platform: Platform) {
+    public accessToken: string;
+    public loading: any;
+    constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, public platform: Platform) {
 
     }
 
@@ -28,6 +28,17 @@ export class ProvidersGlobal {
         } else {
             return 'other';
         }
+    }
+    getAccesstoken() {
+        this.accessToken = JSON.parse(localStorage.getItem("formattedResponse"));
+    }
+
+    showLoader() {
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+
+        this.loading.present();
     }
 
 }

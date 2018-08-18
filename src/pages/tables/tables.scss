@@ -5,13 +5,28 @@ page-tables {
             font-weight:bold;
         }
     }
-    ion-content{
-        button{
-            h1{
-                padding-top:15px;
-                padding-bottom:0px;
-                color:#e91b1a;
-            }
+        
+        .list-md {
+            margin: -1px 0 0px;
         }
+    
+        ion-app.md [padding] {
+            padding: 0px;
+        }
+        ion-content ion-icon{
+            color:map-get($colors,yellowcolor);
+            // padding-top:35px;
+
+        }
+        ion-content h1{
+            color:map-get($colors,danger);
+            font-weight: bold;
+            padding-top:10px;
+            display: table;
+        }
+     button outline{
+            color:map-get($colors,danger) !important;
+            height: 3vw;
+        }
+    
     }
-}
