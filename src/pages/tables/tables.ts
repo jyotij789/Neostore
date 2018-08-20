@@ -21,6 +21,7 @@ export class TablesPage {
     public demo: any;
     constructor(public platformGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
         this.category_id = this.navParams.get('product_category_id');
+        this.category_name = this.navParams.get('category_name');
     }
 
     ionViewDidLoad() {
@@ -29,11 +30,10 @@ export class TablesPage {
     }
     getApiHit(infiniteScroll?) {
         let data = { 'product_category_id': this.category_id, 'limit': this.limit, 'page': this.page };
-        let token = null;
+        let token = "token";
         this.apiservice.globalApiRequest('get', this.providerUrl.getlist, data, token, this.categoryListcallback);
     }
     categoryListcallback = (response) => {
-        this.category_name = this.navParams.get('category_name');
         this.productlist = this.productlist.concat(response);
         console.log('Object.keys(this.productlist).length', Object.keys(this.productlist).length);
         let products = Object.keys(this.productlist).length;

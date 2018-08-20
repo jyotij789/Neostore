@@ -23,13 +23,13 @@
                 <ion-label ion-text class="custom-register-label">
                     <div class="innericon" *ngFor="let data of userFormattedData">
                         <ion-icon color="light" name="contact"></ion-icon>
-                        <ion-input type="text" placeholder="First Name" name="firstname" [readonly]="true" [(ngModel)]="data.first_name"></ion-input>
+                        <ion-input type="text" placeholder="First Name" name="firstname" [(ngModel)]="first_name"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon" *ngFor="let data of userFormattedData">
                         <ion-icon color="light" name="contact"></ion-icon>
-                        <ion-input type="text" placeholder="Last Name" name="lastname" [readonly]="true" [(ngModel)]="data.last_name"></ion-input>
+                        <ion-input type="text" placeholder="Last Name" name="lastname" [(ngModel)]="last_name"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>

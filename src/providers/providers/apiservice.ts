@@ -20,14 +20,13 @@ export class ProvidersApiservice {
     @ViewChild(Nav) nav: Nav;
     constructor(public HTTP: HTTP, public http: Http, public platformGlobal: ProvidersGlobal) {
         console.log('Hello ProvidersProvider Provider');
-        this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
-
     }
     // GlobalAPICall method
     public globalApiRequest(method, url, data, token, callback) {
+        this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
         data != null ? this.body = data : this.body = null;
         token != null ? this.apiToken = this.formattedData : this.apiToken = null;
-        console.log(this.apiToken);
+        console.log(this.body);
 
         // Testing platform
         let platform = this.platformGlobal.platformDetect();
@@ -40,12 +39,13 @@ export class ProvidersApiservice {
                 // console.log(header);
                 this.HTTP.get(url, this.body, { 'access_token': this.apiToken })
                     .then(response => {
+                        console.log("GlobalgetwithHeader_service successs", response);
                         var formattedResponse = JSON.parse(response.data);
                         return callback(formattedResponse.data);
                     })
                     .catch(error => {
                         console.log("GlobalgetwithHeader_service error", error);
-                        var formattedResponse = JSON.parse(error.error);
+                        var formattedResponse = JSON.parse(error);
                         return callback(formattedResponse);
                     });
 
@@ -56,10 +56,12 @@ export class ProvidersApiservice {
                 //Device post method
 
                 console.log("post");
+
                 console.log(this.HTTP.getDataSerializer());
                 this.HTTP.setDataSerializer("urlencoded");
                 this.HTTP.post(url, this.body, {})
                     .then(response => {
+                        console.log("GlobalpostwithHeader_service success", response);
                         var formattedResponse = JSON.parse(response.data);
                         return callback(formattedResponse);
 

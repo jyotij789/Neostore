@@ -9,16 +9,18 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { FilePath } from '@ionic-native/file-path';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
-
+import { Base64 } from '@ionic-native/base64';
 declare var cordova: any;
 @Component({
     selector: 'page-edit-profile',
     templateUrl: 'edit-profile.html',
 })
 export class EditProfilePage {
+    public first_name: string;
+    public last_name: string;
     public email: string;
     public phnumber: string;
-    public myDate: Date;
+    public myDate: string;
     public userFormattedData = [];
     public status: number;
     public path: string;
@@ -31,7 +33,8 @@ export class EditProfilePage {
         public providerGlobal: ProvidersGlobal,
         public navParams: NavParams,
         public transfer: FileTransfer,
-        private imagePicker: ImagePicker) {
+        private imagePicker: ImagePicker,
+        private base64: Base64) {
     }
 
     ionViewDidLoad() {
@@ -43,6 +46,8 @@ export class EditProfilePage {
         let phoneregex = /^[0-9#*+]{10,12}$/;
         let emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
         let data = {
+            'first_name': this.first_name,
+            'last_name': this.last_name,
             'email': this.email,
             'dob': this.myDate,
             'phone_no': this.phnumber,
@@ -69,10 +74,11 @@ export class EditProfilePage {
     }
     callback = (response) => {
         console.log("update profile", response);
-        let formattedData = response;
+        let formattedData = JSON.parse(response);
         this.status = formattedData.status;
         if (this.status == 200) {
-
+            localStorage.removeItem("User_Account_Details");
+            localStorage.setItem("User_Account_Details", JSON.stringify(response));
         }
         else if (this.status == 400) {
             this.providerGlobal.alertMessage("Data missing.", "Error");
@@ -118,14 +124,19 @@ export class EditProfilePage {
             quality: 100,
             title: 'Select Picture',
             maximumImagesCount: 1,
-            outputType: 1
+            outputType: 0
         };
         this.imagePicker.getPictures(options).then(results => {
             for (var i = 0; i < results.length; i++) {
                 this.path = results[i];
                 alert('Image URI: ' + results[i]);
-                let base64Image = 'data:image/jpeg;base64,' + this.path;
-                console.log('base64Image', base64Image);
+                this.base64.encodeFile(this.path).then((base64File: string) => {
+                    this.base64Image = base64File;
+                }, (err) => {
+                    this.providerGlobal.presentToast('Error while selecting base64File.');
+                });
+                // let base64Image = 'data:image/jpeg;base64,' + this.path;
+                // console.log('base64Image', base64Image);
             }
         }, error => {
             this.providerGlobal.presentToast('Error while selecting image.');
@@ -137,7 +148,7 @@ export class EditProfilePage {
         // Create options for the Camera Dialog
         const options: CameraOptions = {
             quality: 100,
-            destinationType: this.camera.DestinationType.DATA_URL,
+            destinationType: this.camera.DestinationType.FILE_URI,
             encodingType: this.camera.EncodingType.JPEG,
             mediaType: this.camera.MediaType.PICTURE
         };
@@ -145,100 +156,18 @@ export class EditProfilePage {
         this.camera.getPicture(options).then((imageData) => {
             this.path = imageData;
             alert(this.path);
-            let base64Image = 'data:image/jpeg;base64,' + this.path;
-            console.log('base64Image', base64Image);
+            this.base64.encodeFile(this.path).then((base64File: string) => {
+                this.base64Image = base64File;
+            }, (err) => {
+                this.providerGlobal.presentToast('Error while selecting base64File.');
+            });
+            // let base64Image = 'data:image/jpeg;base64,' + this.path;
+            // console.log('base64Image', base64Image);
 
         }, (err) => {
             this.providerGlobal.presentToast('Error while selecting image.');
 
         });
     }
-
-
-    //     var options = {
-    //         quality: 100,
-    //         sourceType: sourceType,
-    //         saveToPhotoAlbum: false,
-    //         correctOrientation: true
-    //     };
-    //     // Get the data of an image
-    //     this.camera.getPicture(options).then((imagePath) => {
-    //         // Special handling for Android library
-    //         if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-    //             this.filePath.resolveNativePath(imagePath)
-    //                 .then(filePath => {
-    //                     let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
-    //                     let currentName = imagePath.substring(imagePath.lastIndexOf('/') + 1, imagePath.lastIndexOf('?'));
-    //                     this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //                 });
-    //         } else {
-    //             var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-    //             var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-    //             this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-    //         }
-    //     }, (err) => {
-    //         this.providerGlobal.presentToast('Error while selecting image.');
-    //     });
-    // }
-
-    // private createFileName() {
-    //     var d = new Date(),
-    //         n = d.getTime(),
-    //         newFileName = n + ".jpg";
-    //     return newFileName;
-    // }
-
-    // // Copy the image to a local folder
-    // private copyFileToLocalDir(namePath, currentName, newFileName) {
-    //     this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
-    //         this.lastImage = newFileName;
-    //     }, error => {
-    //         this.providerGlobal.presentToast('Error while storing file.');
-    //     });
-    // }
-    // public pathForImage(img) {
-    //     if (img === null) {
-    //         return '';
-    //     } else {
-    //         return cordova.file.dataDirectory + img;
-    //     }
-    // }
-    // public uploadImage() {
-    //     // Destination URL
-    //     // var url = "http://yoururl/upload.php";
-
-    //     // File for Upload
-    //     var targetPath = this.pathForImage(this.lastImage);
-    //     console.log('targetPath', targetPath);
-    //     // File name only
-    //     var filename = this.lastImage;
-    //     console.log('filename', filename);
-
-
-    //     const fileTransfer: FileTransferObject = this.transfer.create();
-
-    //     let options: FileUploadOptions = {
-    //         fileKey: 'ionicfile',
-    //         fileName: 'ionicfile',
-    //         chunkedMode: false,
-    //         mimeType: "image/jpeg",
-    //         headers: {}
-    //     }
-    //     const fileTransfer: TransferObject = this.transfer.create();
-
-    //     this.loading = this.loadingCtrl.create({
-    //       content: 'Uploading...',
-    //     });
-    //     this.loading.present();
-
-    //     // Use the FileTransfer to upload the image
-    //     fileTransfer.upload(targetPath, url, options).then(data => {
-    //       this.loading.dismissAll()
-    //       this.presentToast('Image succesful uploaded.');
-    //     }, err => {
-    //       this.loading.dismissAll()
-    //       this.presentToast('Error while uploading file.');
-    //     });
-    //   }
 
 }

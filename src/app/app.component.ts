@@ -32,7 +32,6 @@ export class MyApp {
     pages: Array<{ title: string, component: any }>;
     constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
-        this.getUserData();
     }
 
 
@@ -51,6 +50,9 @@ export class MyApp {
                 if (apiToken != null || apiToken != undefined) {
                     let data = null;
                     this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apiToken, this.callback);
+                    let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
+                    this.userFormattedData.push(formattedData.user_data);
+                    console.log("userFormattedData", this.userFormattedData);
                 }
 
             }
@@ -67,10 +69,7 @@ export class MyApp {
     // }
 
     getUserData() {
-        let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
-        console.log(formattedData);
-        this.userFormattedData.push(formattedData.user_data);
-        console.log("userFormattedData", this.userFormattedData);
+
     }
     openmyaccountpage() {
         this.nav.push(MyAccountPage);

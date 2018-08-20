@@ -81,7 +81,7 @@ export class LoginPage {
     }
 
     homepageCallback = (response) => {
-        console.log(response);
+        console.log("account get reponse", response);
         this.navCtrl.setRoot(HomePage, { homeData: response });
         localStorage.setItem("User_Account_Details", JSON.stringify(response));
     }
