@@ -18,7 +18,8 @@ export class TablesPage {
     public limit: number = 7;
     public maximumPages: number = 2;
     public infiniteScrollvar: any;
-    constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    public demo: any;
+    constructor(public platformGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
         this.category_id = this.navParams.get('product_category_id');
     }
 
@@ -33,27 +34,28 @@ export class TablesPage {
     }
     categoryListcallback = (response) => {
         this.category_name = this.navParams.get('category_name');
-        console.log('category', this.productlist);
         this.productlist = this.productlist.concat(response);
-
-    }
-    loadMore(infiniteScroll) {
-
         console.log('Object.keys(this.productlist).length', Object.keys(this.productlist).length);
-        if (Object.keys(this.productlist).length < 12) {
-            this.page++;
-            this.limit += 1;
-            this.getApiHit(infiniteScroll);
-
-        }
-        else {
-            console.log('Object.keys(this.productlist).length', Object.keys(this.productlist).length);
-            infiniteScroll.enable(false);
-        }
-        // if (this.page === this.maximumPages) {
-        //     infiniteScroll.enable(false);
+        let products = Object.keys(this.productlist).length;
+        this.platformGlobal.presentToast(products + " " + 'of' + " " + products);
+        // if (Object.keys(this.productlist).length < 12) {
+        //     this.loadMore(this.demo);
         // }
     }
+    loadMore(infiniteScroll) {
+        // this.demo = infiniteScroll;
+        // if (Object.keys(this.productlist).length < 12) {
+        this.page++;
+        this.limit += 1;
+        this.getApiHit(infiniteScroll);
+        // }
+        // else {
+        //     console.log("scroll end");
+        //     infiniteScroll.enable(false);
+        // }
+
+    }
+
     openItemDetails() {
         this.navCtrl.push(ItemdetailsPage, { productDetails: this.productlist });
     }

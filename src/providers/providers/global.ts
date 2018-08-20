@@ -1,6 +1,7 @@
 import { IonicPage, NavController, Platform, LoadingController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
+import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class ProvidersGlobal {
@@ -9,7 +10,7 @@ export class ProvidersGlobal {
     public mobileweb: string;
     public accessToken: string;
     public loading: any;
-    constructor(public loadingCtrl: LoadingController, public alertCtrl: AlertController, public platform: Platform) {
+    constructor(public toastCtrl: ToastController, public loadingCtrl: LoadingController, public alertCtrl: AlertController, public platform: Platform) {
 
     }
 
@@ -39,6 +40,19 @@ export class ProvidersGlobal {
         });
 
         this.loading.present();
+    }
+    presentToast(message) {
+        let toast = this.toastCtrl.create({
+            message: message,
+            duration: 3000,
+            position: 'bottom'
+        });
+
+        toast.onDidDismiss(() => {
+            console.log('Dismissed toast');
+        });
+
+        toast.present();
     }
 
 }

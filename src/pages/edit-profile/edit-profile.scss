@@ -22,6 +22,13 @@ page-edit-profile {
         padding-right:20px;
 
     }
+    ion-avatar,
+    ion-avatar > img{
+    border-radius:50%;
+    height:12rem;
+    width:12rem;
+    margin:auto;
+}
     ion-row{
         align-items: center;
         text-align: center;

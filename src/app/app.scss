@@ -62,6 +62,11 @@ ion-menu{
         border-bottom-color: black;
         
     }
+    ion-list button ion-icon{
+        height: 6vh;
+        width:15vw;
+        padding:10px;
+    }
     .list-md .item-block .item-inner {
         border-bottom: 1px solid black;
         padding-right:0;

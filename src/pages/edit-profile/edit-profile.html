@@ -11,10 +11,13 @@
     <div class="spacetag"></div>
     <div class="spacetag"></div>
     <form>
-        <ion-avatar>
-            <ion-img class="centered" (click)="presentActionSheet()"></ion-img>
-        </ion-avatar>
-
+        <ion-row>
+            <ion-col text-center>
+                <ion-avatar>
+                    <img [src]="path" (click)="presentActionSheet()" />
+                </ion-avatar>
+            </ion-col>
+        </ion-row>
         <ion-row>
             <ion-col>
                 <ion-label ion-text class="custom-register-label">
