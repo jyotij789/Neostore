@@ -20,6 +20,7 @@ import { ProvidersGlobal } from '../providers/providers/global';
 import { ProvidersApiservice } from '../providers/providers/apiservice'
 import { ProvidersUrl } from '../providers/providers/url';
 import { Http } from '@angular/http';
+import { AlertController } from 'ionic-angular';
 
 @Component({
     templateUrl: 'app.html',
@@ -30,7 +31,7 @@ export class MyApp {
     rootPage: any = LoginPage;
     public userFormattedData = [];
     pages: Array<{ title: string, component: any }>;
-    constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public Providers: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
     }
 
@@ -60,7 +61,26 @@ export class MyApp {
     }
 
     callback = (response) => {
-        this.nav.setRoot(HomePage, { homeData: response });
+        let formattedData = response;
+        let status = formattedData.status;
+        let data = formattedData.data;
+        return this.getUserData(status, data);
+
+    }
+    public getUserData(status, data) {
+        console.log("app.component getUserstatus", status);
+        if (status == 200) {
+            this.nav.setRoot(HomePage, { homeData: data });
+        }
+        else if (status == 402) {
+            this.Providers.alertMessage("Invalid Access Token", "Error");
+        }
+        else if (status == 500) {
+            this.Providers.alertMessage("Could not update Account details.", "Error");
+        }
+        else {
+            this.Providers.alertMessage("Something is Wrong.", "Error");
+        }
     }
     // openPage(page) {
     // Reset the content nav to have just this page
@@ -68,9 +88,6 @@ export class MyApp {
     // this.nav.setRoot(page.component);
     // }
 
-    getUserData() {
-
-    }
     openmyaccountpage() {
         this.nav.push(MyAccountPage);
 
@@ -96,6 +113,7 @@ export class MyApp {
     }
     logout() {
         localStorage.removeItem("formattedResponse");
+        localStorage.removeItem("User_Account_Details");
         this.nav.setRoot(LoginPage);
 
     }

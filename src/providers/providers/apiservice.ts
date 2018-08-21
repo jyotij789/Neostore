@@ -26,7 +26,7 @@ export class ProvidersApiservice {
         this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
         data != null ? this.body = data : this.body = null;
         token != null ? this.apiToken = this.formattedData : this.apiToken = null;
-        console.log(this.body);
+        console.log("Jyotibai", this.body);
 
         // Testing platform
         let platform = this.platformGlobal.platformDetect();
@@ -37,28 +37,28 @@ export class ProvidersApiservice {
                 // let header = new Headers();
                 // header.append('access_token', this.apiToken);
                 // console.log(header);
+                // let data = { 'access_token': this.apiToken };
+
+
                 this.HTTP.get(url, this.body, { 'access_token': this.apiToken })
                     .then(response => {
                         console.log("GlobalgetwithHeader_service successs", response);
                         var formattedResponse = JSON.parse(response.data);
-                        return callback(formattedResponse.data);
+                        return callback(formattedResponse);
                     })
                     .catch(error => {
                         console.log("GlobalgetwithHeader_service error", error);
-                        var formattedResponse = JSON.parse(error);
+                        var formattedResponse = "";
                         return callback(formattedResponse);
                     });
 
             }
             else {
-                let header = new Headers();
+                // let header = new Headers();
                 // header.append('access_token', this.apiToken);
                 //Device post method
 
-                console.log("post");
-
-                console.log(this.HTTP.getDataSerializer());
-                this.HTTP.setDataSerializer("urlencoded");
+                // let data = { 'access_token': this.apiToken };
                 this.HTTP.post(url, this.body, {})
                     .then(response => {
                         console.log("GlobalpostwithHeader_service success", response);
@@ -68,7 +68,7 @@ export class ProvidersApiservice {
                     })
                     .catch(error => {
                         console.log("GlobalpostwithHeader_service error", error);
-                        var formattedResponse = JSON.parse(error.error);
+                        var formattedResponse = "";
                         return callback(formattedResponse);
 
                     });
@@ -78,24 +78,22 @@ export class ProvidersApiservice {
         else {
             // Browser get method
             if (method == 'get') {
-                console.log('this.body', this.body);
 
                 const header = new Headers({
                     'access_token': this.apiToken,
                     'Access-Control-Allow-Headers': 'X-Custom-Header'
                 })
-                console.log("body", this.body);
                 let options = new RequestOptions({ headers: header, params: (this.body) });
                 console.log('options', options);
                 return new Promise((resolve, reject) => {
                     this.http.get(url, options)
                         .subscribe(response => {
                             var formattedData = response.json();
-                            return callback(formattedData.data);
+                            return callback(formattedData);
                         },
                             error => {
                                 var formattedData = error.json();
-                                return callback(formattedData.data);
+                                return callback(formattedData);
                             });
                 })
             }

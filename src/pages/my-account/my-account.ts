@@ -22,8 +22,8 @@ export class MyAccountPage {
         let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
         console.log(formattedData);
         this.userFormattedData.push(formattedData.user_data);
-        console.log("userFormattedData", this.userFormattedData);
-
+        console.log("userFormattedData myaccount", this.userFormattedData);
+        // let image=this.userFormattedData.profile_pic;
     }
     editProfile() {
         this.navCtrl.push(EditProfilePage, { userFormattedData: this.userFormattedData });

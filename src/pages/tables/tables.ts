@@ -16,7 +16,6 @@ export class TablesPage {
     public productlist = [];
     public page: number = 1;
     public limit: number = 7;
-    public maximumPages: number = 2;
     public infiniteScrollvar: any;
     public demo: any;
     constructor(public platformGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
@@ -29,30 +28,45 @@ export class TablesPage {
         this.getApiHit();
     }
     getApiHit(infiniteScroll?) {
-        let data = { 'product_category_id': this.category_id, 'limit': this.limit, 'page': this.page };
-        let token = "token";
+        let data = { 'product_category_id': this.category_id.toString(), 'limit': this.limit.toString(), 'page': this.page.toString() };
+        let token = "";
         this.apiservice.globalApiRequest('get', this.providerUrl.getlist, data, token, this.categoryListcallback);
     }
     categoryListcallback = (response) => {
-        this.productlist = this.productlist.concat(response);
-        console.log('Object.keys(this.productlist).length', Object.keys(this.productlist).length);
-        let products = Object.keys(this.productlist).length;
-        this.platformGlobal.presentToast(products + " " + 'of' + " " + products);
-        // if (Object.keys(this.productlist).length < 12) {
-        //     this.loadMore(this.demo);
-        // }
+        console.log("tables page", response);
+        let formattedData = response;
+        let status = formattedData.status;
+        let data = formattedData.data;
+        return this.getProductList(status, data);
+
+    }
+    public getProductList(status, data) {
+        console.log("tables page productliststatus", status);
+        if (status == 200) {
+            this.productlist = this.productlist.concat(data);
+            console.log('Object.keys(this.productlist).length', Object.keys(this.productlist).length);
+            let products = Object.keys(this.productlist).length;
+            this.platformGlobal.presentToast(products + " " + 'of' + " " + products);
+        }
+        else if (status == 401) {
+            this.platformGlobal.alertMessage("Invalid product category id.", "Error");
+        }
+        else if (status == 400) {
+            this.platformGlobal.alertMessage("Product category id missing.", "Error");
+        }
+        else if (status == 404) {
+            this.platformGlobal.alertMessage("Method has to be get.", "Error");
+        }
+        else {
+            this.platformGlobal.alertMessage("Something is wrong.", "Error");
+
+        }
     }
     loadMore(infiniteScroll) {
-        // this.demo = infiniteScroll;
-        // if (Object.keys(this.productlist).length < 12) {
+
         this.page++;
         this.limit += 1;
         this.getApiHit(infiniteScroll);
-        // }
-        // else {
-        //     console.log("scroll end");
-        //     infiniteScroll.enable(false);
-        // }
 
     }
 

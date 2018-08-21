@@ -6,7 +6,6 @@ import { ToastController } from 'ionic-angular';
 @Injectable()
 export class ProvidersGlobal {
     public currentPlatform: any;
-    public ios: string;
     public mobileweb: string;
     public accessToken: string;
     public loading: any;
@@ -44,7 +43,7 @@ export class ProvidersGlobal {
     presentToast(message) {
         let toast = this.toastCtrl.create({
             message: message,
-            duration: 3000,
+            duration: 100,
             position: 'bottom'
         });
 

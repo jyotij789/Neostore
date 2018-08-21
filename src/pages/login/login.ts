@@ -46,7 +46,7 @@ export class LoginPage {
             this.providerGlobal.alertMessage("Enter password", "Error");
         }
         else {
-            let token = null;
+            let token = "";
             this.apiservice.globalApiRequest('post', this.providerUrl.login, data, token, this.callback);
 
         }
@@ -57,7 +57,6 @@ export class LoginPage {
         this.status = formattedData.status;
         this.accessToken = formattedData.data.access_token;
         console.log("device/browser accessToken", this.accessToken);
-        localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
         return this.gotoHome(this.status, this.accessToken);
 
     }
@@ -65,6 +64,7 @@ export class LoginPage {
     public gotoHome(status, token) {
         console.log("status", status);
         if (status == 200) {
+            localStorage.setItem("formattedResponse", JSON.stringify(token));
             let data = null;
             let apitoken = token;
             this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apitoken, this.homepageCallback);
@@ -82,8 +82,28 @@ export class LoginPage {
 
     homepageCallback = (response) => {
         console.log("account get reponse", response);
-        this.navCtrl.setRoot(HomePage, { homeData: response });
-        localStorage.setItem("User_Account_Details", JSON.stringify(response));
+        let formattedData = response;
+        let status = formattedData.status;
+        let data = formattedData.data;
+        console.log("device/browser homepageCallback data", data);
+        return this.getUserData(status, data);
+
+    }
+    public getUserData(status, data) {
+        console.log("login getUserstatus", status);
+        if (status == 200) {
+            this.navCtrl.setRoot(HomePage, { homeData: data });
+            localStorage.setItem("User_Account_Details", JSON.stringify(data));
+        }
+        else if (status == 402) {
+            this.providerGlobal.alertMessage("Invalid Access Token", "Error");
+        }
+        else if (status == 500) {
+            this.providerGlobal.alertMessage("Could not update Account details.", "Error");
+        }
+        else {
+            this.providerGlobal.alertMessage("Method has to be post.", "Error");
+        }
     }
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');

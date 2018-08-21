@@ -34,8 +34,8 @@ export class HomePage {
         // console.log(JSON.stringify(this.imagesArray));
         this.formattedData = this.navParams.get('homeData');
         this.imagesArray = this.formattedData.product_categories;
-        console.log(JSON.stringify(this.imagesArray));
-        console.log((<any>Object).values(this.imagesArray));
+        // console.log(JSON.stringify(this.imagesArray));
+        // console.log((<any>Object).values(this.imagesArray));
         // console.log(formattedData.product_categories[0].icon_image);
     }
 
