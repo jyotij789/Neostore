@@ -11,6 +11,7 @@ import { HomePage } from '../home/home';
 })
 export class MyAccountPage {
     public userFormattedData = [];
+    public path: string;
     constructor(public navCtrl: NavController, public navParams: NavParams) {
     }
 
@@ -23,6 +24,8 @@ export class MyAccountPage {
         console.log(formattedData);
         this.userFormattedData.push(formattedData.user_data);
         console.log("userFormattedData myaccount", this.userFormattedData);
+        this.path = "../../assets/imgs/logo.png";
+
         // let image=this.userFormattedData.profile_pic;
     }
     editProfile() {

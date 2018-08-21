@@ -63,12 +63,15 @@ export class TablesPage {
         }
     }
     loadMore(infiniteScroll) {
+        setTimeout(() => {
+            this.page++;
+            this.getApiHit(infiniteScroll);
 
-        this.page++;
-        this.limit += 1;
-        this.getApiHit(infiniteScroll);
-
+            console.log('Async operation has ended');
+            infiniteScroll.enable(false);
+        }, 500);
     }
+
 
     openItemDetails() {
         this.navCtrl.push(ItemdetailsPage, { productDetails: this.productlist });

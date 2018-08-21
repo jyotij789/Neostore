@@ -29,6 +29,7 @@ export class LoginPage {
 
     getHome() {
         let regex = /^[a-zA-Z]{2,30}$/;
+        let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
         // let body = new FormData();
         // body.append('email', this.email);
         // body.append('password', this.password);
@@ -38,9 +39,11 @@ export class LoginPage {
             'email': this.email,
             'password': this.password
         }
-
         if (this.email == null || this.email == "") {
             this.providerGlobal.alertMessage("Enter Username", "Error");
+        }
+        else if (!emailRegex.test(this.email)) {
+            this.providerGlobal.alertMessage("Enter Valid Email", "Error");
         }
         else if (this.password == null || this.password == "") {
             this.providerGlobal.alertMessage("Enter password", "Error");
@@ -53,26 +56,25 @@ export class LoginPage {
     }
     callback = (response) => {
         console.log("login", response);
+        return this.gotoHome(response);
+
+    }
+
+    public gotoHome(response) {
         let formattedData = response;
         this.status = formattedData.status;
         this.accessToken = formattedData.data.access_token;
         console.log("device/browser accessToken", this.accessToken);
-        return this.gotoHome(this.status, this.accessToken);
-
-    }
-
-    public gotoHome(status, token) {
-        console.log("status", status);
-        if (status == 200) {
-            localStorage.setItem("formattedResponse", JSON.stringify(token));
+        if (this.status == 200) {
+            localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
             let data = null;
-            let apitoken = token;
+            let apitoken = this.accessToken;
             this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apitoken, this.homepageCallback);
         }
-        else if (status == 401) {
+        else if (this.status == 401) {
             this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
-        else if (status == 500) {
+        else if (this.status == 500) {
             this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
         else {

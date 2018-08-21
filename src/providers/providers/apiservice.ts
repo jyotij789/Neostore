@@ -25,7 +25,7 @@ export class ProvidersApiservice {
     public globalApiRequest(method, url, data, token, callback) {
         this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
         data != null ? this.body = data : this.body = null;
-        token != null ? this.apiToken = this.formattedData : this.apiToken = null;
+        token != null ? this.apiToken = this.formattedData : this.apiToken = "";
         console.log("Jyotibai", this.body);
 
         // Testing platform
@@ -58,8 +58,9 @@ export class ProvidersApiservice {
                 // header.append('access_token', this.apiToken);
                 //Device post method
 
-                // let data = { 'access_token': this.apiToken };
-                this.HTTP.post(url, this.body, {})
+                let data = { 'access_token': this.apiToken };
+                this.HTTP.post(url, this.body, { 'access_token': this.apiToken }
+                )
                     .then(response => {
                         console.log("GlobalpostwithHeader_service success", response);
                         var formattedResponse = JSON.parse(response.data);

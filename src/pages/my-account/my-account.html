@@ -17,7 +17,7 @@
         <ion-row>
             <ion-col text-center>
                 <ion-avatar>
-                    <img src="../../assets/imgs/logo.png" (click)="presentActionSheet()">
+                    <img *ngFor="let data of this.userFormattedData" [src]="data == null ? 'path':'data.profile_pic'" />
                 </ion-avatar>
             </ion-col>
         </ion-row>
@@ -27,31 +27,31 @@
                 <ion-label ion-text class="custom-register-label">
                     <div class="innericon" *ngFor="let data of userFormattedData">
                         <ion-icon color="light" name="contact"></ion-icon>
-                        <ion-input name="firstname" [(ngModel)]="data.first_name"></ion-input>
+                        <ion-input name="firstname" [(ngModel)]="data.first_name" [readonly]="true"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon" *ngFor="let data of userFormattedData">
                         <ion-icon color="light" name="contact"></ion-icon>
-                        <ion-input name="lastname" [(ngModel)]="data.last_name"></ion-input>
+                        <ion-input name="lastname" [(ngModel)]="data.last_name" [readonly]="true"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon" *ngFor="let data of userFormattedData">
                         <ion-icon color="light" name="mail"></ion-icon>
-                        <ion-input name="email" [(ngModel)]="data.email"></ion-input>
+                        <ion-input name="email" [(ngModel)]="data.email" [readonly]="true"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon" *ngFor="let data of userFormattedData">
                         <ion-icon color="light" name="phone-portrait"></ion-icon>
-                        <ion-input name="phone_no" [(ngModel)]="data.phone_no"></ion-input>
+                        <ion-input name="phone_no" [(ngModel)]="data.phone_no" [readonly]="true"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon" *ngFor="let data of userFormattedData">
                         <ion-icon class="fa fa-birthday-cake" color="light" aria-hidden="true"></ion-icon>
-                        <ion-input name="dob" [(ngModel)]="data.dob"></ion-input>
+                        <ion-input name="dob" [(ngModel)]="data.dob" [readonly]="true"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>

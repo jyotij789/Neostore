@@ -4,13 +4,13 @@ import { ActionSheetController, Platform } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
-import { File } from '@ionic-native/file';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { FilePath } from '@ionic-native/file-path';
+// import { File } from '@ionic-native/file';
+// import { FileTransfer} from '@ionic-native/file-transfer';
+// import { FilePath } from '@ionic-native/file-path';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
-declare var cordova: any;
+
 @Component({
     selector: 'page-edit-profile',
     templateUrl: 'edit-profile.html',
@@ -19,20 +19,19 @@ export class EditProfilePage {
     public first_name: string;
     public last_name: string;
     public email: string;
-    public phnumber: string;
-    public myDate: string;
+    public phone_no: string;
+    public dob: Date;
     public userFormattedData = [];
     public status: number;
     public path: string;
     public base64Image: string;
-    constructor(public platform: Platform, private camera: Camera,
-        private file: File, private filePath: FilePath,
+    public user_data = [];
+    constructor(private camera: Camera,
         public actionSheetCtrl: ActionSheetController,
         public apiservice: ProvidersApiservice,
         public providerUrl: ProvidersUrl,
         public providerGlobal: ProvidersGlobal,
         public navParams: NavParams,
-        public transfer: FileTransfer,
         private imagePicker: ImagePicker,
         private base64: Base64) {
     }
@@ -40,6 +39,7 @@ export class EditProfilePage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad EditProfilePage');
         this.userFormattedData = this.navParams.get('userFormattedData');
+        this.user_data = this.userFormattedData;
         this.path = "../../assets/imgs/logo.png";
     }
     submitprofile() {
@@ -49,22 +49,22 @@ export class EditProfilePage {
             'first_name': this.first_name,
             'last_name': this.last_name,
             'email': this.email,
-            'dob': this.myDate,
-            'phone_no': this.phnumber,
+            'dob': this.dob,
+            'phone_no': this.phone_no,
             'profile_pic': this.base64Image
         }
         if (this.email == null || this.email == "" || !emailregex.test(this.email)) {
             return this.providerGlobal.alertMessage("Enter Valid Email", "Error");
         }
 
-        else if (this.phnumber == null || this.phnumber == "") {
+        else if (this.phone_no == null || this.phone_no == "") {
             return this.providerGlobal.alertMessage("Enter Phone Number", "Error");
         }
-        else if (!phoneregex.test(this.phnumber)) {
+        else if (!phoneregex.test(this.phone_no)) {
             return this.providerGlobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
         }
 
-        else if (this.myDate == null) {
+        else if (this.dob == null) {
             return this.providerGlobal.alertMessage("Enter DOB", "Error");
         }
         else {
@@ -74,7 +74,7 @@ export class EditProfilePage {
     }
     callback = (response) => {
         console.log("update profile", response);
-        let formattedData = JSON.parse(response);
+        let formattedData = response;
         this.status = formattedData.status;
         if (this.status == 200) {
             localStorage.removeItem("User_Account_Details");
