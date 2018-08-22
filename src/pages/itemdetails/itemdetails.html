@@ -34,7 +34,7 @@
             <ion-row *ngFor="let data of productDetails">
                 <ion-col>
                     <span item-start>Rs.{{data.cost}}</span>
-                    <button ion-button icon-only clear>
+                    <button ion-button icon-only clear (click)="regularShare(data.name,data.description)">
                         <ion-icon small name="share" color="shareiconcolor"></ion-icon>
                     </button>
                 </ion-col>

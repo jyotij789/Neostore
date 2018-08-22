@@ -21,6 +21,7 @@ import { ProvidersApiservice } from '../providers/providers/apiservice'
 import { ProvidersUrl } from '../providers/providers/url';
 import { Http } from '@angular/http';
 import { AlertController } from 'ionic-angular';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 @Component({
     templateUrl: 'app.html',

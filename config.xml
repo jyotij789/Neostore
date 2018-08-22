@@ -91,4 +91,5 @@
     <plugin name="com-badrit-base64" spec="^0.2.0" />
     <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.3" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.4.1" />
 </widget>

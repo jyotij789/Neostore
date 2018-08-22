@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
-
+import { SocialSharing } from '@ionic-native/social-sharing';
 @IonicPage()
 @Component({
     selector: 'page-itemdetails',
@@ -16,7 +16,7 @@ export class ItemdetailsPage {
     public product_id: number;
     public category_name: string
     public setProductImage: string;
-    constructor(public ProvidersGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public Sharing: SocialSharing, public ProvidersGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -65,7 +65,10 @@ export class ItemdetailsPage {
         console.log("image", data);
         this.setProductImage = data;
     }
-
+    regularShare(name, description) {
+        // let msg="hello";
+        this.Sharing.share(name, description, null, null);
+    }
 }
 
 
