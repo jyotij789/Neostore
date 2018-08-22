@@ -49,7 +49,7 @@ export class ItemdetailsPage {
             this.productDetails.push(response.data);
             console.log("this.productDetails", response.data.product_images);
             this.productimages = response.data.product_images;
-            console.log("this.productimages", this.productimages);
+            this.setProductImage = this.productimages[0].image
         }
         else if (status == 402) {
             this.ProvidersGlobal.alertMessage("Invalid Access Token", "Error");
@@ -66,7 +66,6 @@ export class ItemdetailsPage {
         this.setProductImage = data;
     }
     regularShare(name, description) {
-        // let msg="hello";
         this.Sharing.share(name, description, null, null);
     }
 }
