@@ -1,5 +1,5 @@
 import { IonicPage, NavController, Platform, LoadingController } from 'ionic-angular';
-import { Injectable } from '@angular/core';
+import { Injectable, Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 
@@ -35,10 +35,16 @@ export class ProvidersGlobal {
 
     showLoader() {
         this.loading = this.loadingCtrl.create({
-            content: 'Please wait...'
+            content: 'Loading...',
+            duration: 7000
         });
 
         this.loading.present();
+    }
+
+    stopLoader() {
+        this.loading.dismiss();
+
     }
     presentToast(message) {
         let toast = this.toastCtrl.create({

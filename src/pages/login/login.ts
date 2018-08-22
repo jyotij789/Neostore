@@ -51,10 +51,10 @@ export class LoginPage {
         else {
             let token = "";
             this.apiservice.globalApiRequest('post', this.providerUrl.login, data, token, this.callback);
-
         }
     }
     callback = (response) => {
+        this.providerGlobal.stopLoader();
         console.log("login", response);
         return this.gotoHome(response);
 
@@ -63,9 +63,9 @@ export class LoginPage {
     public gotoHome(response) {
         let formattedData = response;
         this.status = formattedData.status;
-        this.accessToken = formattedData.data.access_token;
         console.log("device/browser accessToken", this.accessToken);
         if (this.status == 200) {
+            this.accessToken = formattedData.data.access_token;
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
             let data = null;
             let apitoken = this.accessToken;
@@ -78,11 +78,12 @@ export class LoginPage {
             this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
         else {
-            this.providerGlobal.alertMessage("Something is wrong", "Error");
+            this.providerGlobal.alertMessage("Try again to load", "Error");
         }
     }
 
     homepageCallback = (response) => {
+        this.providerGlobal.stopLoader();
         console.log("account get reponse", response);
         let formattedData = response;
         let status = formattedData.status;

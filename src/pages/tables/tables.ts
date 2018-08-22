@@ -17,7 +17,6 @@ export class TablesPage {
     public page: number = 1;
     public limit: number = 7;
     public infiniteScrollvar: any;
-    public demo: any;
     constructor(public platformGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
         this.category_id = this.navParams.get('product_category_id');
         this.category_name = this.navParams.get('category_name');
@@ -30,9 +29,11 @@ export class TablesPage {
     getApiHit(infiniteScroll?) {
         let data = { 'product_category_id': this.category_id.toString(), 'limit': this.limit.toString(), 'page': this.page.toString() };
         let token = "";
+        // this.platformGlobal.showLoader();
         this.apiservice.globalApiRequest('get', this.providerUrl.getlist, data, token, this.categoryListcallback);
     }
     categoryListcallback = (response) => {
+        this.platformGlobal.stopLoader();
         console.log("tables page", response);
         let formattedData = response;
         let status = formattedData.status;
@@ -73,7 +74,25 @@ export class TablesPage {
     }
 
 
-    openItemDetails() {
-        this.navCtrl.push(ItemdetailsPage, { productDetails: this.productlist });
+    public openItemDetails = (product, productcategoryid) => {
+        let product_id = product;
+        let product_category_id = productcategoryid;
+        console.log("this.product_id", product_category_id);
+        if (product_category_id == 1) {
+            this.category_name = "Tables";
+        }
+        else if (product_category_id == 2) {
+            this.category_name = "Sofa";
+
+        }
+        else if (product_category_id == 3) {
+            this.category_name = "Chair";
+
+        }
+        else {
+            this.category_name = "Cupboard";
+
+        }
+        this.navCtrl.push(ItemdetailsPage, { product_id: product_id, product_category_name: this.category_name });
     }
 }

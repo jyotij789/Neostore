@@ -20,7 +20,7 @@ export class ProvidersUrl {
     public Fetchaccount = this.getBaseUrl() + '/users/getUserData';
 
     public getlist = this.getBaseUrl() + '/products/getList';
-    // getDetail: this.baseUrl + '/products/getDetail';
+    public getDetail = this.getBaseUrl() + '/products/getDetail';
     // setrating: this.baseUrl + '/products/setRating';
 
 

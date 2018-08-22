@@ -1,14 +1,51 @@
 page-itemdetails {
+    ion-navbar{
+        ion-title{
+            margin:auto;
+            align-content: center;
+            font-weight:bold;
+        }
+    }
 ion-list{
 
         h1{
             color:map-get($colors,dark4);
         }
-        h2, h6{
+        h2, h3{
             color:color($colors,dark3,base);
+        }
+        ion-icon{
+            color:map-get($colors,yellowcolor);
+            font-size: 1.4em;
+        
+        }
+        ion-row ion-col h3{
+            display: table;
+            align-content: center;
+        }
+        .label-md {
+            margin: 13px 8px 0 0;
+        }
+        .col{
+            padding:0px;
         }
     
 }
+ion-card-header{
+    padding-bottom: 0px;
+}
+ion-card-header ion-row ion-col{
+        span{
+            color:map-get($colors,danger);
+            font-size: 2.4rem;
+            font-weight: bold;
+            float:left;
+        }
+        button{
+            float:right;
+        }
+    }
+
 ion-footer{
     ion-row{
         padding-left:5px;

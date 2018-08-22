@@ -15,7 +15,7 @@
 
 <ion-content padding>
     <ion-list *ngFor="let data of productlist">
-        <button full outline ion-item (click)="openItemDetails()">
+        <button full outline ion-item (click)="openItemDetails(data.id,data.product_category_id)">
             <ion-thumbnail item-start>
                 <img src="{{data.product_images}}" />
             </ion-thumbnail>

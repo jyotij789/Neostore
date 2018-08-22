@@ -22,11 +22,13 @@ export class ProvidersApiservice {
         console.log('Hello ProvidersProvider Provider');
     }
     // GlobalAPICall method
+
     public globalApiRequest(method, url, data, token, callback) {
+        this.platformGlobal.showLoader();
         this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
         data != null ? this.body = data : this.body = null;
         token != null ? this.apiToken = this.formattedData : this.apiToken = "";
-        console.log("Jyotibai", this.body);
+        console.log("Jthis.body", this.body);
 
         // Testing platform
         let platform = this.platformGlobal.platformDetect();
@@ -38,7 +40,6 @@ export class ProvidersApiservice {
                 // header.append('access_token', this.apiToken);
                 // console.log(header);
                 // let data = { 'access_token': this.apiToken };
-
 
                 this.HTTP.get(url, this.body, { 'access_token': this.apiToken })
                     .then(response => {
@@ -52,6 +53,7 @@ export class ProvidersApiservice {
                         return callback(formattedResponse);
                     });
 
+
             }
             else {
                 // let header = new Headers();
@@ -59,9 +61,10 @@ export class ProvidersApiservice {
                 //Device post method
 
                 let data = { 'access_token': this.apiToken };
-                this.HTTP.post(url, this.body, { 'access_token': this.apiToken }
-                )
+                // this.platformGlobal.showLoader();
+                this.HTTP.post(url, this.body, {})
                     .then(response => {
+                        // this.platformGlobal.stopLoader();
                         console.log("GlobalpostwithHeader_service success", response);
                         var formattedResponse = JSON.parse(response.data);
                         return callback(formattedResponse);
@@ -99,6 +102,7 @@ export class ProvidersApiservice {
                 })
             }
             else {
+
                 // Browser post method
                 console.log(Object.keys(this.body));
                 let body = new FormData();
@@ -121,14 +125,12 @@ export class ProvidersApiservice {
                 return new Promise((resolve, reject) => {
                     this.http.post(url, body, { headers: header })
                         .subscribe(response => {
-                            console.log("success");
                             let formattedData = response.json();
                             return callback(formattedData);
 
 
                         },
                             error => {
-                                console.log("error");
                                 let formattedData = error.json();
                                 return callback(formattedData);
 

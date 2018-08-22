@@ -61,15 +61,15 @@ export class MyApp {
     }
 
     callback = (response) => {
-        let formattedData = response;
-        let status = formattedData.status;
-        let data = formattedData.data;
-        return this.getUserData(status, data);
+        this.Providers.stopLoader();
+        let status = response.status;
+        return this.getUserData(status, response);
 
     }
-    public getUserData(status, data) {
+    public getUserData(status, response) {
         console.log("app.component getUserstatus", status);
         if (status == 200) {
+            let data = response.data;
             this.nav.setRoot(HomePage, { homeData: data });
         }
         else if (status == 402) {
@@ -109,7 +109,6 @@ export class MyApp {
     }
     openmycartpage() {
         this.nav.setRoot(MycartPage);
-
     }
     logout() {
         localStorage.removeItem("formattedResponse");

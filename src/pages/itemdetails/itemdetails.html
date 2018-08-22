@@ -1,71 +1,81 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title color="danger">Item Details</ion-title>
-    <ion-buttons end>
-      <button icon-only ion-button>
-        <ion-icon name="search" color="light"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
+    <ion-navbar color="danger">
+        <ion-title *ngFor="let data of productDetails" color="danger">{{data.name}}</ion-title>
+        <ion-buttons end>
+            <button icon-only ion-button>
+                <ion-icon name="search" color="light"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content style="background-color:#ededed">
-  <ion-list>
-    <ion-item>
-      <h1 color="dark4">Item name</h1>
-      <h2 color="dark">Category - type</h2>
-      <h6 color="dark">Producer</h6>
-    </ion-item>
-  </ion-list>
-  <ion-card>
-    <ion-card-header>
-      <ion-item>
-        <span item-start color="danger">Amount</span>
-        <button ion-button icon-only clear item-end>
-          <ion-icon name="share" color="shareiconcolor"></ion-icon>
-        </button>
-      </ion-item>
-      <ion-row center>
-        <img>
-      </ion-row>
-
-      <ion-row>
-        <ion-col>
-          <img>
-        </ion-col>
-        <ion-col>
-          <img>
-        </ion-col>
-        <ion-col>
-          <img>
-        </ion-col>
-      </ion-row>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-card-title color="dark4">
-        DESCRIPTION
-      </ion-card-title>
-      <p>
-
-      </p>
-    </ion-card-content>
-  </ion-card>
-
-  <ion-footer>
-    <ion-row>
-      <ion-col>
-        <button ion-item color="danger" large>
-          BUY NOW
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-item color="danger" large>
-          RATE
-        </button>
-      </ion-col>
-    </ion-row>
-  </ion-footer>
+    <ion-list>
+        <ion-item *ngFor="let data of productDetails">
+            <h1>{{data.name}}</h1>
+            <h2>Category - {{category_name}}</h2>
+            <ion-row>
+                <ion-col>
+                    <h3 style="float:left;padding-top:5px;">{{data.producer}}</h3>
+                    <!-- <i style="float:right"> -->
+                    <div style="float:right;">
+                        <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [name]="i < data.rating ? 'star' : 'star-outline'"></ion-icon>
+                    </div>
+                    <!-- </i> -->
+                </ion-col>
+            </ion-row>
+        </ion-item>
+    </ion-list>
+    <ion-card>
+        <ion-card-header>
+            <ion-row *ngFor="let data of productDetails">
+                <ion-col>
+                    <span item-start>Rs.{{data.cost}}</span>
+                    <button ion-button icon-only clear>
+                        <ion-icon small name="share" color="shareiconcolor"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+            <ion-row center>
+                <ion-col>
+                    <ion-avatar>
+                        <img src={{setProductImage}}>
+                    </ion-avatar>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col *ngFor="let images of productimages">
+                    <ion-avatar>
+                        <img src={{images.image}} (click)="setImage(images.image)" />
+                    </ion-avatar>
+                </ion-col>
+            </ion-row>
+        </ion-card-header>
+        <hr>
+        <ion-card-content>
+            <ion-card-title color="dark4">
+                DESRCIPTION
+            </ion-card-title>
+            <p *ngFor="let data of productDetails">
+                {{data.description}}
+            </p>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
+<ion-footer>
+    <ion-row>
+        <ion-col>
+            <button ion-item color="danger" large>
+                BUY NOW
+            </button>
+        </ion-col>
+        <ion-col>
+            <button ion-item color="danger" large>
+                RATE
+            </button>
+        </ion-col>
+    </ion-row>
+</ion-footer>
