@@ -68,14 +68,14 @@
     </ion-card>
 </ion-content>
 <ion-footer>
-    <ion-row>
+    <ion-row *ngFor="let data of productDetails">
         <ion-col>
-            <button ion-item color="danger" large>
+            <button ion-item color="danger" large (click)="openAddProductModal(data.name)">
                 BUY NOW
             </button>
         </ion-col>
         <ion-col>
-            <button ion-item color="danger" large>
+            <button ion-item color="danger" large (click)="openRatingProductModal(data.name)">
                 RATE
             </button>
         </ion-col>

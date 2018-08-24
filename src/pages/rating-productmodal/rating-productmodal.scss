@@ -1,0 +1,31 @@
+page-rating-productmodal {
+    .button{
+        border:1px solid map-get($colors, danger);
+        border-radius: 5px;
+        font-size:2rem;
+        color:map-get($colors, light);
+        width:50vw;
+        text-align: center;
+        left:20%;
+     }
+     
+    ion-avatar{
+        padding:0 20px 0 20px;
+    }
+    ion-content ion-icon{
+        color:map-get($colors,yellowcolor);
+        font-size: 4em;
+        // text-align:center;
+    }
+    .div{
+        align-content: center;
+    display: table;
+    padding-left:45px;
+    padding-right:30px;
+
+    }
+    ion-content div.scroll-content {
+        background-color: transparent;
+    }
+    
+}

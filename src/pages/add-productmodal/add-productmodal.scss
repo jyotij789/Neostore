@@ -1,0 +1,29 @@
+page-add-productmodal {
+ 
+ .button{
+    border:1px solid map-get($colors, danger);
+    border-radius: 5px;
+    font-size:2rem;
+    color:map-get($colors, light);
+    width:50vw;
+    text-align: center;
+    left:20%;
+ }
+ .text-input-md {
+    margin: 10px 5px;
+    padding: 0;
+    width: calc(100% - 8px - 8px);
+    font-size: 1.5rem;
+}
+ion-avatar{
+    padding:0 50px 0 50px;
+}
+ion-avatar img{
+    border:1px solid map-get($colors, dark);
+    padding:5px;
+}
+ion-content div.scroll-content {
+    background-color: transparent;
+}
+
+}

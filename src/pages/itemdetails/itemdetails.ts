@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, ModalController, NavParams, ModalOptions } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AddProductmodalPage } from '../add-productmodal/add-productmodal'
+import { RatingProductmodalPage } from '../rating-productmodal/rating-productmodal'
+
 @IonicPage()
 @Component({
     selector: 'page-itemdetails',
@@ -16,7 +19,8 @@ export class ItemdetailsPage {
     public product_id: number;
     public category_name: string
     public setProductImage: string;
-    constructor(public Sharing: SocialSharing, public ProvidersGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    public ratings: number;
+    constructor(public Sharing: SocialSharing, public ProvidersGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -47,9 +51,11 @@ export class ItemdetailsPage {
         if (status == 200) {
             this.category_name = this.navParams.get('product_category_name');
             this.productDetails.push(response.data);
-            console.log("this.productDetails", response.data.product_images);
+            console.log("this.productDetails", this.productDetails);
             this.productimages = response.data.product_images;
-            this.setProductImage = this.productimages[0].image
+            this.setProductImage = this.productimages[0].image;
+            this.ratings = response.data.rating;
+            console.log(this.ratings);
         }
         else if (status == 402) {
             this.ProvidersGlobal.alertMessage("Invalid Access Token", "Error");
@@ -61,12 +67,52 @@ export class ItemdetailsPage {
             this.ProvidersGlobal.alertMessage("Something is Wrong.", "Error");
         }
     }
+
     setImage = (data) => {
-        console.log("image", data);
         this.setProductImage = data;
     }
+
     regularShare(name, description) {
         this.Sharing.share(name, description, null, null);
+    }
+
+    openAddProductModal(name) {
+        const myModalOptions: ModalOptions = {
+            showBackdrop: true,
+            enableBackdropDismiss: true,
+            cssClass: "mymodal"
+        };
+        const myModalData = {
+            'product_name': name,
+            'product_image': this.setProductImage,
+            'product_id': this.product_id
+        };
+        const productmodal = this.modalCtrl.create(AddProductmodalPage, { data: myModalData }, myModalOptions);
+        productmodal.present();
+        productmodal.onDidDismiss(data => {
+            console.log("productmodal", data);
+        });
+    }
+    openRatingProductModal(name) {
+        console.log("name", name);
+        const myModalOptions: ModalOptions = {
+            showBackdrop: true,
+            enableBackdropDismiss: true,
+            cssClass: "mymodal"
+        };
+        const myModalDatarating = {
+            'product_name': name,
+            'product_image': this.setProductImage,
+            'product_id': this.product_id,
+            'product_rating': this.ratings
+        };
+        console.log("myModalData", myModalDatarating);
+        const productmodal = this.modalCtrl.create(RatingProductmodalPage, { ratingdata: myModalDatarating }, myModalOptions);
+        productmodal.present();
+        // productmodal.onDidDismiss(data => {
+        //     console.log("productmodal", data);
+        // });
+
     }
 }
 

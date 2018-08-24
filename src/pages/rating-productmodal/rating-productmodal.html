@@ -1,0 +1,33 @@
+<ion-content tappable (click)="ondismiss()">
+    <ion-row center>
+        <ion-col *ngFor="let data of rating_data">
+            <h2 color="shareiconcolor" style="text-align:center">{{data.product_name}}</h2>
+        </ion-col>
+    </ion-row>
+
+    <ion-row center>
+        <ion-col *ngFor="let data of rating_data">
+            <ion-avatar>
+                <img src={{data.product_image}}>
+            </ion-avatar>
+        </ion-col>
+    </ion-row>
+
+    <ion-row center>
+        <ion-col>
+            <div class="div" *ngFor="let data of rating_data">
+                <ion-icon *ngFor="let n of [1,2,3,4,5];let i=index;" [name]="i < data.product_rating ?'star':'star-outline'">
+                </ion-icon>
+            </div>
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <button class="button" ion-button color="danger" large (click)="ondismiss()">
+                SUBMIT
+            </button>
+        </ion-col>
+    </ion-row>
+
+</ion-content>

@@ -30,6 +30,8 @@ import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
+import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
 
 @NgModule({
     declarations: [
@@ -44,7 +46,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
         AddressPage,
         MycartPage,
         TablesPage,
-        ItemdetailsPage
+        ItemdetailsPage,
+        AddProductmodalPage,
+        RatingProductmodalPage
     ],
     imports: [
         BrowserModule,
@@ -64,7 +68,9 @@ import { SocialSharing } from '@ionic-native/social-sharing';
         AddressPage,
         MycartPage,
         TablesPage,
-        ItemdetailsPage
+        ItemdetailsPage,
+        AddProductmodalPage,
+        RatingProductmodalPage
     ],
     providers: [
         StatusBar,

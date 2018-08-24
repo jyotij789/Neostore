@@ -1,0 +1,35 @@
+<ion-content tappable (click)="ondismiss()">
+    <ion-row center>
+        <ion-col *ngFor="let data of product_data">
+            <h2 color="shareiconcolor" style="text-align:center">{{data.product_name}}</h2>
+        </ion-col>
+    </ion-row>
+    <ion-row center>
+        <ion-col *ngFor="let data of product_data">
+            <ion-avatar>
+                <img src={{data.product_image}}>
+            </ion-avatar>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col>
+            <h3 style="text-align:center;color:#4f4f4f">Enter Qty</h3>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+            <ion-input type="number" name="quantity" style="border:2px solid #4f4f4f" [(ngModel)]="quantity"></ion-input>
+        </ion-col>
+        <ion-col></ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <button class="button" ion-button color="danger" large (click)="ondismiss()">
+                SUBMIT
+            </button>
+        </ion-col>
+    </ion-row>
+
+</ion-content>

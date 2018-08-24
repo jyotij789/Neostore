@@ -22,6 +22,8 @@ import { ProvidersUrl } from '../providers/providers/url';
 import { Http } from '@angular/http';
 import { AlertController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
+import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
 
 @Component({
     templateUrl: 'app.html',
