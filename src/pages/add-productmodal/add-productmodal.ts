@@ -11,7 +11,7 @@ export class AddProductmodalPage {
     public name: string;
     public product_data = [];
     public quantity: number;
-    constructor(public renderer: Renderer, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public Providers: ProvidersGlobal, public renderer: Renderer, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
         this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'mymodal', true);
     }
 
@@ -22,12 +22,22 @@ export class AddProductmodalPage {
         console.log('product_data', this.product_data);
     }
     ondismiss() {
-        this.viewCtrl.dismiss();
-        console.log("modal dismissed");
+        if (this.quantity == null || this.quantity == undefined) {
+            this.Providers.alertMessage("Enter quantity", "Error");
+        } else {
+            let data = {
+                'quantity': this.quantity,
+                'product_id': this.product_data[0].product_id
+            }
+            this.viewCtrl.dismiss(data);
+            console.log("modal dismissed");
+
+        }
     }
-    // onSubmit() {
-    //     let data = "me";
-    //     this.viewCtrl.dismiss(data);
-    //     console.log("modal dismissed");
-    // }
+    close() {
+        let close = "close";
+        this.viewCtrl.dismiss(close);
+
+    }
+
 }

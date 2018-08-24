@@ -1,6 +1,6 @@
 page-add-productmodal {
  
- .button{
+ion-row ion-col .button{
     border:1px solid map-get($colors, danger);
     border-radius: 5px;
     font-size:2rem;
@@ -22,8 +22,7 @@ ion-avatar img{
     border:1px solid map-get($colors, dark);
     padding:5px;
 }
-ion-content div.scroll-content {
-    background-color: transparent;
+h2 {
+    font-size: 2rem;
 }
-
 }

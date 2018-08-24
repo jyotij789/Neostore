@@ -33,6 +33,7 @@ export class MyApp {
 
     rootPage: any = LoginPage;
     public userFormattedData = [];
+    public carts: number;
     pages: Array<{ title: string, component: any }>;
     constructor(public Providers: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
@@ -56,7 +57,8 @@ export class MyApp {
                     this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apiToken, this.callback);
                     let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
                     this.userFormattedData.push(formattedData.user_data);
-                    console.log("userFormattedData", this.userFormattedData);
+                    this.carts = formattedData.total_carts;
+                    console.log("this.carts", this.carts);
                 }
 
             }
@@ -99,11 +101,11 @@ export class MyApp {
         this.nav.push(TablesPage, { product_category_id: 1, category_name: 'Table' });
     }
     openSofaPage() {
-        this.nav.push(TablesPage, { product_category_id: 2, category_name: 'Sofa' });
+        this.nav.push(TablesPage, { product_category_id: 3, category_name: 'Sofa' });
 
     }
     openChairPage() {
-        this.nav.push(TablesPage, { product_category_id: 3, category_name: 'Chairs' });
+        this.nav.push(TablesPage, { product_category_id: 2, category_name: 'Chairs' });
 
     }
     openCupboardPage() {
@@ -111,7 +113,7 @@ export class MyApp {
 
     }
     openmycartpage() {
-        this.nav.setRoot(MycartPage);
+        this.nav.push(MycartPage);
     }
     logout() {
         localStorage.removeItem("formattedResponse");

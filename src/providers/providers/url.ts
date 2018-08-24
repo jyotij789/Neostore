@@ -21,10 +21,10 @@ export class ProvidersUrl {
 
     public getlist = this.getBaseUrl() + '/products/getList';
     public getDetail = this.getBaseUrl() + '/products/getDetail';
-    // setrating: this.baseUrl + '/products/setRating';
+    public setRating = this.getBaseUrl() + '/products/setRating';
 
 
-    // addToCart: this.baseUrl + '/addToCart';
+    public addToCart = this.getBaseUrl() + '/addToCart';
     // editCart: this.baseUrl + '/editCart';
     // deleteCart: this.baseUrl + '/deleteCart';
     // listCartitem: this.baseUrl + '/cart';

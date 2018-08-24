@@ -18,28 +18,24 @@ export class ProvidersApiservice {
 
     public body = {};
     @ViewChild(Nav) nav: Nav;
-    constructor(public HTTP: HTTP, public http: Http, public platformGlobal: ProvidersGlobal) {
+    constructor(public HTTP: HTTP, public http: Http, public platform: ProvidersGlobal) {
         console.log('Hello ProvidersProvider Provider');
     }
     // GlobalAPICall method
 
     public globalApiRequest(method, url, data, token, callback) {
-        this.platformGlobal.showLoader();
+        this.platform.showLoader();
         this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
         data != null ? this.body = data : this.body = null;
         token != null ? this.apiToken = this.formattedData : this.apiToken = "";
         console.log("Jthis.body", this.body);
 
         // Testing platform
-        let platform = this.platformGlobal.platformDetect();
+        let platform = this.platform.platformDetect();
         console.log("platform", platform);
         if (platform == "other") {
             //Device get method
             if (method == 'get') {
-                // let header = new Headers();
-                // header.append('access_token', this.apiToken);
-                // console.log(header);
-                // let data = { 'access_token': this.apiToken };
 
                 this.HTTP.get(url, this.body, { 'access_token': this.apiToken })
                     .then(response => {
@@ -56,15 +52,12 @@ export class ProvidersApiservice {
 
             }
             else {
-                // let header = new Headers();
-                // header.append('access_token', this.apiToken);
                 //Device post method
 
                 let data = { 'access_token': this.apiToken };
                 // this.platformGlobal.showLoader();
-                this.HTTP.post(url, this.body, {})
+                this.HTTP.post(url, this.body, data)
                     .then(response => {
-                        // this.platformGlobal.stopLoader();
                         console.log("GlobalpostwithHeader_service success", response);
                         var formattedResponse = JSON.parse(response.data);
                         return callback(formattedResponse);

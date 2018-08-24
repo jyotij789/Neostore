@@ -29,7 +29,6 @@ export class TablesPage {
     getApiHit(infiniteScroll?) {
         let data = { 'product_category_id': this.category_id.toString(), 'limit': this.limit.toString(), 'page': this.page.toString() };
         let token = "";
-        // this.platformGlobal.showLoader();
         this.apiservice.globalApiRequest('get', this.providerUrl.getlist, data, token, this.categoryListcallback);
     }
     categoryListcallback = (response) => {

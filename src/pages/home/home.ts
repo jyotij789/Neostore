@@ -44,11 +44,11 @@ export class HomePage {
 
     }
     openSofaPage() {
-        this.navCtrl.push(TablesPage, { product_category_id: 2, category_name: 'Sofa' });
+        this.navCtrl.push(TablesPage, { product_category_id: 3, category_name: 'Sofa' });
 
     }
     openChairPage() {
-        this.navCtrl.push(TablesPage, { product_category_id: 3, category_name: 'Chair' });
+        this.navCtrl.push(TablesPage, { product_category_id: 2, category_name: 'Chair' });
 
     }
     openCupboardPage() {

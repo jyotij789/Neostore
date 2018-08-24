@@ -20,7 +20,7 @@ export class ItemdetailsPage {
     public category_name: string
     public setProductImage: string;
     public ratings: number;
-    constructor(public Sharing: SocialSharing, public ProvidersGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
+    constructor(public Sharing: SocialSharing, public platform: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -40,7 +40,7 @@ export class ItemdetailsPage {
         this.apiservice.globalApiRequest('get', this.providerUrl.getDetail, data, token, this.productDetailscallback);
     }
     productDetailscallback = (response) => {
-        this.ProvidersGlobal.stopLoader();
+        this.platform.stopLoader();
         let status = response.status;
         console.log("productDetailscallback", response);
         return this.getProductDetails(status, response);
@@ -58,13 +58,13 @@ export class ItemdetailsPage {
             console.log(this.ratings);
         }
         else if (status == 402) {
-            this.ProvidersGlobal.alertMessage("Invalid Access Token", "Error");
+            this.platform.alertMessage("Invalid Access Token", "Error");
         }
         else if (status == 500) {
-            this.ProvidersGlobal.alertMessage("Could not update Account details.", "Error");
+            this.platform.alertMessage("Could not update Account details.", "Error");
         }
         else {
-            this.ProvidersGlobal.alertMessage("Something is Wrong.", "Error");
+            this.platform.alertMessage("Something is Wrong.", "Error");
         }
     }
 
@@ -88,10 +88,44 @@ export class ItemdetailsPage {
             'product_id': this.product_id
         };
         const productmodal = this.modalCtrl.create(AddProductmodalPage, { data: myModalData }, myModalOptions);
-        productmodal.present();
-        productmodal.onDidDismiss(data => {
-            console.log("productmodal", data);
+        productmodal.onDidDismiss(params => {
+            console.log("productmodal", params);
+            if (params == "close") {
+                console.log("close modal");
+            } else {
+                let token = "token";
+                this.apiservice.globalApiRequest('post', this.providerUrl.addToCart, params, token, this.buyProductModalCallback);
+
+            }
         });
+        productmodal.present();
+    }
+
+    buyProductModalCallback = (response) => {
+        console.log("addProductModalCallback", response);
+        this.platform.stopLoader();
+        let status = response.status;
+        return this.handleProductModalResponse(status, response);
+
+    }
+    handleProductModalResponse(status, response) {
+        if (status == 200) {
+            this.platform.alertMessage(response.message, "Success");
+
+        }
+        else if (status == 401) {
+            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+        }
+        else if (status == 402) {
+            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+        }
+        else if (status == 405) {
+            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+        }
+        else {
+            this.platform.alertMessage("UpdateFailed", "Error");
+
+        }
     }
     openRatingProductModal(name) {
         console.log("name", name);
@@ -109,10 +143,41 @@ export class ItemdetailsPage {
         console.log("myModalData", myModalDatarating);
         const productmodal = this.modalCtrl.create(RatingProductmodalPage, { ratingdata: myModalDatarating }, myModalOptions);
         productmodal.present();
-        // productmodal.onDidDismiss(data => {
-        //     console.log("productmodal", data);
-        // });
+        productmodal.onDidDismiss(params => {
+            if (params == "close") {
+                console.log("close");
+            }
+            else {
+                let token = "token";
+                this.apiservice.globalApiRequest('post', this.providerUrl.setRating, params, token, this.RatingModalCallback);
+            }
+        });
 
+    }
+    RatingModalCallback = (response) => {
+        console.log("ratingModalCallback", response);
+        this.platform.stopLoader();
+        let status = response.status;
+        return this.handleRatingModalResponse(status, response);
+
+    }
+    handleRatingModalResponse(status, response) {
+        if (status == 200) {
+            this.platform.alertMessage(response.message + response.user_msg, "Success");
+        }
+        else if (status == 400) {
+            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+        }
+        else if (status == 401) {
+            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+        }
+        else if (status == 405) {
+            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+        }
+        else {
+            this.platform.alertMessage("UpdateFailed", "Error");
+
+        }
     }
 }
 

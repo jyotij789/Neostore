@@ -2,13 +2,15 @@
     <ion-content>
 
         <ion-label>
-            <ion-img></ion-img>
-            <div class="div2" *ngFor="let data of userFormattedData">{{data.first_name}}&nbsp;{{data.last_name}}</div>
-            <div class="div3" *ngFor="let data of userFormattedData">{{data.email}}</div>
+            <img *ngFor="let data of userFormattedData" src={{data.profile_pic}}>
+            <div *ngFor="let data of userFormattedData" class="div2">{{data.first_name}}&nbsp;{{data.last_name}}</div>
+            <div *ngFor="let data of userFormattedData" class="div3">{{data.email}}</div>
         </ion-label>
         <ion-list>
             <button ion-item color="dark2" menuClose (click)="openmycartpage()" icon-start>
-                <ion-icon name="cart"></ion-icon>My Cart</button>
+                <ion-icon name="cart"></ion-icon>My Cart
+                <span style="margin-left:100px; border:1px; border-radius:5px">{{carts}}</span>
+            </button>
             <button ion-item color="dark2" menuClose (click)="opentablespage()" icon-start>
                 <ion-icon class="fa fa-cubes"></ion-icon>Tables</button>
             <button ion-item color="dark2" menuClose (click)="openSofaPage()" icon-start>

@@ -20,11 +20,9 @@
             <ion-row>
                 <ion-col>
                     <h3 style="float:left;padding-top:5px;">{{data.producer}}</h3>
-                    <!-- <i style="float:right"> -->
                     <div style="float:right;">
                         <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [name]="i < data.rating ? 'star' : 'star-outline'"></ion-icon>
                     </div>
-                    <!-- </i> -->
                 </ion-col>
             </ion-row>
         </ion-item>
@@ -47,12 +45,29 @@
                     </ion-avatar>
                 </ion-col>
             </ion-row>
+            <!-- <ion-scroll scrollX="true" style="width:100vw;height:150px">
+                <div class="scroll-item " *ngFor="let images of productimages">
+                    <ion-col>
+                        <ion-avatar>
+                            <img class="scroll-item" src={{images.image}} (click)="setImage(images.image)" style="width:50%;height:100%" />
+                        </ion-avatar>
+                    </ion-col>
+                </div>
+            </ion-scroll> -->
+            <!-- <ion-row>
+                <ion-col *ngFor="let images of productimages">
+                    <ion-avatar>
+                        <img src={{images.image}} (click)="setImage(images.image)" />
+                    </ion-avatar>
+                </ion-col>
+            </ion-row> -->
             <ion-row>
                 <ion-col *ngFor="let images of productimages">
                     <ion-avatar>
                         <img src={{images.image}} (click)="setImage(images.image)" />
                     </ion-avatar>
                 </ion-col>
+
             </ion-row>
 
         </ion-card-header>

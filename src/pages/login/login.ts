@@ -22,6 +22,8 @@ export class LoginPage {
     public status: number;
     public responseType: string;
     public accessToken: any;
+    public userFormattedData = [];
+    public carts: number;
 
     constructor(public navCtrl: NavController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, private alertCtrl: AlertController, public apiservice: ProvidersApiservice) {
         // this.callback = this.callback.bind(this);
@@ -30,9 +32,7 @@ export class LoginPage {
     getHome() {
         let regex = /^[a-zA-Z]{2,30}$/;
         let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
-        // let body = new FormData();
-        // body.append('email', this.email);
-        // body.append('password', this.password);
+
         console.log('email:', this.email);
         console.log('password:', this.password);
         let data = {
@@ -84,19 +84,23 @@ export class LoginPage {
 
     homepageCallback = (response) => {
         this.providerGlobal.stopLoader();
-        console.log("account get reponse", response);
-        let formattedData = response;
-        let status = formattedData.status;
-        let data = formattedData.data;
-        console.log("device/browser homepageCallback data", data);
-        return this.getUserData(status, data);
+        let status = response.status;
+        return this.getUserData(status, response);
 
     }
-    public getUserData(status, data) {
+    public getUserData(status, response) {
         console.log("login getUserstatus", status);
+        console.log("device/browser homepageCallback response", response);
         if (status == 200) {
-            this.navCtrl.setRoot(HomePage, { homeData: data });
+            let data = response.data;
             localStorage.setItem("User_Account_Details", JSON.stringify(data));
+            let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
+            this.userFormattedData.push(formattedData.user_data);
+            console.log("this.userFormattedData", this.userFormattedData);
+            this.carts = formattedData.total_carts;
+            console.log("this.carts", this.carts);
+            this.navCtrl.setRoot(HomePage, { homeData: data });
+
         }
         else if (status == 402) {
             this.providerGlobal.alertMessage("Invalid Access Token", "Error");

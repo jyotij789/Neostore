@@ -19,7 +19,12 @@ export class RatingProductmodalPage {
         console.log('rating_data', this.rating_data);
     }
     ondismiss() {
-        this.viewCtrl.dismiss();
+        let data = { 'product_id': this.rating_data[0].product_id };
+        this.viewCtrl.dismiss(data);
         console.log("modal dismissed");
+    }
+    close() {
+        let close = "close";
+        this.viewCtrl.dismiss(close);
     }
 }
