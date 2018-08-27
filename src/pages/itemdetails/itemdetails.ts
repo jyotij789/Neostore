@@ -109,9 +109,9 @@ export class ItemdetailsPage {
 
     }
     handleProductModalResponse(status, response) {
+        console.log(status);
         if (status == 200) {
             this.platform.alertMessage(response.message, "Success");
-
         }
         else if (status == 401) {
             this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
@@ -122,10 +122,10 @@ export class ItemdetailsPage {
         else if (status == 405) {
             this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
-        else {
-            this.platform.alertMessage("UpdateFailed", "Error");
+        // else {
+        //     this.platform.alertMessage("UpdateFailed", "Error");
 
-        }
+        // }
     }
     openRatingProductModal(name) {
         console.log("name", name);

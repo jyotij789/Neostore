@@ -25,9 +25,9 @@ export class ProvidersUrl {
 
 
     public addToCart = this.getBaseUrl() + '/addToCart';
-    // editCart: this.baseUrl + '/editCart';
-    // deleteCart: this.baseUrl + '/deleteCart';
-    // listCartitem: this.baseUrl + '/cart';
+    public editCart = this.getBaseUrl() + '/editCart';
+    public deleteCart = this.getBaseUrl() + '/deleteCart';
+    public listCartitem = this.getBaseUrl() + '/cart';
 
     // order: this.baseUrl + '/order';
     // orderList: this.baseUrl + '/orderList';

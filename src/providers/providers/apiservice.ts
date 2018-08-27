@@ -45,7 +45,7 @@ export class ProvidersApiservice {
                     })
                     .catch(error => {
                         console.log("GlobalgetwithHeader_service error", error);
-                        var formattedResponse = "";
+                        var formattedResponse = JSON.parse(error.error);
                         return callback(formattedResponse);
                     });
 
@@ -55,8 +55,7 @@ export class ProvidersApiservice {
                 //Device post method
 
                 let data = { 'access_token': this.apiToken };
-                // this.platformGlobal.showLoader();
-                this.HTTP.post(url, this.body, data)
+                this.HTTP.post(url, this.body, { 'access_token': this.apiToken })
                     .then(response => {
                         console.log("GlobalpostwithHeader_service success", response);
                         var formattedResponse = JSON.parse(response.data);
@@ -65,7 +64,7 @@ export class ProvidersApiservice {
                     })
                     .catch(error => {
                         console.log("GlobalpostwithHeader_service error", error);
-                        var formattedResponse = "";
+                        var formattedResponse = JSON.parse(error.error);
                         return callback(formattedResponse);
 
                     });
@@ -97,6 +96,7 @@ export class ProvidersApiservice {
             else {
 
                 // Browser post method
+                console.log(this.body);
                 console.log(Object.keys(this.body));
                 let body = new FormData();
                 console.log("length", Object.keys(this.body).length);

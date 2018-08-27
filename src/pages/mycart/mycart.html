@@ -11,5 +11,44 @@
 
 
 <ion-content padding>
+    <ion-list *ngFor="let data of cartList">
+        <ion-item-sliding>
+            <ion-item>
+                <ion-thumbnail item-start>
+                    <img src="{{data.product.product_images}}" />
+                </ion-thumbnail>
+                <p>{{data.product.name}}</p>
+                <h2>{{data.product.product_category}}</h2>
+                <!-- <h3 style="float:left">{{data.quantity}}</h3> -->
+                <ion-item style="float:left;width: 70%;padding-left: 0px;">
+                    <ion-select [(ngModel)]="data.quantity" (ionChange)="onSelectChange($event,data.product_id)">
+                        <ion-option [value]="quant" *ngFor="let quant of [1,2,3,4,5,6,7,8]"> {{quant}} </ion-option>
+                    </ion-select>
+                </ion-item>
 
+                <span style="float:right;margin-top: -.01rem;">
+                    <h3>
+                        <i class="fa fa-rupee"></i>{{data.product.sub_total}}</h3>
+                </span>
+            </ion-item>
+
+            <ion-item-options>
+                <button ion-button expandable icon-only (click)="removecartItem(data.product_id)">
+                    <ion-icon clear color="light" name="trash"></ion-icon>
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item>
+        <h1 style="float:left">TOTAL</h1>
+        <h1 style="float:right">
+            <i class="fa fa-rupee"></i>{{total}}</h1>
+    </ion-item>
+    <ion-row>
+        <ion-col padding>
+            <button class="orderbtn" ion-button block>
+                ORDER NOW
+            </button>
+        </ion-col>
+    </ion-row>
 </ion-content>
