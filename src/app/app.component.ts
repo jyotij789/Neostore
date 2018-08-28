@@ -11,7 +11,7 @@ import { MyAccountPage } from '../pages/my-account/my-account';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { ViewChild } from '@angular/core';
-import { Nav } from 'ionic-angular';
+import { Nav, Events, AlertController } from 'ionic-angular';
 import { AddressPage } from '../pages/address/address';
 import { MycartPage } from '../pages/mycart/mycart';
 import { TablesPage } from '../pages/tables/tables';
@@ -20,7 +20,6 @@ import { ProvidersGlobal } from '../providers/providers/global';
 import { ProvidersApiservice } from '../providers/providers/apiservice'
 import { ProvidersUrl } from '../providers/providers/url';
 import { Http } from '@angular/http';
-import { AlertController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
 import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
@@ -36,8 +35,12 @@ export class MyApp {
     public userFormattedData = [];
     public carts: number;
     pages: Array<{ title: string, component: any }>;
-    constructor(public Providers: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public events: Events, public Providers: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
+        events.subscribe('cart:created', (data) => {
+            // user and time are the same arguments passed in `events.publish(user, time)`
+            console.log('cartdata', data);
+        });
     }
 
 

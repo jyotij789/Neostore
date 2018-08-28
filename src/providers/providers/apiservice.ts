@@ -11,7 +11,7 @@ import { Platform, IonicPage, Nav, NavParams } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 @Injectable()
 export class ProvidersApiservice {
-    public name: any;
+    public data: any;
     public i: number;
     public apiToken: string;
     public formattedData: string;
@@ -27,7 +27,7 @@ export class ProvidersApiservice {
         this.platform.showLoader();
         this.formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
         data != null ? this.body = data : this.body = null;
-        token != null ? this.apiToken = this.formattedData : this.apiToken = "";
+        token != null ? this.apiToken = this.formattedData : this.apiToken = null;
         console.log("Jthis.body", this.body);
 
         // Testing platform
@@ -53,9 +53,9 @@ export class ProvidersApiservice {
             }
             else {
                 //Device post method
-
-                let data = { 'access_token': this.apiToken };
-                this.HTTP.post(url, this.body, { 'access_token': this.apiToken })
+                this.apiToken != null ? this.data = { 'access_token': this.apiToken } : this.data = {};
+                // let data = { 'access_token': this.apiToken };
+                this.HTTP.post(url, this.body, data)
                     .then(response => {
                         console.log("GlobalpostwithHeader_service success", response);
                         var formattedResponse = JSON.parse(response.data);

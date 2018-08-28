@@ -19,8 +19,8 @@
                 </ion-thumbnail>
                 <p>{{data.product.name}}</p>
                 <h2>{{data.product.product_category}}</h2>
-                <!-- <h3 style="float:left">{{data.quantity}}</h3> -->
-                <ion-item style="float:left;width: 70%;padding-left: 0px;">
+
+                <ion-item class="dropdown">
                     <ion-select [(ngModel)]="data.quantity" (ionChange)="onSelectChange($event,data.product_id)">
                         <ion-option [value]="quant" *ngFor="let quant of [1,2,3,4,5,6,7,8]"> {{quant}} </ion-option>
                     </ion-select>
@@ -40,12 +40,14 @@
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
-    <ion-item>
-        <h1 style="float:left">TOTAL</h1>
-        <h1 style="float:right">
-            <i class="fa fa-rupee"></i>{{total}}</h1>
-    </ion-item>
-    <ion-row>
+    <ion-list *ngIf="total != null">
+        <ion-item>
+            <h1 style="float:left">TOTAL</h1>
+            <h1 style="float:right">
+                <i class="fa fa-rupee"></i>{{total}}</h1>
+        </ion-item>
+    </ion-list>
+    <ion-row *ngIf="total != null">
         <ion-col padding>
             <button class="orderbtn" ion-button block (click)="addAddress($event)">
                 ORDER NOW

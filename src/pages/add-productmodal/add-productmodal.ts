@@ -11,8 +11,7 @@ export class AddProductmodalPage {
     public name: string;
     public product_data = [];
     public quantity: number;
-    constructor(public Providers: ProvidersGlobal, public renderer: Renderer, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
-        this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'mymodal', true);
+    constructor(public Providers: ProvidersGlobal, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {

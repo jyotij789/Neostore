@@ -22,8 +22,8 @@ export class MycartPage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad MycartPage');
         this.getproductCartitems();
-    }
 
+    }
     getproductCartitems() {
         let data = null;
         let apitoken = "token";

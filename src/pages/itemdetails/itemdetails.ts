@@ -28,12 +28,6 @@ export class ItemdetailsPage {
         this.product_id = this.navParams.get('product_id');
         this.ProductDetailsApi();
     }
-    // public getdata = (data) => {
-    //     this.array = data;
-    //     this.resultArray = this.array.map(function (a) { return a["id"]; });
-    //     console.log("this.resultArray", this.resultArray);
-
-    // }
     ProductDetailsApi() {
         let data = { 'product_id': this.product_id.toString() };
         let token = "";
@@ -80,7 +74,7 @@ export class ItemdetailsPage {
         const myModalOptions: ModalOptions = {
             showBackdrop: true,
             enableBackdropDismiss: true,
-            cssClass: "mymodal"
+            // cssClass: "mymodal"
         };
         const myModalData = {
             'product_name': name,
@@ -132,7 +126,7 @@ export class ItemdetailsPage {
         const myModalOptions: ModalOptions = {
             showBackdrop: true,
             enableBackdropDismiss: true,
-            cssClass: "mymodal"
+            // cssClass: "mymodal"
         };
         const myModalDatarating = {
             'product_name': name,

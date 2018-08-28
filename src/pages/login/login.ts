@@ -22,8 +22,6 @@ export class LoginPage {
     public status: number;
     public responseType: string;
     public accessToken: any;
-    public userFormattedData = [];
-    public carts: number;
 
     constructor(public navCtrl: NavController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, private alertCtrl: AlertController, public apiservice: ProvidersApiservice) {
         // this.callback = this.callback.bind(this);
@@ -49,7 +47,7 @@ export class LoginPage {
             this.providerGlobal.alertMessage("Enter password", "Error");
         }
         else {
-            let token = "";
+            let token = null;
             this.apiservice.globalApiRequest('post', this.providerUrl.login, data, token, this.callback);
         }
     }
@@ -59,7 +57,10 @@ export class LoginPage {
         return this.gotoHome(response);
 
     }
+    ionViewDidLoad() {
+        console.log('ionViewDidLoad LoginPage');
 
+    }
     public gotoHome(response) {
         let formattedData = response;
         this.status = formattedData.status;
@@ -94,11 +95,6 @@ export class LoginPage {
         if (status == 200) {
             let data = response.data;
             localStorage.setItem("User_Account_Details", JSON.stringify(data));
-            let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
-            this.userFormattedData.push(formattedData.user_data);
-            console.log("this.userFormattedData", this.userFormattedData);
-            this.carts = formattedData.total_carts;
-            console.log("this.carts", this.carts);
             this.navCtrl.setRoot(HomePage, { homeData: data });
 
         }
@@ -112,10 +108,7 @@ export class LoginPage {
             this.providerGlobal.alertMessage("Method has to be post.", "Error");
         }
     }
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad LoginPage');
 
-    }
 
     createAccount() {
         this.navCtrl.push(RegisterPage);

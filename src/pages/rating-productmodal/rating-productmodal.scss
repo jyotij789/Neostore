@@ -6,11 +6,14 @@ page-rating-productmodal {
         color:map-get($colors, light);
         width:50vw;
         text-align: center;
-        left:20%;
+        left:25%;
      }
-     
-    ion-avatar{
-        padding:0 20px 0 20px;
+     ion-avatar{
+        padding:0 50px 0 50px;
+    }
+    ion-avatar img{
+        border:1px solid map-get($colors, dark);
+        padding:5px;
     }
     ion-content ion-icon{
         color:map-get($colors,yellowcolor);
@@ -18,10 +21,9 @@ page-rating-productmodal {
         // text-align:center;
     }
     .div{
-        align-content: center;
+    align-content: center;
     display: table;
-    padding-left:45px;
-    padding-right:30px;
+    padding-left:70px;
 
     }
     ion-content div.scroll-content {

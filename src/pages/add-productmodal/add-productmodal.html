@@ -1,9 +1,14 @@
+<ion-header>
+    <ion-navbar color="danger">
+        <ion-buttons end>
+            <button icon-only ion-button clear (click)="close()">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
 <ion-content>
-    <ion-buttons end>
-        <button icon-only ion-button clear (click)="close()">
-            <ion-icon name="close"></ion-icon>
-        </button>
-    </ion-buttons>
+
     <form>
         <ion-row center>
             <ion-col *ngFor="let data of product_data">

@@ -18,14 +18,16 @@ export class MyAccountPage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad MyAccountPage');
         this.getUserdetails();
+
+    }
+    ionViewWillEnter() {
+        console.log('ionViewwillEnter MyAccountPage');
     }
     getUserdetails() {
         let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
-        console.log(formattedData);
         this.userFormattedData.push(formattedData.user_data);
         console.log("userFormattedData myaccount", this.userFormattedData);
         this.path = "../../assets/imgs/logo.png";
-
         // let image=this.userFormattedData.profile_pic;
     }
     editProfile() {

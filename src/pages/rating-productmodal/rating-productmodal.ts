@@ -8,7 +8,6 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 export class RatingProductmodalPage {
     public rating_data = [];
     constructor(public renderer: Renderer, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
-        this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'mymodal', true);
 
     }
 

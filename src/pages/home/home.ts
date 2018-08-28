@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TablesPage } from '../tables/tables';
-// import { LoginPage } from '../login/login';
-// import { MyApp } from '../../app/app.component';
-// import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 
@@ -19,7 +16,10 @@ export class HomePage {
     public TitleArray: Array<{}>;
     public titles: any;
     public formattedData;
-    constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    public userFormattedData = [];
+    public carts: number;
+
+    constructor(public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
 
     }
 
@@ -28,10 +28,15 @@ export class HomePage {
         this.getUserDetails();
 
     }
-
+    ionViewWillEnter() {
+        let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
+        // this.userFormattedData.push(formattedData.user_data);
+        this.carts = formattedData.total_carts;
+        console.log("this.carts", this.carts);
+        this.events.publish('cart:created', this.carts);
+    }
     getUserDetails() {
         console.log("User account details", this.navParams.get('homeData'));
-        // console.log(JSON.stringify(this.imagesArray));
         this.formattedData = this.navParams.get('homeData');
         this.imagesArray = this.formattedData.product_categories;
         // console.log(JSON.stringify(this.imagesArray));

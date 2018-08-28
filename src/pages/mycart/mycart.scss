@@ -20,7 +20,7 @@ page-mycart {
         color:map-get($colors , dark4 );
     }
     ion-item-sliding ion-item ion-thumbnail{
-        background: aliceblue;
+        background:map-get($colors,danger);
     }
     ion-item-sliding ion-item h2{
         color:map-get($colors,shareiconcolor );
@@ -38,6 +38,11 @@ page-mycart {
     border-radius: 25px;
     margin-top: 20px;
     margin-right: 5px;
+    }
+    .list-md{
+        margin: 0px 0 0 0px;
+        border-bottom: 2px solid;
+        border-bottom-color: map-get($colors,secondary);
     }
     .button[icon-only] {
         padding: 5px;
@@ -58,4 +63,9 @@ page-mycart {
  [padding] h3:first-child{
     margin-top: 1rem;
  }
+ .dropdown{
+    float: left;
+    width: 60%;
+    padding-left: 0px;
+}
 }

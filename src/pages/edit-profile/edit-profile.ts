@@ -38,9 +38,12 @@ export class EditProfilePage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad EditProfilePage');
-        this.userFormattedData = this.navParams.get('userFormattedData');
-        this.user_data = this.userFormattedData;
+        this.user_data = this.navParams.get('userFormattedData');
         this.path = "../../assets/imgs/logo.png";
+    }
+    ionViewWillEnter() {
+        console.log('ionViewWillEnter EditProfilePage');
+
     }
     submitprofile() {
         let phoneregex = /^[0-9#*+]{10,12}$/;
@@ -129,7 +132,7 @@ export class EditProfilePage {
         this.imagePicker.getPictures(options).then(results => {
             for (var i = 0; i < results.length; i++) {
                 this.path = results[i];
-                alert('Image URI: ' + results[i]);
+                // alert('Image URI: ' + results[i]);
                 this.base64.encodeFile(this.path).then((base64File: string) => {
                     this.base64Image = base64File;
                 }, (err) => {
