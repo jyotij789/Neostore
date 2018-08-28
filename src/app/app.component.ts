@@ -24,6 +24,7 @@ import { AlertController } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
 import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
+import { MyordersPage } from '../pages/myorders/myorders';
 
 @Component({
     templateUrl: 'app.html',
@@ -114,6 +115,9 @@ export class MyApp {
     }
     openmycartpage() {
         this.nav.push(MycartPage);
+    }
+    myorderspage() {
+        this.nav.push(MyordersPage);
     }
     logout() {
         localStorage.removeItem("formattedResponse");

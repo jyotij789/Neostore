@@ -4,6 +4,7 @@ import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { AlertController } from 'ionic-angular';
+import { MyordersPage } from '../myorders/myorders';
 
 
 @IonicPage()
@@ -44,7 +45,6 @@ export class MycartPage {
         }
         else if (status == 200 && response.data != null) {
             this.total = response.total;
-            // this.quant = response.quantity;
             this.cartList = response.data;
             console.log("this.cartList", this.cartList);
         }
@@ -54,9 +54,7 @@ export class MycartPage {
         else if (status == 404) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
-        // else {
-        //     this.providerGlobal.alertMessage("Try again to load", "Error");
-        // }
+
     }
 
     removecartItem(item) {
@@ -139,6 +137,24 @@ export class MycartPage {
         }
         else {
             this.providerGlobal.alertMessage("Try again to load", "Error");
+        }
+    }
+    addAddress(event: any) {
+        let data = {
+            'address': 'The Ruby, 29-Senapati Bapat Marg, Dadar (West)'
+        };
+        let apitoken = "token";
+        this.apiservice.globalApiRequest('post', this.providerUrl.order, data, apitoken, this.orderCallback);
+    }
+    orderCallback = (response) => {
+        this.providerGlobal.stopLoader();
+        console.log("orderCallback", response);
+        let status = response.status;
+        if (status == 200) {
+            this.navCtrl.push(MyordersPage);
+        }
+        else {
+            this.providerGlobal.alertMessage("Try again", "Error");
         }
     }
 }

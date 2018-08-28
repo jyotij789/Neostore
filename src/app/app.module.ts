@@ -32,7 +32,8 @@ import { Base64 } from '@ionic-native/base64';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
 import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
-
+import { MyordersPage } from '../pages/myorders/myorders';
+import { OrderPage } from '../pages/order/order';
 @NgModule({
     declarations: [
         MyApp,
@@ -46,6 +47,8 @@ import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-prod
         AddressPage,
         MycartPage,
         TablesPage,
+        OrderPage,
+        MyordersPage,
         ItemdetailsPage,
         AddProductmodalPage,
         RatingProductmodalPage
@@ -67,6 +70,8 @@ import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-prod
         ResetPasswordPage,
         AddressPage,
         MycartPage,
+        OrderPage,
+        MyordersPage,
         TablesPage,
         ItemdetailsPage,
         AddProductmodalPage,

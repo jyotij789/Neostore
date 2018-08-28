@@ -8,6 +8,9 @@ page-tables {
         
         .list-md {
             margin: -1px 0 0px;
+                border-bottom: 2px solid;
+                border-bottom-color: map-get($colors,secondary);
+            
         }
     
         ion-app.md [padding] {

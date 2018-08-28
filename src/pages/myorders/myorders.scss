@@ -1,0 +1,26 @@
+page-myorders {
+    ion-title{
+        padding-left:60px;
+    }
+    ion-item {
+        border-bottom-color: map-get($colors,secondary);
+        
+    }
+    .list-md {
+        margin: 0px 0 0px;
+        border-bottom: 1px solid;
+        border-bottom-color: map-get($colors,secondary);
+    }
+    .stylediv1{
+    display: table;
+    float:left;
+    }
+    .stylediv2{
+        display: table;
+        float:right;}
+
+        .stylediv2>h1 {
+            padding:15px;
+        }
+        
+}

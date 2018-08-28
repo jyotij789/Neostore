@@ -13,19 +13,12 @@ page-home{
             height: -webkit-fill-available;
             width: -webkit-fill-available;
           }
-          .swiper-pagination-bullet-active {
-            background:#e91b1a;
-            opacity: 1;
+          
+        .swiper-container-horizontal > 
+        .swiper-pagination-bullets .swiper-pagination-bullet {
+            margin: 0 5px;
+            background: #e91b1a;
         }
-        // .swiper-pagination-bullet {
-        //     border-radius: 100%;
-        //     display: inline-block;
-        //     width: 8px;
-        //     height: 8px;
-        //     background: rgb(233, 90, 90);
-        //     opacity: .2;
-        //     pointer-events: auto;
-        // }
        
           .divcontainer{
               padding:15px

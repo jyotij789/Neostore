@@ -28,7 +28,8 @@
 
                 <span style="float:right;margin-top: -.01rem;">
                     <h3>
-                        <i class="fa fa-rupee"></i>{{data.product.sub_total}}</h3>
+                        <i class="fa fa-rupee"></i>{{data.product.sub_total}}
+                    </h3>
                 </span>
             </ion-item>
 
@@ -46,7 +47,7 @@
     </ion-item>
     <ion-row>
         <ion-col padding>
-            <button class="orderbtn" ion-button block>
+            <button class="orderbtn" ion-button block (click)="addAddress($event)">
                 ORDER NOW
             </button>
         </ion-col>
