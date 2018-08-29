@@ -12,7 +12,6 @@ import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { ViewChild } from '@angular/core';
 import { Nav, Events, AlertController } from 'ionic-angular';
-import { AddressPage } from '../pages/address/address';
 import { MycartPage } from '../pages/mycart/mycart';
 import { TablesPage } from '../pages/tables/tables';
 import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';

@@ -55,7 +55,7 @@ export class ProvidersApiservice {
                 //Device post method
                 this.apiToken != null ? this.data = { 'access_token': this.apiToken } : this.data = {};
                 // let data = { 'access_token': this.apiToken };
-                this.HTTP.post(url, this.body, data)
+                this.HTTP.post(url, this.body, this.data)
                     .then(response => {
                         console.log("GlobalpostwithHeader_service success", response);
                         var formattedResponse = JSON.parse(response.data);

@@ -14,7 +14,6 @@ import { ProvidersApiservice } from '../providers/providers/apiservice';
 import { MyAccountPage } from '../pages/my-account/my-account';
 import { EditProfilePage } from '../pages/edit-profile/edit-profile';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
-import { AddressPage } from '../pages/address/address';
 import { MycartPage } from '../pages/mycart/mycart';
 import { TablesPage } from '../pages/tables/tables';
 import { Network } from '@ionic-native/network';
@@ -34,6 +33,8 @@ import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
 import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
 import { MyordersPage } from '../pages/myorders/myorders';
 import { OrderPage } from '../pages/order/order';
+import { AddAddressPage } from '../pages/add-address/add-address';
+import { ListAddressPage } from '../pages/list-address/list-address';
 @NgModule({
     declarations: [
         MyApp,
@@ -44,11 +45,12 @@ import { OrderPage } from '../pages/order/order';
         MyAccountPage,
         EditProfilePage,
         ResetPasswordPage,
-        AddressPage,
         MycartPage,
         TablesPage,
         OrderPage,
         MyordersPage,
+        AddAddressPage,
+        ListAddressPage,
         ItemdetailsPage,
         AddProductmodalPage,
         RatingProductmodalPage
@@ -68,10 +70,11 @@ import { OrderPage } from '../pages/order/order';
         MyAccountPage,
         EditProfilePage,
         ResetPasswordPage,
-        AddressPage,
         MycartPage,
         OrderPage,
         MyordersPage,
+        AddAddressPage,
+        ListAddressPage,
         TablesPage,
         ItemdetailsPage,
         AddProductmodalPage,

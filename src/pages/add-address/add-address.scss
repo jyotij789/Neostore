@@ -1,0 +1,33 @@
+page-add-address {
+    ion-navbar{
+        ion-title{
+            padding-left:55px;
+        }
+    }
+    .scroll-content{
+        padding:0px !important;
+        background: map-get($colors, backgroundlight )
+
+    }
+    ion-content form{
+        padding:0 15px 0 15px;
+    }
+    
+    ion-input,ion-textarea{
+        background: map-get($colors,light);
+        font-size:1.5rem;
+    }
+    ion-textarea{
+        height:15vh;
+        padding-top:2px;
+    }
+
+    .saveaddressbtn{
+    border:1px solid map-get($colors, danger);
+    border-radius: 5px;
+    color:map-get($colors, light);
+    font-size: 23px;
+    height:10vh;
+    top:20%;
+    }
+}

@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-navbar color="danger">
+        <ion-title>Address List</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addAddress($event)">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form>
+        <ion-row *ngFor="let data of getSavedAddress;let i=index">
+            <label for="enum_answer_{{data.address}}">
+                <button clear ion-button icon-only (click)="deleteAddress(data.address)">
+                    <ion-icon name="close"></ion-icon>
+                </button>
+                <input id="enum_answer_{{data.address}}" [value]='data?.address' type="radio" name="address" [(ngModel)]="address"> {{data.address}}
+            </label>
+        </ion-row>
+        <ion-row *ngIf="address">
+            <ion-col>
+                <button class="placeorderbtn" type="submit" ion-button block color="danger" (click)="placeOrder()">
+                    PLACE ORDER
+                </button>
+            </ion-col>
+        </ion-row>
+    </form>
+</ion-content>
