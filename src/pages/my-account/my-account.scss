@@ -63,9 +63,11 @@ page-my-account {
     .innericon ion-icon{
         float: left;
         height: 100%;
+        width:10%;
         display: block;
-        padding:13px;
+        margin: 7px 10px 10px 10px;    
     }
+
     .text-input::-webkit-input-placeholder { 
         color: #ffffff;
         font-size: 2rem;
@@ -74,12 +76,10 @@ page-my-account {
     .spacetag{
         height:10px;
     }
-    // .spacetag2{
-    //     height:10px;
-    // }
+    
     .text-input-md {
-        margin: 10px 8px;
-        padding: 0.2rem;
+        margin: 7px 10px;
+        padding: initial;
         width: calc(100% - 8px - 8px);
     }
     .editBtn{

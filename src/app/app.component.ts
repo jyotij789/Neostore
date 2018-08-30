@@ -23,7 +23,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
 import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
 import { MyordersPage } from '../pages/myorders/myorders';
-
+import { StoreLocatorPage } from '../pages/store-locator/store-locator';
 @Component({
     templateUrl: 'app.html',
 })
@@ -31,14 +31,22 @@ export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
     rootPage: any = LoginPage;
-    public userFormattedData = [];
     public carts: number;
     pages: Array<{ title: string, component: any }>;
     constructor(public events: Events, public Providers: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
         events.subscribe('cart:created', (data) => {
-            // user and time are the same arguments passed in `events.publish(user, time)`
             console.log('cartdata', data);
+            this.carts = data;
+        });
+        events.subscribe('user:created', (user) => {
+            this.carts = user.total_carts;
+            let userFormattedData = user;
+            console.log('userdata', user);
+
+            // let username = user.user_data;
+            // console.log('userFormattedData', username);
+
         });
     }
 
@@ -58,10 +66,7 @@ export class MyApp {
                 if (apiToken != null || apiToken != undefined) {
                     let data = null;
                     this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apiToken, this.callback);
-                    let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
-                    this.userFormattedData.push(formattedData.user_data);
-                    this.carts = formattedData.total_carts;
-                    console.log("this.carts", this.carts);
+
                 }
 
             }
@@ -78,7 +83,7 @@ export class MyApp {
         console.log("app.component getUserstatus", status);
         if (status == 200) {
             let data = response.data;
-            this.nav.setRoot(HomePage, { homeData: data });
+            this.nav.setRoot(HomePage, { userData: data });
         }
         else if (status == 402) {
             this.Providers.alertMessage("Invalid Access Token", "Error");
@@ -120,6 +125,9 @@ export class MyApp {
     }
     myorderspage() {
         this.nav.push(MyordersPage);
+    }
+    storelocator() {
+        this.nav.push(StoreLocatorPage);
     }
     logout() {
         localStorage.removeItem("formattedResponse");

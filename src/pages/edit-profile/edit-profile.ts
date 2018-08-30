@@ -4,9 +4,6 @@ import { ActionSheetController, Platform } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
-// import { File } from '@ionic-native/file';
-// import { FileTransfer} from '@ionic-native/file-transfer';
-// import { FilePath } from '@ionic-native/file-path';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
@@ -38,12 +35,23 @@ export class EditProfilePage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad EditProfilePage');
-        this.user_data = this.navParams.get('userFormattedData');
-        this.path = "../../assets/imgs/logo.png";
+
     }
     ionViewWillEnter() {
         console.log('ionViewWillEnter EditProfilePage');
-
+        let user_data = this.navParams.get('userFormattedData');
+        console.log("user_data", user_data);
+        if (user_data != null || user_data != undefined) {
+            this.first_name = user_data[0].first_name;
+            this.last_name = user_data[0].last_name;
+            this.email = user_data[0].email;
+            this.phone_no = user_data[0].phone_no;
+            // this.dob = user_data[0].dob;
+            this.path = user_data[0].profile_pic;
+        }
+        else {
+            this.path = "../../assets/imgs/logo.png";
+        }
     }
     submitprofile() {
         let phoneregex = /^[0-9#*+]{10,12}$/;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
@@ -16,7 +16,7 @@ export class MycartPage {
     public cartList = [];
     public total: number;
     public quant: number;
-    constructor(public deleteAlert: AlertController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public events: Events, public deleteAlert: AlertController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -27,11 +27,11 @@ export class MycartPage {
     getproductCartitems() {
         let data = null;
         let apitoken = "token";
-        this.apiservice.globalApiRequest('get', this.providerUrl.listCartitem, data, apitoken, this.cartitemsCallback);
+        this.apiservice.globalApiRequest('get', this.providerUrl.listCartitem, data, apitoken, this.cartListCallback);
 
     }
 
-    cartitemsCallback = (response) => {
+    cartListCallback = (response) => {
         this.providerGlobal.stopLoader();
         console.log("cartListCallback", response);
         return this.listCartitemCallback(response);
@@ -42,11 +42,15 @@ export class MycartPage {
         console.log(response.data);
         if (status == 200 && response.data == null) {
             this.providerGlobal.alertMessage(response.message, "Success");
+            this.events.publish('cart:created', 0);
+
         }
         else if (status == 200 && response.data != null) {
             this.total = response.total;
             this.cartList = response.data;
             console.log("this.cartList", this.cartList);
+            this.events.publish('cart:created', response.count);
+
         }
         else if (status == 402) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");

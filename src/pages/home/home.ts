@@ -3,6 +3,7 @@ import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { TablesPage } from '../tables/tables';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
+import { ProvidersGlobal } from '../../providers/providers/global';
 
 
 @Component({
@@ -15,33 +16,56 @@ export class HomePage {
     public imagesArray = [];
     public TitleArray: Array<{}>;
     public titles: any;
+    public accessToken: any;
     public formattedData;
     public userFormattedData = [];
     public carts: number;
 
-    constructor(public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public providerglobal: ProvidersGlobal, public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
 
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad HomePage');
-        this.getUserDetails();
 
     }
     ionViewWillEnter() {
-        let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
-        // this.userFormattedData.push(formattedData.user_data);
-        this.carts = formattedData.total_carts;
-        console.log("this.carts", this.carts);
-        this.events.publish('cart:created', this.carts);
+        this.accessToken = JSON.parse(localStorage.getItem("formattedResponse"));
+        let data = null;
+        let apitoken = this.accessToken;
+        this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apitoken, this.homepageCallback);
+    }
+    homepageCallback = (response) => {
+        this.providerglobal.stopLoader();
+        let status = response.status;
+        return this.getUserData(status, response);
+
+    }
+    public getUserData(status, response) {
+        console.log("login getUserstatus", status);
+        console.log("device/browser homepageCallback response", response);
+        if (status == 200) {
+            let data = response.data;
+            localStorage.setItem("User_Account_Details", JSON.stringify(data));
+            this.formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
+            if (this.formattedData != null || this.formattedData != undefined) {
+                this.imagesArray = this.formattedData.product_categories;
+                this.events.publish('user:created', this.formattedData);
+            }
+        }
+        else if (status == 402) {
+            this.providerglobal.alertMessage("Invalid Access Token", "Error");
+        }
+        else if (status == 500) {
+            this.providerglobal.alertMessage("Could not update Account details.", "Error");
+        }
+        else {
+            this.providerglobal.alertMessage("Method has to be post.", "Error");
+        }
     }
     getUserDetails() {
-        console.log("User account details", this.navParams.get('homeData'));
-        this.formattedData = this.navParams.get('homeData');
-        this.imagesArray = this.formattedData.product_categories;
-        // console.log(JSON.stringify(this.imagesArray));
-        // console.log((<any>Object).values(this.imagesArray));
-        // console.log(formattedData.product_categories[0].icon_image);
+        console.log("User account details", this.navParams.get('userData'));
+
     }
 
     openTablesPage() {

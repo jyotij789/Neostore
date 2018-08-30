@@ -22,9 +22,6 @@ import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';
 import { ProvidersGlobal } from '../providers/providers/global';
 import { HTTP } from '@ionic-native/http';
 import { Http } from '@angular/http';
-import { File } from '@ionic-native/file';
-import { FileTransfer } from '@ionic-native/file-transfer';
-import { FilePath } from '@ionic-native/file-path';
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
@@ -35,6 +32,8 @@ import { MyordersPage } from '../pages/myorders/myorders';
 import { OrderPage } from '../pages/order/order';
 import { AddAddressPage } from '../pages/add-address/add-address';
 import { ListAddressPage } from '../pages/list-address/list-address';
+import { Geolocation } from '@ionic-native/geolocation';
+
 @NgModule({
     declarations: [
         MyApp,
@@ -83,12 +82,9 @@ import { ListAddressPage } from '../pages/list-address/list-address';
     providers: [
         StatusBar,
         SplashScreen,
-        File,
         Base64,
-        FileTransfer,
         ImagePicker,
         Camera,
-        FilePath,
         Keyboard,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         ProvidersUrl,
@@ -97,7 +93,8 @@ import { ListAddressPage } from '../pages/list-address/list-address';
         Network,
         HomePage,
         HTTP,
-        SocialSharing
+        SocialSharing,
+        Geolocation
     ]
 })
 export class AppModule { }

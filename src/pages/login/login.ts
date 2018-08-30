@@ -68,9 +68,7 @@ export class LoginPage {
         if (this.status == 200) {
             this.accessToken = formattedData.data.access_token;
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
-            let data = null;
-            let apitoken = this.accessToken;
-            this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apitoken, this.homepageCallback);
+            this.navCtrl.setRoot(HomePage);
         }
         else if (this.status == 401) {
             this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
@@ -82,33 +80,6 @@ export class LoginPage {
             this.providerGlobal.alertMessage("Try again to load", "Error");
         }
     }
-
-    homepageCallback = (response) => {
-        this.providerGlobal.stopLoader();
-        let status = response.status;
-        return this.getUserData(status, response);
-
-    }
-    public getUserData(status, response) {
-        console.log("login getUserstatus", status);
-        console.log("device/browser homepageCallback response", response);
-        if (status == 200) {
-            let data = response.data;
-            localStorage.setItem("User_Account_Details", JSON.stringify(data));
-            this.navCtrl.setRoot(HomePage, { homeData: data });
-
-        }
-        else if (status == 402) {
-            this.providerGlobal.alertMessage("Invalid Access Token", "Error");
-        }
-        else if (status == 500) {
-            this.providerGlobal.alertMessage("Could not update Account details.", "Error");
-        }
-        else {
-            this.providerGlobal.alertMessage("Method has to be post.", "Error");
-        }
-    }
-
 
     createAccount() {
         this.navCtrl.push(RegisterPage);

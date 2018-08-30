@@ -19,39 +19,38 @@
         <ion-row>
             <ion-col text-center>
                 <ion-avatar>
-                    <img *ngFor="let data of user_data" [src]="data == null ? 'path':'data.profile_pic'" (click)="presentActionSheet()" />
+                    <img [src]="path" (click)="presentActionSheet()" />
                 </ion-avatar>
             </ion-col>
         </ion-row>
         <ion-row>
             <ion-col>
                 <ion-label ion-text class="custom-register-label">
-                    <div class="innericon" *ngFor="let data of user_data">
+                    <div class="innericon">
                         <ion-icon color="light" name="contact"></ion-icon>
                         <ion-input type="text" placeholder="First Name" name="first_name" [(ngModel)]="first_name"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
-                    <div class="innericon" *ngFor="let data of user_data">
+                    <div class="innericon">
                         <ion-icon color="light" name="contact"></ion-icon>
                         <ion-input type="text" placeholder="Last Name" name="last_name" [(ngModel)]="last_name"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
-                    <div class="innericon" *ngFor="let data of user_data">
+                    <div class="innericon">
                         <ion-icon color="light" name="mail"></ion-icon>
                         <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
-                    <div class="innericon" *ngFor="let data of user_data">
+                    <div class="innericon">
                         <ion-icon color="light" name="phone-portrait"></ion-icon>
                         <ion-input type="text" placeholder="Phone Number" name="phone_no" [(ngModel)]="phone_no"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
-                    <div class="innericon" *ngFor="let data of user_data">
-                        <ion-icon class="fa fa-birthday-cake" color="light" aria-hidden="true"></ion-icon>
+                    <div class="innericon">
                         <ion-datetime name="dob" placeholder="DOB" [(ngModel)]="dob"></ion-datetime>
 
                     </div>
@@ -62,6 +61,4 @@
             </ion-col>
         </ion-row>
     </form>
-
-
 </ion-content>

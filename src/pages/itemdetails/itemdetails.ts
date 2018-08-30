@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ModalController, NavParams, ModalOptions } from 'ionic-angular';
+import { Events, IonicPage, ModalController, NavParams, ModalOptions } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
@@ -20,7 +20,7 @@ export class ItemdetailsPage {
     public category_name: string
     public setProductImage: string;
     public ratings: number;
-    constructor(public Sharing: SocialSharing, public platform: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
+    constructor(public events: Events, public Sharing: SocialSharing, public platform: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -105,6 +105,9 @@ export class ItemdetailsPage {
     handleProductModalResponse(status, response) {
         console.log(status);
         if (status == 200) {
+            let carts = response.total_carts;
+            console.log("home this.carts", carts);
+            this.events.publish('cart:created', carts);
             this.platform.alertMessage(response.message, "Success");
         }
         else if (status == 401) {

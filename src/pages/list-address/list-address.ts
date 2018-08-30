@@ -4,7 +4,7 @@ import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { AddAddressPage } from '../add-address/add-address';
-import { MyordersPage } from '../myorders/myorders';
+import { HomePage } from '../home/home';
 @Component({
     selector: 'page-list-address',
     templateUrl: 'list-address.html',
@@ -73,7 +73,8 @@ export class ListAddressPage {
         console.log("orderCallback", response);
         let status = response.status;
         if (status == 200) {
-            this.navCtrl.push(MyordersPage);
+            this.providerglobal.alertMessage(response.message, "Error");
+            this.navCtrl.setRoot(HomePage);
         }
         else {
             this.providerglobal.alertMessage("Try again", "Error");
