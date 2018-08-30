@@ -26,7 +26,7 @@
     <ion-row center>
         <ion-col>
             <div class="div" *ngFor="let data of rating_data">
-                <ion-icon *ngFor="let n of [1,2,3,4,5];let i=index;" [name]="i < data.product_rating ?'star':'star-outline'">
+                <ion-icon *ngFor="let n of [0,1,2,3,4];let i=index;" [name]="i < data.product_rating ?'star':'star-outline'" (click)="onRatingChange(i)">
                 </ion-icon>
             </div>
         </ion-col>

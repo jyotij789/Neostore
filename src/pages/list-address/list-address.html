@@ -13,12 +13,18 @@
 
 <ion-content padding>
     <form>
+        <ion-label>Shipping Address</ion-label>
+
         <ion-row *ngFor="let data of getSavedAddress;let i=index">
             <label for="enum_answer_{{data.address}}">
-                <button clear ion-button icon-only (click)="deleteAddress(data.address)">
+                <button class="closebutton" clear ion-button icon-only (click)="deleteAddress(data.address)">
                     <ion-icon name="close"></ion-icon>
                 </button>
+
                 <input id="enum_answer_{{data.address}}" [value]='data?.address' type="radio" name="address" [(ngModel)]="address"> {{data.address}}
+                <button class="editbutton" clear ion-button icon-only (click)="editAddress(data)" style="float:right;margin-bottom:-1rem">
+                    <ion-icon name="create"></ion-icon>
+                </button>
             </label>
         </ion-row>
         <ion-row *ngIf="address">

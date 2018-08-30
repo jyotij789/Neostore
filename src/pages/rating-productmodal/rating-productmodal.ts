@@ -7,14 +7,15 @@ import { NavController, NavParams, ViewController } from 'ionic-angular';
 })
 export class RatingProductmodalPage {
     public rating_data = [];
+    public ratings: any;
     constructor(public renderer: Renderer, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
 
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad RatingProductmodalPage');
-        let ratings = this.navParams.get('ratingdata');
-        this.rating_data.push(ratings);
+        this.ratings = this.navParams.get('ratingdata');
+        this.rating_data.push(this.ratings);
         console.log('rating_data', this.rating_data);
     }
     ondismiss() {
@@ -25,5 +26,10 @@ export class RatingProductmodalPage {
     close() {
         let close = "close";
         this.viewCtrl.dismiss(close);
+    }
+    onRatingChange(data: number) {
+        let score = data + 1;
+        console.log("score", score);
+        this.ratings.product_rating = score;
     }
 }

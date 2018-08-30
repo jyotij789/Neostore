@@ -17,11 +17,23 @@ export class AddAddressPage {
     public state: string;
     public savedAddress: Array<{}>;
     public address_data: any;
+    // public editAddress: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
+
     constructor(public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad AddAddressPage');
+        let editAddress = this.navParams.get("editAddress");
+        console.log(editAddress);
+        if (editAddress != null || editAddress != undefined) {
+            this.address = editAddress.address;
+            this.landmark = editAddress.landmark;
+            this.city = editAddress.city;
+            this.state = editAddress.state;
+            this.zip_code = editAddress.zip_code;
+            this.country = editAddress.country;
+        }
     }
 
     saveAddress() {

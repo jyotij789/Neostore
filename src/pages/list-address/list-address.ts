@@ -29,9 +29,9 @@ export class ListAddressPage {
             this.getSavedAddress;
         }
         else {
-        this.pendingadd = data.filter(item => {
-            return item.status == 0
-        });
+            this.pendingadd = data.filter(item => {
+                return item.status == 0
+            });
             this.getSavedAddress = this.pendingadd;
         }
     }
@@ -80,6 +80,10 @@ export class ListAddressPage {
         }
     }
 
+    editAddress = (data) => {
+        console.log("editAddress", data);
+        this.navCtrl.push(AddAddressPage, { editAddress: data })
+    }
 }
 
 
