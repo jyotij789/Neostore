@@ -32,6 +32,11 @@ export class MyApp {
 
     rootPage: any = LoginPage;
     public carts: number;
+    public userFormattedData: any;
+    public email: string;
+    public first_name: string;
+    public last_name: string;
+    public profile_pic: string;
     pages: Array<{ title: string, component: any }>;
     constructor(public events: Events, public Providers: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
         this.initializeApp();
@@ -41,8 +46,13 @@ export class MyApp {
         });
         events.subscribe('user:created', (user) => {
             this.carts = user.total_carts;
-            let userFormattedData = user;
-            console.log('userdata', user);
+            this.userFormattedData = user.user_data;
+            console.log('userdata', this.userFormattedData.email);
+            this.email = this.userFormattedData.email;
+            this.first_name = this.userFormattedData.first_name;
+            this.last_name = this.userFormattedData.last_name;
+            this.email = this.userFormattedData.email;
+            this.profile_pic = this.userFormattedData.profile_pic;
 
             // let username = user.user_data;
             // console.log('userFormattedData', username);
@@ -65,7 +75,8 @@ export class MyApp {
 
                 if (apiToken != null || apiToken != undefined) {
                     let data = null;
-                    this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apiToken, this.callback);
+                    // this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apiToken, this.callback);
+                    this.nav.setRoot(HomePage);
 
                 }
 
@@ -73,28 +84,27 @@ export class MyApp {
         });
     }
 
-    callback = (response) => {
-        this.Providers.stopLoader();
-        let status = response.status;
-        return this.getUserData(status, response);
+    // callback = (response) => {
+    //     this.Providers.stopLoader();
+    //     let status = response.status;
+    //     return this.getUserData(status, response);
 
-    }
-    public getUserData(status, response) {
-        console.log("app.component getUserstatus", status);
-        if (status == 200) {
-            let data = response.data;
-            this.nav.setRoot(HomePage, { userData: data });
-        }
-        else if (status == 402) {
-            this.Providers.alertMessage("Invalid Access Token", "Error");
-        }
-        else if (status == 500) {
-            this.Providers.alertMessage("Could not update Account details.", "Error");
-        }
-        else {
-            this.Providers.alertMessage("Something is Wrong.", "Error");
-        }
-    }
+    // }
+    // public getUserData(status, response) {
+    //     console.log("app.component getUserstatus", status);
+    //     if (status == 200) {
+    //         let data = response.data;
+    //     }
+    //     else if (status == 402) {
+    //         this.Providers.alertMessage("Invalid Access Token", "Error");
+    //     }
+    //     else if (status == 500) {
+    //         this.Providers.alertMessage("Could not update Account details.", "Error");
+    //     }
+    //     else {
+    //         this.Providers.alertMessage("Something is Wrong.", "Error");
+    //     }
+    // }
     // openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

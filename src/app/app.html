@@ -1,10 +1,10 @@
 <ion-menu side="left" [content]="content">
     <ion-content>
 
-        <ion-label *ngFor="let data of userFormattedData">
-            <img src={{data.user_data.profile_pic}}>
-            <div class="div2">{{data.user_data.first_name}}&nbsp;{{data.user_data.last_name}}</div>
-            <div class="div3">{{data.user_data.email}}</div>
+        <ion-label>
+            <img src={{profile_pic}}>
+            <div class="div2">{{first_name}}&nbsp;{{last_name}}</div>
+            <div class="div3">{{email}}</div>
         </ion-label>
         <ion-list>
             <button ion-item color="dark2" menuClose (click)="openmycartpage()" icon-start>
