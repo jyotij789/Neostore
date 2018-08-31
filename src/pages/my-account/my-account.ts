@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { ResetPasswordPage } from '../reset-password/reset-password';
 import { HomePage } from '../home/home';
@@ -12,7 +12,13 @@ import { HomePage } from '../home/home';
 export class MyAccountPage {
     public userFormattedData = [];
     public path: string;
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    public userEdittedData: any;
+    public email: string;
+    public first_name: string;
+    public last_name: string;
+    public profile_pic: string;
+    constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events) {
+
     }
 
     ionViewDidLoad() {
@@ -22,8 +28,10 @@ export class MyAccountPage {
     }
     ionViewWillEnter() {
         console.log('ionViewwillEnter MyAccountPage');
+
     }
     getUserdetails() {
+
         let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
         this.userFormattedData.push(formattedData.user_data);
         console.log("userFormattedData myaccount", this.userFormattedData);

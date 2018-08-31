@@ -19,7 +19,7 @@
         <ion-row>
             <ion-col text-center>
                 <ion-avatar>
-                    <img *ngFor="let data of this.userFormattedData" [src]="data == null ? 'path':'data.profile_pic'" />
+                    <img [src]="path" />
                 </ion-avatar>
             </ion-col>
         </ion-row>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { ActionSheetController, Platform } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
@@ -7,6 +7,7 @@ import { ProvidersUrl } from '../../providers/providers/url';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
+import { HomePage } from '../home/home';
 
 @Component({
     selector: 'page-edit-profile',
@@ -30,7 +31,9 @@ export class EditProfilePage {
         public providerGlobal: ProvidersGlobal,
         public navParams: NavParams,
         private imagePicker: ImagePicker,
-        private base64: Base64) {
+        private base64: Base64,
+        public navCtrl: NavController,
+        public events: Events) {
     }
 
     ionViewDidLoad() {
@@ -88,20 +91,22 @@ export class EditProfilePage {
         let formattedData = response;
         this.status = formattedData.status;
         if (this.status == 200) {
-            localStorage.removeItem("User_Account_Details");
-            localStorage.setItem("User_Account_Details", JSON.stringify(response));
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
+            // this.events.publish('edit:userdata', response.data);
+            this.navCtrl.setRoot(HomePage);
+            // localStorage.setItem("User_Account_Details", JSON.stringify(response));
         }
         else if (this.status == 400) {
-            this.providerGlobal.alertMessage("Data missing.", "Error");
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else if (this.status == 402) {
-            this.providerGlobal.alertMessage("Invalid Access Token.", "Error");
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else if (this.status == 500) {
-            this.providerGlobal.alertMessage("Method has to be post.", "Error");
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else {
-            this.providerGlobal.alertMessage("Error", "Error");
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
 
         }
     }
@@ -140,12 +145,13 @@ export class EditProfilePage {
         this.imagePicker.getPictures(options).then(results => {
             for (var i = 0; i < results.length; i++) {
                 this.path = results[i];
-                // alert('Image URI: ' + results[i]);
-                this.base64.encodeFile(this.path).then((base64File: string) => {
-                    this.base64Image = base64File;
-                }, (err) => {
-                    this.providerGlobal.presentToast('Error while selecting base64File.');
-                });
+                console.log('Image URI: ' + this.path);
+                // this.base64.encodeFile(this.path).then((base64File: string) => {
+                this.base64Image = 'data:image/jpeg;base64,' + this.path;
+                console.log(this.base64Image);
+                // }, (err) => {
+                // this.providerGlobal.presentToast('Error while selecting base64File.');
+                // });
                 // let base64Image = 'data:image/jpeg;base64,' + this.path;
                 // console.log('base64Image', base64Image);
             }
@@ -159,21 +165,17 @@ export class EditProfilePage {
         // Create options for the Camera Dialog
         const options: CameraOptions = {
             quality: 100,
-            destinationType: this.camera.DestinationType.FILE_URI,
+            sourceType: sourceType,
+            // destinationType: this.camera.DestinationType.FILE_URI,
             encodingType: this.camera.EncodingType.JPEG,
-            mediaType: this.camera.MediaType.PICTURE
+            destinationType: 0
+            // mediaType: this.camera.MediaType.PICTURE
         };
 
         this.camera.getPicture(options).then((imageData) => {
             this.path = imageData;
-            alert(this.path);
-            this.base64.encodeFile(this.path).then((base64File: string) => {
-                this.base64Image = base64File;
-            }, (err) => {
-                this.providerGlobal.presentToast('Error while selecting base64File.');
-            });
-            // let base64Image = 'data:image/jpeg;base64,' + this.path;
-            // console.log('base64Image', base64Image);
+            this.base64Image = 'data:image/jpeg;base64,' + imageData;
+            console.log(imageData);
 
         }, (err) => {
             this.providerGlobal.presentToast('Error while selecting image.');

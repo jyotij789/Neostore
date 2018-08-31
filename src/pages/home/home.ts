@@ -54,18 +54,14 @@ export class HomePage {
             }
         }
         else if (status == 402) {
-            this.providerglobal.alertMessage("Invalid Access Token", "Error");
+            this.providerglobal.alertMessage(response.message, "Error");
         }
         else if (status == 500) {
-            this.providerglobal.alertMessage("Could not update Account details.", "Error");
+            this.providerglobal.alertMessage(response.message, "Error");
         }
         else {
             this.providerglobal.alertMessage("Method has to be post.", "Error");
         }
-    }
-    getUserDetails() {
-        console.log("User account details", this.navParams.get('userData'));
-
     }
 
     openTablesPage() {
