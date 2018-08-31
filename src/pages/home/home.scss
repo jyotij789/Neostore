@@ -1,7 +1,8 @@
 page-home{
     ion-title{
         padding-left:55px;
-        font-weight:bold;
+        font-family:'Gotham Bold';
+
     }
     ion-content{
         ion-slides{
@@ -17,7 +18,7 @@ page-home{
         .swiper-container-horizontal > 
         .swiper-pagination-bullets .swiper-pagination-bullet {
             margin: 0 5px;
-            background: #e91b1a;
+            background: map-get($colors,danger);
         }
        
           .divcontainer{
@@ -37,27 +38,29 @@ page-home{
           .table{
             
             display: inline-flex;
-            background-color: #e91b1a;
+            background-color: map-get($colors,danger);
         }
                 
           .sofa{            
-            background-color: #e91b1a;
+            background-color: map-get($colors,danger);
         }
         .chairs{
-            background-color: #e91b1a;
+            background-color: map-get($colors,danger);
         }
                 
           .cupboards{
             display:inline-flex;
-            background-color: #e91b1a;
+            background-color: map-get($colors,danger);
         }
         .item-md h5{
             font-size: 2.2rem;
             font-weight: bold;
             line-height: normal;
-            color: white;
+            color: map-get($colors,light);
             display:block;
             margin:0px 0px;
+            font-family: 'Gotham Medium';
+
     }
     .item-md.item-block .item-inner {
         padding-right: 0px;
@@ -66,12 +69,6 @@ page-home{
 
     .item-md {
      padding-left: 0px; 
-    }
-    ion-slides pager{
-        fill: #f90;
-     stroke: red;
-         color: blue;
-    background-color: red;
     }
 
 }

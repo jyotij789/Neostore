@@ -9,17 +9,14 @@ page-login {
     }
     .login-head{
         padding-bottom:2px 0px 2px 0px;
-        color:#ffffff;
+        color:map-get($colors,light);
         font-size: 40px;
-        font-weight: bold;
-        font-family:'Franklin Gothic Medium',sans-serif;
         flex-wrap: nowrap;
         margin-top:100px;
+        font-family: 'Gotham Bold';
     }
     form{
         margin: 0;
-        font: inherit;
-        color: inherit;
         padding-top:25px;
         padding-left:25px;
         padding-right:25px;
@@ -30,18 +27,18 @@ page-login {
         align-items: center;
         text-align: center;
       }
-      .innericon  ion-input{
-        font-size: 2rem;
-        color: #ffffff;
+      .innericon  ion-icon ion-input{
+        font-family: 'Gotham Medium';
+        font-size: 18px;
+        color:map-get($colors,light);
         height: 7vh;
-        color:#ffffff;
         
     }
     .innericon{
         position: relative;
-        border:1px solid #ffffff;
+        border:1px solid map-get($colors,light);
         border-radius: 0px !important;
-        font-size:6vw;
+        font-size:18px;
     }
     .spacetag{
         height: 10px;
@@ -51,14 +48,14 @@ page-login {
         height: 100%;
         width:10%;
         display: block;
-        margin: 8px 10px 10px 10px;    
+        margin: 8px 8px 10px 8px;    
     }
     .text-input::-webkit-input-placeholder { 
-        color: #ffffff;
+        color: map-get($colors,light);
         font-size: 2rem;
     }
     .ion-text::placeholder { 
-        color: #ffffff;
+        color: map-get($colors,light);
         opacity: 1; 
     }
     
@@ -72,23 +69,27 @@ page-login {
     .text-input-md {
         margin: 8px 10px;
         padding: initial;
-        // margin:0px !important;
-        // padding: 12px 0px 12px 12px;
+        color:map-get($colors,light);
         width: calc(100% - 8px - 8px);
     }
     .ion-text{
         font-size:2rem;
+        font-family: 'Gotham Medium';
     }
      b, strong {
             font-weight: bold;
             font-size: 15px;
+            font-family: 'Gotham Medium';
+
     }
     .login-btn{
-        border:2px solid #ffffff;
+        border:2px solid map-get($colors,light);
         border-radius: 5px;
-        background:#ffffff;
-        color:#E91C1A;
+        background:map-get($colors,light);
+        color:map-get($colors,danger);
         font-size: 25px;
+        font-family: 'Gotham Medium';
+
     }
     .button-block-md {
         margin-left: 0;

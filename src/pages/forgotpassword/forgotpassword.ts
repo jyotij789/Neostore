@@ -75,4 +75,7 @@ export class ForgotpasswordPage {
             this.providerGlobal.alertMessage("Something is wrong", "Error");
         }
     }
+    createAccount() {
+        this.navCtrl.push(RegisterPage);
+    }
 }

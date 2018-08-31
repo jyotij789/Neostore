@@ -8,6 +8,8 @@ ion-row ion-col .button{
     width:50vw;
     text-align: center;
     left:24%;
+    font-family: 'Gotham Medium';
+
  }
  .text-input-md {
     margin: 10px 5px;
@@ -22,7 +24,8 @@ ion-avatar img{
     border:1px solid map-get($colors, dark);
     padding:5px;
 }
-h2 {
+ion-row ion-col h2,h3 {
     font-size: 2rem;
+    font-family: 'Gotham Medium';
 }
 }

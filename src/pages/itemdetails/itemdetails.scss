@@ -4,25 +4,33 @@ page-itemdetails {
             margin:auto;
             align-content: center;
             font-weight:bold;
+            font-family: 'Gotham Medium';
         }
     }
 ion-list{
 
         h1{
             color:map-get($colors,dark4);
+            font-family: 'Gotham Medium';
+
         }
         h2, h3{
             color:color($colors,dark3,base);
+            font-family: 'Gotham Book';
+
         }
         ion-icon{
             color:map-get($colors,yellowcolor);
             font-size: 1.4em;
         
         }
-        ion-row ion-col h3{
+        ion-item ion-row ion-col h3{
             display: table;
             align-content: center;
+            font-family: 'Gotham Book';
+
         }
+        
         .label-md {
             margin: 13px 8px 0 0;
         }
@@ -45,10 +53,14 @@ ion-list{
 .img {
     max-width: 25%;
     max-height: 25%;
-    border: 1px solid black;
+    border: 1px solidmap-get($colors,dark4);
 }
 ion-card-header{
     padding-bottom: 0px;
+}
+ion-card-content{
+    font-family: 'Gotham Medium';
+
 }
 ion-card-title{
     font-weight: bold;

@@ -16,14 +16,14 @@
     <ion-list *ngFor="let data of orders">
         <ion-item (click)="getOrder(data.id)">
             <div class="stylediv1">
-                <h1>Order ID:{{data.id}}</h1>
+                <h3>Order ID:{{data.id}}</h3>
                 <hr>
                 <p>Ordered Date:{{data.created}}</p>
             </div>
             <div class="stylediv2">
-                <h1>
+                <h3>
                     <i class="fa fa-rupee"></i>{{data.cost}}
-                </h1>
+                </h3>
 
             </div>
         </ion-item>

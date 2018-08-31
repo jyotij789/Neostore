@@ -15,10 +15,9 @@ page-register {
     }
     .labelhead{
         padding:20px 0px 20px 0px;
-        color:#ffffff;
+        color:map-get($colors,light);
         font-size: 45px;
-        font-weight: bold;
-        font-family:'Franklin Gothic Medium',sans-serif;
+        font-family:'Gotham Bold';
         flex-wrap: nowrap;
     }
     
@@ -31,16 +30,34 @@ page-register {
     ion-title{
         margin-left:70px;
         font-size:25px;
+        font-family: 'Gotham Medium';
+
     }
     ion-row{
         align-items: center;
         text-align: center;
     }
-    ion-input {
-        font-size: 2rem;
-        color: #ffffff;
-        height: 6.8vh;
+    .innericon  ion-icon ion-input{
+        font-family: 'Gotham Medium';
+        font-size: 18px;
+        color:map-get($colors,light);
+        height: 7vh;
+        
     }
+    .innericon{
+        position: relative;
+        border:1px solid map-get($colors,light);
+        border-radius: 0px !important;
+        font-size:18px;
+        font-family: 'Gotham Medium';
+
+    }
+    .innericon ion-icon{
+        float: left;
+        height: 100%;
+        display: block;
+        margin: 8px 8px 10px 8px;      
+     }
     ion-list{
         padding-top:12px
     }
@@ -52,35 +69,37 @@ page-register {
         float:right;
     }
     .text-input::-webkit-input-placeholder { 
-        color: #ffffff;
+        color: map-get($colors,light);
         font-size: 2rem;
     }
     .spacetag{
         height:10px;
     }
     .text-input-md {
-        margin: 10px 8px;
-        width: calc(100% - 8px - 8px);
+        margin: 13px 11px;
+        padding: initial;
+        color:map-get($colors,light);
+        width: calc(100% - 10px - 10px);
+        font-size: 18px;
     }
     .ion-text{
-        font-size: 4rem;
+        font-size:2rem;
+        font-family: 'Gotham Medium';
     }
-    .custom-register-label input[type]{
-        margin-left: 0px;
-    }
+    
     .custom-login-label i {
         position: absolute;
     }
     ion-label{
         font-size: 20px;
-        color: #ffffff;
+        color: map-get($colors,light);
         padding-bottom:0px; 
     }
     .button-md-light {
-        color: #E91C1A;
-        background-color: #ffffff;
+        color: map-get($colors,danger);
+        background-color: map-get($colors,light);
         font-size: 25px;
-        border:1px solid #ffffff;
+        border:1px solid map-get($colors,light);
         border-radius: 5px;
     }
     .button-block-md {
@@ -89,18 +108,7 @@ page-register {
         padding: 20px;
     }
     ion-checkbox{
-        border:1px solid #ffffff;
+        border:1px solid map-get($colors,light);
     }
-    .innericon{
-        position: relative;
-        border:1px solid #ffffff;
-        border-radius: 0px !important;
-        font-size:6vw;
-    }
-    .innericon ion-icon{
-        float: left;
-        height: 100%;
-        display: block;
-        padding:10px;
-    }
+    
 }

@@ -1,6 +1,8 @@
 page-order {
     ion-title{
         padding-left:60px;
+        font-family: 'Gotham Bold';
+
     }
     
     .list-md {
@@ -8,5 +10,9 @@ page-order {
         border-bottom: 1px solid;
         border-bottom-color: map-get($colors,secondary);
     }
-    
+    ion-list ion-item h3, h2, p{
+        padding :5px;
+        font-family: 'Gotham Book';
+
+    }
 }

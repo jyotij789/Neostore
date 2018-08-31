@@ -33,7 +33,7 @@ import { OrderPage } from '../pages/order/order';
 import { AddAddressPage } from '../pages/add-address/add-address';
 import { ListAddressPage } from '../pages/list-address/list-address';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { StoreLocatorPage } from '../pages/store-locator/store-locator';
 @NgModule({
     declarations: [
         MyApp,
@@ -51,6 +51,7 @@ import { Geolocation } from '@ionic-native/geolocation';
         AddAddressPage,
         ListAddressPage,
         ItemdetailsPage,
+        StoreLocatorPage,
         AddProductmodalPage,
         RatingProductmodalPage
     ],
@@ -75,6 +76,7 @@ import { Geolocation } from '@ionic-native/geolocation';
         AddAddressPage,
         ListAddressPage,
         TablesPage,
+        StoreLocatorPage,
         ItemdetailsPage,
         AddProductmodalPage,
         RatingProductmodalPage

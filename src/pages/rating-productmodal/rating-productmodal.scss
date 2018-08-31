@@ -7,6 +7,8 @@ page-rating-productmodal {
         width:50vw;
         text-align: center;
         left:25%;
+        font-family: 'Gotham Medium';
+
      }
      ion-avatar{
         padding:0 50px 0 50px;
@@ -25,6 +27,10 @@ page-rating-productmodal {
     display: table;
     padding-left:70px;
 
+    }
+    ion-row ion-col h2 {
+        font-size: 2rem;
+        font-family: 'Gotham Medium';
     }
     ion-content div.scroll-content {
         background-color: transparent;

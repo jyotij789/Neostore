@@ -54,9 +54,6 @@ export class MyApp {
             this.email = this.userFormattedData.email;
             this.profile_pic = this.userFormattedData.profile_pic;
 
-            // let username = user.user_data;
-            // console.log('userFormattedData', username);
-
         });
     }
 
@@ -83,33 +80,6 @@ export class MyApp {
             }
         });
     }
-
-    // callback = (response) => {
-    //     this.Providers.stopLoader();
-    //     let status = response.status;
-    //     return this.getUserData(status, response);
-
-    // }
-    // public getUserData(status, response) {
-    //     console.log("app.component getUserstatus", status);
-    //     if (status == 200) {
-    //         let data = response.data;
-    //     }
-    //     else if (status == 402) {
-    //         this.Providers.alertMessage("Invalid Access Token", "Error");
-    //     }
-    //     else if (status == 500) {
-    //         this.Providers.alertMessage("Could not update Account details.", "Error");
-    //     }
-    //     else {
-    //         this.Providers.alertMessage("Something is Wrong.", "Error");
-    //     }
-    // }
-    // openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    // this.nav.setRoot(page.component);
-    // }
 
     openmyaccountpage() {
         this.nav.push(MyAccountPage);

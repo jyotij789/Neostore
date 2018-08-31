@@ -4,6 +4,8 @@ page-edit-profile {
     }
     ion-title{
         padding-left: 55px;
+        font-family:'Gotham Bold';
+
     }
     ion-content{
         background-image: url('../../assets/imgs/Android_bg.jpg');
@@ -13,7 +15,7 @@ page-edit-profile {
     
     .profileimg{
         padding:80px;
-        background-color:#ffffff;
+        background-color:map-get($colors,light);
         border-radius:50px;        
     }
     
@@ -34,9 +36,11 @@ page-edit-profile {
         text-align: center;
     }
     ion-input {
-        font-size: 2rem;
-        color: #ffffff;
-        height: 6.8vh;
+        font-size: 18px;
+        color: map-get($colors,light);
+        height: 7vh;
+        font-family:'Gotham Medium';
+
     }.ion-text{
         font-size: 4rem;
     }
@@ -47,34 +51,43 @@ page-edit-profile {
         position: absolute;
     }
     ion-label{
-        font-size: 20px;
-        color: #ffffff;
+        font-size: 2rem;
+        color: map-get($colors,light);
+    }
+    .innericon ion-icon ion-input{
+        font-family: 'Gotham Medium';
+        // font-size: 18px;
+        color:map-get($colors,light);
+        // height: 7vh;
+        
     }
     .innericon{
         position: relative;
-        border:1px solid #ffffff;
+        border:1px solid map-get($colors,light);
         border-radius: 0px !important;
-        font-size:6vw;
+        font-size:18px;
     }
     .innericon ion-icon{
         float: left;
         height: 100%;
         width:10%;
-        display: block;
-        margin: 7px 10px 10px 10px;    
+        margin: 8px 10px 8px 8px;    
+        
     }
     .ion-text{
-        font-size: 4rem;
+        font-size:2rem;
+        font-family:'Gotham Medium';
+
     }
     .text-input::-webkit-input-placeholder { 
-        color: #ffffff;
-        font-size: 2rem;
+        color: map-get($colors,light);
+        font-size:2rem;
     }
     .spacetag{
         height:10px;
     }
     .text-input-md {
-        margin: 7px 10px;
+        margin: 13px 0 0 0;
         padding: initial;
         width: calc(100% - 8px - 8px);
     }
@@ -83,19 +96,24 @@ page-edit-profile {
         padding: 0px;
     }
     .submitBtn{
-        border:1px solid #ffffff;
+        border:1px solid map-get($colors,light);
         border-radius: 5px;
-        color:#E91C1A;
+        color:map-get($colors,danger);
         font-size:2rem;
+        font-family:'Gotham Medium';
+
     }
     ion-datetime {
         font-size: 2rem;
         display: table;
         overflow: hidden;
-       
+        font-family:'Gotham Medium';
+
     }
     .datetime-md .datetime-placeholder {
         color:map-get($colors,backgroundlight);    
         font-size: 2rem;
+        font-family: 'Gotham Medium';
+
     }
 }

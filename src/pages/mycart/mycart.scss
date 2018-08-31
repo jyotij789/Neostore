@@ -4,6 +4,8 @@ page-mycart {
     }
     ion-title{
         padding-left:60px;
+        font-family: 'Gotham Bold';
+
     }
 
     .item-md h3{
@@ -12,24 +14,36 @@ page-mycart {
         font-weight: normal;
         line-height: normal;
         font-size: 1.8rem;
+        font-family: 'Gotham Book';
+
     }
     ion-item-sliding .item-md p{
         font-size:2rem;
         font-weight: normal;
         line-height: normal;
         color:map-get($colors , dark4 );
+        font-family: 'Gotham Book';
+
     }
     ion-item-sliding ion-item ion-thumbnail{
         background:map-get($colors,danger);
     }
     ion-item-sliding ion-item h2{
         color:map-get($colors,shareiconcolor );
+        font-family: 'Gotham Book';
+
+    }
+    ion-list ion-item h1{
+        font-family: 'Gotham Medium';
+
     }
     .orderbtn{
         height:15vw;
         font-size:2rem;
         background: map-get($colors,danger);
         border-radius:10px;
+        font-family: 'Gotham Medium';
+
     }
     .list-md ion-item-options .button {
     height: 40%;
@@ -67,5 +81,7 @@ page-mycart {
     float: left;
     width: 60%;
     padding-left: 0px;
+    font-family: 'Gotham Medium';
+
 }
 }

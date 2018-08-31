@@ -3,7 +3,7 @@ page-list-address {
         ion-title{
             margin:auto;
             padding-left:55px;
-
+            font-family: 'Gotham Bold';
         }
         
     }
@@ -20,6 +20,7 @@ page-list-address {
         border-radius:3px;
         padding: 15px 5px 15px 5px;
         font-size: 2rem;
+        font-family: 'Gotham Book';
         // text-transform: uppercase;
     }
     .closebutton{
@@ -36,6 +37,7 @@ page-list-address {
         height: 2rem;
         font-size: 1rem;
         color:map-get($colors, secondary );
+
 }
 form{
     padding:0px 15px 0 15px;
@@ -47,6 +49,8 @@ form{
     font-size: 23px;
     font-weight:15px;
     height:8vh;
-    top:20%
+    top:20%;
+    font-family: 'Gotham Medium';
+
 }
 }

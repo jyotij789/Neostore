@@ -5,6 +5,7 @@
 // roboto, and noto sans fonts
 $font-path: "../assets/fonts";
 
+// $font-path: "../src/assets/fonts";
 
 // The app direction is used to include
 // rtl styles in your app. For more info, please see:
@@ -101,8 +102,29 @@ $colors: (
 @import "roboto";
 @import "noto-sans";
 
-// $font-family-base: 'MyFont';
-// $font-family-ios-base: 'MyFont';
-// $font-family-md-base: 'MyFont';
-// $font-family-wp-base: 'MyFont';
+// Adding custom fonts
+@font-face {
+    font-family: "Gotham Bold";
+    font-style: normal;
+    font-weight:normal;
+    src: url("../assets/fonts/Gotham Bold.otf");
+  
+  }
+  @font-face {
+      font-family: "Gotham Book";
+      font-style: normal;
+      font-weight:normal;  
+      src:url("../assets/fonts/Gotham Book RegularBold.otf");
+  
+    }
+    @font-face {
+      font-family: "Gotham Medium";
+      font-style: normal;
+      font-weight:normal;  
+      src: url("../assets/fonts/Gotham Medium Regular.ttf");
+    }
+// $font-family-base: 'Gotham Bold','Gotham Book','Gotham Medium';
+// $font-family-ios-base: 'Gotham Bold','Gotham Book','Gotham Medium';
+// $font-family-md-base: 'Gotham Bold','Gotham Book','Gotham Medium';
+// $font-family-wp-base: 'Gotham Bold','Gotham Book','Gotham Medium';
 

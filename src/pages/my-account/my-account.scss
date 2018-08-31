@@ -4,6 +4,8 @@ page-my-account {
     }
     ion-title{
         padding-left:55px;
+        font-family:'Gotham Bold';
+
     }
     ion-content{
         background-image: url('../../assets/imgs/Android_bg.jpg');
@@ -13,7 +15,7 @@ page-my-account {
     
     .profileimg{
         padding:80px;
-        background-color:#ffffff;
+        background-color:map-get($colors,light);
         border-radius:50px;        
     }
     
@@ -39,10 +41,12 @@ page-my-account {
     }
     ion-input {
         font-size: 2rem;
-        color: #ffffff;
+        color: map-get($colors,light);
         height: 6.8vh;
     }.ion-text{
         font-size: 4rem;
+        font-family:'Gotham Medium';
+
     }
     .custom-register-label input[type]{
         margin-left: 0px;
@@ -52,24 +56,32 @@ page-my-account {
     }
     ion-label{
         font-size: 20px;
-        color: #ffffff;
+        color: map-get($colors,light);
+    }
+    .innericon  ion-icon ion-input{
+        font-family: 'Gotham Medium';
+        font-size: 18px;
+        color:map-get($colors,light);
+        height: 7vh;
+        
     }
     .innericon{
         position: relative;
-        border:1px solid #ffffff;
+        border:1px solid map-get($colors,light);
         border-radius: 0px !important;
-        font-size:6vw;
+        font-size:18px;
+        font-family:'Gotham Medium';
+
     }
     .innericon ion-icon{
         float: left;
         height: 100%;
         width:10%;
-        display: block;
-        margin: 7px 10px 10px 10px;    
+        margin: 8px 10px 8px 8px;    
     }
 
     .text-input::-webkit-input-placeholder { 
-        color: #ffffff;
+        color: map-get($colors,light);
         font-size: 2rem;
         font-weight: bold;
     }
@@ -79,20 +91,24 @@ page-my-account {
     
     .text-input-md {
         margin: 7px 10px;
-        padding: initial;
+        font-family:'Gotham Medium';
         width: calc(100% - 8px - 8px);
     }
     .editBtn{
-        border:1px solid #ffffff;
+        border:1px solid map-get($colors,light);
         border-radius: 5px;
-        color:#E91C1A;
+        color:map-get($colors,danger);
         font-size:15px;
+        font-family:'Gotham Medium';
+
     }
     .resetBtn{
-        border:1px solid #ffffff;
-        color:#4f4f4f;
+        border:0px solid map-get($colors,light);
+        color:map-get($colors,shareiconcolor);
         font-size:15px;
-        border:5px solid #ffffff;
+        border:5px solid map-get($colors,light);
+        font-family:'Gotham Medium';
+
     }
     
 }

@@ -1,6 +1,8 @@
 page-myorders {
     ion-title{
         padding-left:60px;
+        font-family: 'Gotham Bold';
+
     }
     ion-item {
         border-bottom-color: map-get($colors,secondary);
@@ -14,13 +16,20 @@ page-myorders {
     .stylediv1{
     display: table;
     float:left;
+    font-family: 'Gotham Book';
+
     }
     .stylediv2{
         display: table;
-        float:right;}
+        float:right;
+        font-family: 'Gotham Book';
 
-        .stylediv2>h1 {
+    }
+
+        .stylediv2>h3 {
             padding:15px;
+            font-family: 'Gotham Book';
+
         }
         
 }

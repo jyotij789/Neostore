@@ -3,6 +3,8 @@ page-tables {
         ion-title{
             padding-left:60px;
             font-weight:bold;
+            font-family: 'Gotham Bold';
+
         }
     }
         
@@ -21,11 +23,22 @@ page-tables {
             // padding-top:35px;
 
         }
-        ion-content h1{
+        ion-content ion-list button h2{
+            padding:5px 0 0 0;
+            font-family: 'Gotham Medium';
+
+        }
+        ion-content ion-list button p{
+            font-family: 'Gotham Book';
+
+        }
+        ion-content ion-list button div h1{
             color:map-get($colors,danger);
             font-weight: bold;
             padding-top:10px;
             display: table;
+            font-family: 'Gotham Medium';
+
         }
      button outline{
             color:map-get($colors,danger) !important;

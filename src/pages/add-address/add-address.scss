@@ -2,6 +2,8 @@ page-add-address {
     ion-navbar{
         ion-title{
             padding-left:55px;
+            font-family: 'Gotham Bold';
+
         }
     }
     .scroll-content{
@@ -16,6 +18,8 @@ page-add-address {
     ion-input,ion-textarea{
         background: map-get($colors,light);
         font-size:1.5rem;
+        font-family: 'Gotham Book';
+
     }
     ion-textarea{
         height:15vh;

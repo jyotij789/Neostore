@@ -15,14 +15,16 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
+    
 ion-menu{
     ion-label{
-        background-color: #2b2b2b;
+        background-color: map-get($colors,dark2);
         font-size: 20px;
     }
     ion-label img{
         text-align: center;
-        border:2px solid white;
+        border:2px solid map-get($colors,light);
         border-radius:50%;
         height:13vh;
         width:22vw;
@@ -32,18 +34,21 @@ ion-menu{
         margin-top: 53px;
     }
     ion-label .div2{
-        color:#ffffff;
+        color:map-get($colors,light);
         text-align: center;
         font-size: 25px;
         font-weight: bold;
         padding:20px 0px 0px 0px; 
+        font-family: 'Gotham Medium';
+
     }
     ion-label .div3{
-        color:#ffffff;
+        color:map-get($colors,light);
         text-align: center;
         font-size: 15px;
         font-weight: normal;
         padding:5px 0px 0px 0px; 
+        font-family: 'Gotham Medium';
 
     }
     .label-md {
@@ -55,11 +60,15 @@ ion-menu{
         padding:14px 0 0 0;
     }
     ion-list{
-        background-color: #2b2b2b;
+        background-color: map-get($colors,dark2);
     }
     ion-item {
-        border-bottom-color: black;
+        border-bottom-color: map-get($colors,dark4);
         
+    }
+    ion-list button{
+        font-family: 'Gotham Medium';
+
     }
     ion-list button ion-icon{
         height: 6vh;
@@ -67,17 +76,18 @@ ion-menu{
         padding:10px;
     }
     ion-list button span{
-        margin-left: 100px;
+        margin:0 0px 0 100px;
         border: 2px;
         border-radius: 15px !important;
         display: inline-block;
         height: 30px;
         width: 33px;
         text-align: center;
-        background-color: red;
+        padding:5px;
+        background-color: map-get($colors,danger);
     }
     .list-md .item-block .item-inner {
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid map-get($colors,dark4);
         padding-right:0;
     }
  }

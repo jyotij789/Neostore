@@ -24,7 +24,6 @@ export class ListAddressPage {
 
     ionViewWillEnter() {
         let data = JSON.parse(localStorage.getItem('savedAddresses'));
-        // this.getSavedAddress = [];
         if (!data) {
             this.getSavedAddress;
         }
@@ -82,7 +81,17 @@ export class ListAddressPage {
     }
 
     editAddress = (data) => {
-        console.log("editAddress", data);
+        console.log("editAddress", data.address);
+        this.local_address = JSON.parse(localStorage.getItem("savedAddresses"));
+        for (let i = 0; i < this.local_address.length; i++) {
+            this.items = this.local_address;
+            console.log("this.items", this.items);
+            if (this.items[i].address == data.address) {
+                this.local_address[i].status = 2;
+            }
+        }
+        localStorage.setItem("savedAddresses", JSON.stringify(this.local_address));
+        this.ionViewWillEnter();
         this.navCtrl.push(AddAddressPage, { editAddress: data })
     }
 }
