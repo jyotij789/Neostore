@@ -72,7 +72,7 @@ export class ListAddressPage {
         console.log("orderCallback", response);
         let status = response.status;
         if (status == 200) {
-            this.providerglobal.alertMessage(response.message, "Error");
+            this.providerglobal.alertMessage(response.message, "Success");
             this.navCtrl.setRoot(HomePage);
         }
         else {

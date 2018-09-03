@@ -40,7 +40,6 @@ export class MyAccountPage {
         else {
             this.path = "../../assets/imgs/logo.png";
         }
-        // let image=this.userFormattedData.profile_pic;
     }
     editProfile() {
         this.navCtrl.push(EditProfilePage, { userFormattedData: this.userFormattedData });

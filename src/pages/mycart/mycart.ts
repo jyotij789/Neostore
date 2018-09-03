@@ -85,6 +85,7 @@ export class MycartPage {
         });
         alert.present();
     }
+
     deleteCartitemCallback = (response) => {
         this.providerGlobal.stopLoader();
 
@@ -110,8 +111,6 @@ export class MycartPage {
     }
 
     onSelectChange(quantity: number, productid: number) {
-        console.log("onSelectChange", quantity);
-        console.log("onSelectChange", productid);
         if (quantity != undefined || productid != undefined) {
             let data = {
                 'product_id': productid,
@@ -125,11 +124,6 @@ export class MycartPage {
     editCartCallback = (response) => {
         this.providerGlobal.stopLoader();
         console.log("editCartitemsCallback", response);
-        return this.editCartitemCallback(response);
-
-    }
-    editCartitemCallback(response) {
-        console.log(response.status);
         let status = response.status;
         if (status == 200 && response.data != null) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
@@ -143,8 +137,8 @@ export class MycartPage {
         else {
             this.providerGlobal.alertMessage("Try again to load", "Error");
         }
-    }
 
+    }
     listAddress(event: any) {
         this.navCtrl.push(ListAddressPage);
     }

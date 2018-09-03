@@ -1,3 +1,24 @@
-page-store-locator {
+.platform-android, .platform-ios, .platform-browser,.platform-cordova{
 
+page-store-locator {
+    .scroll {
+        height: 100%;
+      }
+ 
+      #map {
+        width: 100%;
+        height: 40%;
+      }
+      ion-icon {
+        display: inline-block;
+        font-size: 1.2em;
+        padding: 10px;
+    }
+    ion-item p{
+        padding: 0 0 0 30px;
+    }
+    .label-md {
+        margin: 5px 8px 13px 0;
+    }
+    }
 }

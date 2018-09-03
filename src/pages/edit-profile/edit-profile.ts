@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, DateTime } from 'ionic-angular';
 import { ActionSheetController, Platform } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
@@ -8,6 +8,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { Base64 } from '@ionic-native/base64';
 import { HomePage } from '../home/home';
+import { DateTimeData } from 'ionic-angular/util/datetime-util';
 
 @Component({
     selector: 'page-edit-profile',
@@ -18,7 +19,7 @@ export class EditProfilePage {
     public last_name: string;
     public email: string;
     public phone_no: string;
-    public dob: Date;
+    public mydob: DateTimeData;
     public userFormattedData = [];
     public status: number;
     public path: string;
@@ -49,6 +50,8 @@ export class EditProfilePage {
             this.last_name = user_data[0].last_name;
             this.email = user_data[0].email;
             this.phone_no = user_data[0].phone_no;
+            this.mydob = user_data[0].dob;
+            console.log("this.mydob", this.mydob);
             this.myPhoto = user_data[0].profile_pic;
         }
         else {
@@ -62,7 +65,7 @@ export class EditProfilePage {
             'first_name': this.first_name,
             'last_name': this.last_name,
             'email': this.email,
-            'dob': this.dob,
+            'dob': this.mydob,
             'phone_no': this.phone_no,
             'profile_pic': this.myPhoto
         }
@@ -78,7 +81,6 @@ export class EditProfilePage {
         else if (this.email == null || this.email == "" || !emailregex.test(this.email)) {
             return this.providerGlobal.alertMessage("Enter Valid Email", "Error");
         }
-
         else if (this.phone_no == null || this.phone_no == "") {
             return this.providerGlobal.alertMessage("Enter Phone Number", "Error");
         }
@@ -86,7 +88,7 @@ export class EditProfilePage {
             return this.providerGlobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
         }
 
-        else if (this.dob == null) {
+        else if (this.mydob == null) {
             return this.providerGlobal.alertMessage("Enter DOB", "Error");
         }
 
@@ -170,10 +172,8 @@ export class EditProfilePage {
         const options: CameraOptions = {
             quality: 50,
             sourceType: sourceType,
-            // destinationType: this.camera.DestinationType.FILE_URI,
             encodingType: this.camera.EncodingType.JPEG,
             destinationType: 0
-            // mediaType: this.camera.MediaType.PICTURE
         };
 
         this.camera.getPicture(options).then((imageData) => {
