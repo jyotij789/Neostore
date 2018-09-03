@@ -22,7 +22,7 @@ export class EditProfilePage {
     public userFormattedData = [];
     public status: number;
     public path: string;
-    public base64Image: string;
+    public myPhoto: any;
     public user_data = [];
     constructor(private camera: Camera,
         public actionSheetCtrl: ActionSheetController,
@@ -49,11 +49,10 @@ export class EditProfilePage {
             this.last_name = user_data[0].last_name;
             this.email = user_data[0].email;
             this.phone_no = user_data[0].phone_no;
-            // this.dob = user_data[0].dob;
-            this.path = user_data[0].profile_pic;
+            this.myPhoto = user_data[0].profile_pic;
         }
         else {
-            this.path = "../../assets/imgs/logo.png";
+            this.myPhoto = "../../assets/imgs/logo.png";
         }
     }
     submitprofile() {
@@ -65,9 +64,18 @@ export class EditProfilePage {
             'email': this.email,
             'dob': this.dob,
             'phone_no': this.phone_no,
-            'profile_pic': this.base64Image
+            'profile_pic': this.myPhoto
         }
-        if (this.email == null || this.email == "" || !emailregex.test(this.email)) {
+        if (this.myPhoto == null || this.myPhoto == "") {
+            return this.providerGlobal.alertMessage("Choose Profile", "Error");
+        }
+        else if (this.first_name == null || this.first_name == "") {
+            return this.providerGlobal.alertMessage("Enter First Name", "Error");
+        }
+        else if (this.last_name == null || this.last_name == "") {
+            return this.providerGlobal.alertMessage("Enter Last Name", "Error");
+        }
+        else if (this.email == null || this.email == "" || !emailregex.test(this.email)) {
             return this.providerGlobal.alertMessage("Enter Valid Email", "Error");
         }
 
@@ -81,6 +89,7 @@ export class EditProfilePage {
         else if (this.dob == null) {
             return this.providerGlobal.alertMessage("Enter DOB", "Error");
         }
+
         else {
             let token = "token";
             this.apiservice.globalApiRequest('post', this.providerUrl.updateaccount, data, token, this.callback);
@@ -92,9 +101,7 @@ export class EditProfilePage {
         this.status = formattedData.status;
         if (this.status == 200) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
-            // this.events.publish('edit:userdata', response.data);
             this.navCtrl.setRoot(HomePage);
-            // localStorage.setItem("User_Account_Details", JSON.stringify(response));
         }
         else if (this.status == 400) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
@@ -115,19 +122,23 @@ export class EditProfilePage {
             title: 'Select Image Source',
             buttons: [
                 {
-                    text: 'From Gallery',
+                    text: 'Gallery',
+                    icon: 'images',
                     handler: () => {
                         this.choosePicture(0);
                     }
                 },
                 {
-                    text: 'Use Camera',
+                    text: 'Camera',
+                    icon: 'camera',
+
                     handler: () => {
                         this.takePicture(1);
                     }
                 },
                 {
                     text: 'Cancel',
+                    icon: 'undo',
                     role: 'cancel'
                 }
             ]
@@ -135,36 +146,29 @@ export class EditProfilePage {
         actionSheet.present();
     }
     public choosePicture(sourceType: number) {
-        console.log('sourceType', sourceType);
-        let options = {
-            quality: 100,
-            title: 'Select Picture',
-            maximumImagesCount: 1,
-            outputType: 0
+        const optionsgallery: CameraOptions = {
+            quality: 50,
+            sourceType: sourceType,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            encodingType: this.camera.EncodingType.JPEG,
+            mediaType: this.camera.MediaType.PICTURE
         };
-        this.imagePicker.getPictures(options).then(results => {
-            for (var i = 0; i < results.length; i++) {
-                this.path = results[i];
-                console.log('Image URI: ' + this.path);
-                // this.base64.encodeFile(this.path).then((base64File: string) => {
-                this.base64Image = 'data:image/jpeg;base64,' + this.path;
-                console.log(this.base64Image);
-                // }, (err) => {
-                // this.providerGlobal.presentToast('Error while selecting base64File.');
-                // });
-                // let base64Image = 'data:image/jpeg;base64,' + this.path;
-                // console.log('base64Image', base64Image);
-            }
-        }, error => {
+
+        this.camera.getPicture(optionsgallery).then((imageData) => {
+            this.myPhoto = 'data:image/jpeg;base64,' + imageData;
+            console.log(this.myPhoto);
+
+        }, (err) => {
             this.providerGlobal.presentToast('Error while selecting image.');
 
-        })
+        });
+
 
     }
     public takePicture(sourceType: number) {
         // Create options for the Camera Dialog
         const options: CameraOptions = {
-            quality: 100,
+            quality: 50,
             sourceType: sourceType,
             // destinationType: this.camera.DestinationType.FILE_URI,
             encodingType: this.camera.EncodingType.JPEG,
@@ -173,9 +177,8 @@ export class EditProfilePage {
         };
 
         this.camera.getPicture(options).then((imageData) => {
-            this.path = imageData;
-            this.base64Image = 'data:image/jpeg;base64,' + imageData;
-            console.log(imageData);
+            this.myPhoto = 'data:image/jpeg;base64,' + imageData;
+            console.log(this.myPhoto);
 
         }, (err) => {
             this.providerGlobal.presentToast('Error while selecting image.');

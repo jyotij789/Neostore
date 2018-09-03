@@ -24,6 +24,10 @@ export class MycartPage {
         this.getproductCartitems();
 
     }
+    ionViewWillEnter() {
+        console.log('ionViewWillEnter MycartPage');
+
+    }
     getproductCartitems() {
         let data = null;
         let apitoken = "token";
@@ -40,12 +44,7 @@ export class MycartPage {
     listCartitemCallback(response) {
         let status = response.status;
         console.log(response.data);
-        if (status == 200 && response.data == null) {
-            this.providerGlobal.alertMessage(response.message, "Success");
-            this.events.publish('cart:created', 0);
-
-        }
-        else if (status == 200 && response.data != null) {
+        if (status == 200) {
             this.total = response.total;
             this.cartList = response.data;
             console.log("this.cartList", this.cartList);
@@ -88,10 +87,12 @@ export class MycartPage {
     }
     deleteCartitemCallback = (response) => {
         this.providerGlobal.stopLoader();
+
         console.log("deleteCartitemCallback", response);
         let status = response.status;
         if (status == 200 && response.data == true) {
-            this.ionViewDidLoad();
+            this.getproductCartitems();
+
         }
         else if (status == 401 || response.data == false) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");

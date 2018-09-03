@@ -33,9 +33,13 @@ export class MyAccountPage {
     getUserdetails() {
 
         let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
-        this.userFormattedData.push(formattedData.user_data);
-        console.log("userFormattedData myaccount", this.userFormattedData);
-        this.path = "../../assets/imgs/logo.png";
+        if (formattedData != null || formattedData != undefined) {
+            this.userFormattedData.push(formattedData.user_data);
+            console.log("userFormattedData myaccount", this.userFormattedData);
+        }
+        else {
+            this.path = "../../assets/imgs/logo.png";
+        }
         // let image=this.userFormattedData.profile_pic;
     }
     editProfile() {

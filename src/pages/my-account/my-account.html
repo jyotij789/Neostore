@@ -18,8 +18,8 @@
     <form name="MyAccount">
         <ion-row>
             <ion-col text-center>
-                <ion-avatar>
-                    <img [src]="path" />
+                <ion-avatar *ngFor="let data of userFormattedData">
+                    <img src="{{data.profile_pic}}" />
                 </ion-avatar>
             </ion-col>
         </ion-row>
