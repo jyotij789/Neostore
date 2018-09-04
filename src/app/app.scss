@@ -100,3 +100,21 @@ ion-menu{
     border-radius: 5px;
     box-shadow: 0 16px 20px rgba(0,0,0,.4);
   }
+  ion-icon {
+    &[class*="fn-"] {
+       background-size: contain;
+       background-position: 50% 50%;
+       background-repeat: no-repeat;
+       width: 1em;
+       height: 1em;
+    }
+    
+    &[class*="fn-pin"] {
+        background-image: url(../assets/fonts/L.svg);
+       color:map-get($colors, light);
+    }
+    &[class*="fn-chair"] {
+        background-image: url(../assets/fonts/O.svg);
+        color:white !important;
+    }
+}

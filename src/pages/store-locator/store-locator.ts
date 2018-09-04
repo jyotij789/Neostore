@@ -42,7 +42,7 @@ export class StoreLocatorPage {
     ionViewDidLoad() {
         console.log('ionViewDidLoad StoreLocatorPage');
         let latLng = new google.maps.LatLng(19.1410776, 73.008735);
-        this.loadMap(5, latLng);
+        this.loadMap(7, latLng);
         this.getMarkers();
         console.log(this.storeList.length);
     }

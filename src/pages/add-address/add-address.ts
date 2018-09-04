@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
@@ -17,9 +17,11 @@ export class AddAddressPage {
     public state: string;
     public savedAddress: Array<{}>;
     public address_data: any;
+    public edit_status: number;
+
     // public editAddress: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
 
-    constructor(public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public events: Events, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -33,6 +35,7 @@ export class AddAddressPage {
             this.state = editAddress.state;
             this.zip_code = editAddress.zip_code;
             this.country = editAddress.country;
+            this.edit_status = editAddress.status;
         }
     }
 
@@ -77,7 +80,17 @@ export class AddAddressPage {
             this.providerglobal.alertMessage("Enter country of 2-30 characters", "Error");
         }
         else {
-            this.storeAddress();
+            if (this.edit_status == 2) {
+                console.log("mmmmm");
+                this.events.publish('edited:address', this.navParams.get("editAddress"));
+                this.storeAddress();
+
+            }
+            else {
+                this.storeAddress();
+
+            }
+
         }
 
     }
@@ -97,7 +110,6 @@ export class AddAddressPage {
             zip_code: this.zip_code,
             country: this.country
         };
-        console.log("this.address_data", this.address_data);
         this.savedAddress.push(this.address_data);
         console.log("savedAddress", this.savedAddress);
         localStorage.setItem("savedAddresses", JSON.stringify(this.savedAddress));

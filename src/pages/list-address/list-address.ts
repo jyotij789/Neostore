@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
@@ -15,7 +15,10 @@ export class ListAddressPage {
     public address: string;
     public items: any;
     public pendingadd: any;
-    constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
+        events.subscribe('edited:address', (data) => {
+            this.deleteAddress(data);
+        });
     }
 
     ionViewDidLoad() {
@@ -29,7 +32,7 @@ export class ListAddressPage {
         }
         else {
             this.pendingadd = data.filter(item => {
-                return item.status == 0
+                return item.status == 0 || item.status == 2
             });
             this.getSavedAddress = this.pendingadd;
         }

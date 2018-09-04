@@ -2,7 +2,6 @@ import { IonicPage, NavController, Platform, LoadingController } from 'ionic-ang
 import { Injectable, Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
-
 @Injectable()
 export class ProvidersGlobal {
     public currentPlatform: any;
@@ -44,7 +43,6 @@ export class ProvidersGlobal {
 
     stopLoader() {
         this.loading.dismiss();
-
     }
     presentToast(message) {
         let toast = this.toastCtrl.create({
@@ -59,6 +57,5 @@ export class ProvidersGlobal {
 
         toast.present();
     }
-
 
 }

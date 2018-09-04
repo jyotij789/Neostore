@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { Events, IonicPage, ModalController, NavParams, ModalOptions } from 'ionic-angular';
+import { Events, IonicPage, NavController, AlertController, ModalController, NavParams, ModalOptions } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { AddProductmodalPage } from '../add-productmodal/add-productmodal'
 import { RatingProductmodalPage } from '../rating-productmodal/rating-productmodal'
+import { MycartPage } from '../../pages/mycart/mycart';
 
 @IonicPage()
 @Component({
@@ -20,7 +21,7 @@ export class ItemdetailsPage {
     public category_name: string
     public setProductImage: string;
     public ratings: number;
-    constructor(public events: Events, public Sharing: SocialSharing, public platform: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public events: Events, public Sharing: SocialSharing, public platform: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -45,17 +46,12 @@ export class ItemdetailsPage {
         if (status == 200) {
             this.category_name = this.navParams.get('product_category_name');
             this.productDetails.push(response.data);
-            console.log("this.productDetails", this.productDetails);
             this.productimages = response.data.product_images;
             this.setProductImage = this.productimages[0].image;
             this.ratings = response.data.rating;
-            console.log(this.ratings);
         }
-        else if (status == 402) {
+        else if (status == 402 || status == 500) {
             this.platform.alertMessage("Invalid Access Token", "Error");
-        }
-        else if (status == 500) {
-            this.platform.alertMessage("Could not update Account details.", "Error");
         }
         else {
             this.platform.alertMessage("Something is Wrong.", "Error");
@@ -99,33 +95,16 @@ export class ItemdetailsPage {
         console.log("addProductModalCallback", response);
         this.platform.stopLoader();
         let status = response.status;
-        return this.handleProductModalResponse(status, response);
-
-    }
-    handleProductModalResponse(status, response) {
-        console.log(status);
         if (status == 200) {
             let carts = response.total_carts;
-            console.log("home this.carts", carts);
             this.events.publish('cart:created', carts);
-            this.platform.alertMessage(response.message, "Success");
+            this.gotoCart();
         }
-        else if (status == 401) {
+        else if (status == 401 || status == 402 || status == 405) {
             this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
-        else if (status == 402) {
-            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else if (status == 405) {
-            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        // else {
-        //     this.platform.alertMessage("UpdateFailed", "Error");
-
-        // }
     }
     openRatingProductModal(name) {
-        console.log("name", name);
         const myModalOptions: ModalOptions = {
             showBackdrop: true,
             enableBackdropDismiss: true,
@@ -137,12 +116,10 @@ export class ItemdetailsPage {
             'product_id': this.product_id,
             'product_rating': this.ratings
         };
-        console.log("myModalData", myModalDatarating);
         const productmodal = this.modalCtrl.create(RatingProductmodalPage, { ratingdata: myModalDatarating }, myModalOptions);
         productmodal.present();
         productmodal.onDidDismiss(params => {
             if (params == "close") {
-                console.log("close");
             }
             else {
                 let token = "token";
@@ -155,20 +132,10 @@ export class ItemdetailsPage {
         console.log("ratingModalCallback", response);
         this.platform.stopLoader();
         let status = response.status;
-        return this.handleRatingModalResponse(status, response);
-
-    }
-    handleRatingModalResponse(status, response) {
         if (status == 200) {
             this.platform.alertMessage(response.message + response.user_msg, "Success");
         }
-        else if (status == 400) {
-            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else if (status == 401) {
-            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else if (status == 405) {
+        else if (status == 400 || status == 401 || status == 405) {
             this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else {
@@ -176,6 +143,28 @@ export class ItemdetailsPage {
 
         }
     }
+
+    gotoCart() {
+        let alert = this.alertCtrl.create({
+            title: 'Added Product into cart',
+            message: 'Do you want to go to Cart?',
+            buttons: [
+                {
+                    text: 'No',
+                    handler: () => {
+                    }
+                },
+                {
+                    text: 'Go to Cart',
+                    handler: () => {
+                        this.navCtrl.push(MycartPage);
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
+
 }
 
 
