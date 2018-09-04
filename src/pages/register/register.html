@@ -50,11 +50,11 @@
                         </ion-input>
                     </div>
 
-                    <ion-list radio-group ion-text name="male">
+                    <ion-list radio-group name="gender" [(ngModel)]="gender" (ionChange)="change($event)">
                         <span class="genderspan">Gender</span>
                         <span class="radiospan">
-                            <ion-radio color="light" value="male"> </ion-radio> Male
-                            <ion-radio color="light" value="female"></ion-radio> Female
+                            <ion-radio color="light" value="M"> </ion-radio> Male
+                            <ion-radio color="light" value="F"></ion-radio> Female
                         </span>
                     </ion-list>
 

@@ -21,7 +21,7 @@ export class RegisterPage {
     public phoneNumber: any;
     public autoManufacturers: any;
     public term: any;
-    public gender: string = 'F';
+    public gender: string;
     constructor(private alertCtrl: AlertController, public providerGlobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams, public providerurl: ProvidersUrl, public apiservice: ProvidersApiservice) {
     }
 
@@ -33,14 +33,6 @@ export class RegisterPage {
         let regex = /^[a-zA-Z]{2,30}$/;
         let phoneRegex = /^[0-9#*+]{10,12}$/;
         let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
-        // let body =new FormData();
-        // body.append('first_name', this.firstName);
-        // body.append('last_name',this.lastName);
-        // body.append('email',  this.email);
-        // body.append('password', this.password);
-        // body.append('confirm_password', this.confirmPassword);
-        // body.append('gender', this.firstName);
-        // body.append('phone_no', this.phoneNumber);
 
         let data = {
             'first_name': this.firstName,
@@ -89,8 +81,6 @@ export class RegisterPage {
             let token = "token";
             this.apiservice.globalApiRequest('post', this.providerurl.register, data, token, this.callback);
         }
-
-
     }
 
     callback = (data) => {
@@ -118,4 +108,9 @@ export class RegisterPage {
         });
         alert.present();
     }
+    change(event) {
+        console.log(event);
+        this.gender = event;
+    }
+
 }

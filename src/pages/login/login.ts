@@ -25,6 +25,7 @@ export class LoginPage {
 
     constructor(public navCtrl: NavController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, private alertCtrl: AlertController, public apiservice: ProvidersApiservice) {
         // this.callback = this.callback.bind(this);
+
     }
 
     getHome() {
@@ -59,7 +60,8 @@ export class LoginPage {
     }
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
-
+        this.email = 'aaa123@gmail.com';
+        this.password = 'aaa123'
     }
     public gotoHome(response) {
         let formattedData = response;

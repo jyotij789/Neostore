@@ -12,15 +12,15 @@ export class AddAddressPage {
     public address: any;
     public landmark: string;
     public city: string;
-    public zip_code: string;
+    public zip_code: number;
     public country: string;
     public state: string;
     public savedAddress: Array<{}>;
     public address_data: any;
     public edit_status: number;
-
+    public items: any;
+    public local_address: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
     // public editAddress: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
-
     constructor(public events: Events, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
@@ -41,7 +41,7 @@ export class AddAddressPage {
 
     saveAddress() {
         let addregex = /^\s*\S+(?:\s+\S+){2}/;
-        let zip_coderegex = /^[0-9]{6}$/;
+        // let zip_coderegex = /^{6}$/;
         let regex = /^[a-zA-Z]{2,30}$/;
         if (this.address == null || this.address == "") {
             this.providerglobal.alertMessage("Enter address", "Error");
@@ -67,12 +67,12 @@ export class AddAddressPage {
         else if (!regex.test(this.state)) {
             this.providerglobal.alertMessage("Enter state of 2-30 characters", "Error");
         }
-        else if (this.zip_code == null || this.zip_code == "") {
+        else if (this.zip_code == null) {
             this.providerglobal.alertMessage("Enter zip_code", "Error");
         }
-        else if (!zip_coderegex.test(this.zip_code)) {
-            this.providerglobal.alertMessage("zip_code must be between of 6 digits", "Error");
-        }
+        // else if (!zip_coderegex.test(this.zip_code)) {
+        //     this.providerglobal.alertMessage("zip_code must be between of 6 digits", "Error");
+        // }
         else if (this.country == null || this.country == "") {
             this.providerglobal.alertMessage("Enter country", "Error");
         }
@@ -80,17 +80,7 @@ export class AddAddressPage {
             this.providerglobal.alertMessage("Enter country of 2-30 characters", "Error");
         }
         else {
-            if (this.edit_status == 2) {
-                console.log("mmmmm");
-                this.events.publish('edited:address', this.navParams.get("editAddress"));
-                this.storeAddress();
-
-            }
-            else {
-                this.storeAddress();
-
-            }
-
+            this.storeAddress();
         }
 
     }
@@ -101,18 +91,39 @@ export class AddAddressPage {
         }
     }
     storeAddress() {
-        this.address_data = {
-            status: 0,
-            address: this.address,
-            landmark: this.landmark,
-            city: this.city,
-            state: this.state,
-            zip_code: this.zip_code,
-            country: this.country
-        };
-        this.savedAddress.push(this.address_data);
-        console.log("savedAddress", this.savedAddress);
-        localStorage.setItem("savedAddresses", JSON.stringify(this.savedAddress));
-        this.navCtrl.pop();
+        if (this.edit_status != null || this.edit_status != undefined) {
+            console.log("status is 2");
+            this.local_address = JSON.parse(localStorage.getItem("savedAddresses"));
+
+            for (let i = 0; i < this.local_address.length; i++) {
+                this.items = this.local_address;
+                if (this.items[i].status == 2) {
+                    this.local_address[i].status = 0;
+                    this.local_address[i].address = this.address;
+                    this.local_address[i].landmark = this.landmark;
+                    this.local_address[i].city = this.city;
+                    this.local_address[i].state = this.state;
+                    this.local_address[i].zip_code = this.zip_code;
+                    this.local_address[i].country = this.country;
+                }
+            }
+            localStorage.setItem("savedAddresses", JSON.stringify(this.local_address));
+            this.navCtrl.pop();
+        }
+        else {
+            console.log("status is 0");
+            this.address_data = {
+                status: 0,
+                address: this.address,
+                landmark: this.landmark,
+                city: this.city,
+                state: this.state,
+                zip_code: this.zip_code,
+                country: this.country
+            };
+            this.savedAddress.push(this.address_data);
+            localStorage.setItem("savedAddresses", JSON.stringify(this.savedAddress));
+            this.navCtrl.pop();
+        }
     }
 }
