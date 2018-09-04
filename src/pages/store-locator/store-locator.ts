@@ -14,25 +14,25 @@ export class StoreLocatorPage {
     public marker: any;
     public storeList = [{
         name: "NeoSOFT Technologies",
-        address: "Unit No 501, Sigma IT Park, Plot No R-203,204," + "<br>" + "Midc TTC Industrial Area. Rabale, Navi Mumbai",
+        address: "Unit No 501, Sigma IT Park, Plot No R-203,204",
         latitude: 19.1410776,
         longitude: 73.008735
     },
     {
         name: "NeoSOFT Technologies",
-        address: "4th Floor, The Ruby, 29, Senapati Bapat Marg, Dadar West, Mumbai, Maharashtra 400028",
+        address: "4th Floor,The Ruby, 29,Senapati Bapat Marg,Dadar West",
         latitude: 19.024365,
         longitude: 72.84428100000002
     },
     {
         name: "NeoSOFT Technologies",
-        address: "Unique Industrial Estate, 124, SVS Rd, Off,Prabhadevi, Mumbai, Maharashtra 400025",
+        address: "Unique Industrial Estate, 124, SVS Rd, Off,Prabhadevi",
         latitude: 19.01803,
         longitude: 72.82834300000002
     },
     {
         name: "NeoSOFT Technologies",
-        address: "NTPL SEZ (Blueridge), IT6, 1st Floor, Rajiv Gandhi - Infotech Park, Phase-I, Hinjewadi, Pune, Maharashtra 411057",
+        address: "Blueridge,Rajiv Gandhi-Infotech Park,Hinjewadi,Pune",
         latitude: 18.5796039,
         longitude: 73.73868790000006
     }];
@@ -41,57 +41,48 @@ export class StoreLocatorPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad StoreLocatorPage');
-        this.loadMap();
+        let latLng = new google.maps.LatLng(19.1410776, 73.008735);
+        this.loadMap(5, latLng);
         this.getMarkers();
         console.log(this.storeList.length);
     }
 
-    loadMap() {
-        let latLng = new google.maps.LatLng(19.1410776, 73.008735);
-
+    loadMap(zoom, latLng) {
         let mapOptions = {
             center: latLng,
-            disableDefaultUI: false,
-            zoom: 4,
+            disableDefaultUI: true,
+            zoom: zoom,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-        this.marker = new google.maps.Marker({
-            position: latLng,
-            map: this.map,
-            animation: google.maps.Animation.DROP
-        });
-        this.addInfoWindow(this.marker);
-
-        // let content = "<h4>Your Location!</h4>";   
-        // let infoWindow = new google.maps.InfoWindow({
-        //   content: content
-        // });
     }
     getMarkers() {
         for (let i = 0; i < this.storeList.length; i++) {
             if (i >= 0)
                 this.addMarkersToMap(this.storeList[i]);
-
         }
     }
 
     addMarkersToMap(store) {
-        var position = new google.maps.LatLng(store.latitude, store.longitude);
-        var storeLocator = new google.maps.Marker({ position: position, title: store.name });
-        storeLocator.setMap(this.map);
+        let position = new google.maps.LatLng(store.latitude, store.longitude);
+        let storeLocator = new google.maps.Marker({ map: this.map, position: position });
     }
 
-    addInfoWindow(marker) {
-        console.log("tag", marker);
+    itemTapped($event, store) {
+        console.log("store", store.name);
+        let latLng = new google.maps.LatLng(store.latitude, store.longitude);
+        this.loadMap(15, latLng);
+        let marker = new google.maps.Marker({ map: this.map, position: latLng, title: store.name });
+        this.addInfoWindow(marker, store.address);
 
+    }
+    addInfoWindow(marker, content) {
         let infoWindow = new google.maps.InfoWindow({
-            content: "content"
+            content: content
         });
         google.maps.event.addListener(marker, 'click', () => {
             infoWindow.open(this.map, marker);
         });
     }
-
 }

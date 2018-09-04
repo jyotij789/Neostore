@@ -16,10 +16,13 @@
 
     </div>
     <ion-list>
-        <ion-item *ngFor="let store of storeList">
-            <h2>
-                <ion-icon name="pin"></ion-icon>{{store.name}}</h2>
-            <p> {{store.address}}</p>
+        <ion-item *ngFor="let store of storeList" (click)="itemTapped($event, store)">
+            <ion-icon name="pin"></ion-icon>
+            <div class="stylediv1">
+                <h2>{{store.name}}</h2>
+                <p> {{store.address}}</p>
+            </div>
+
         </ion-item>
     </ion-list>
 </ion-content>

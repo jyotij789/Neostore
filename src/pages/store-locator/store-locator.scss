@@ -1,6 +1,9 @@
 .platform-android, .platform-ios, .platform-browser,.platform-cordova{
 
 page-store-locator {
+    ion-navbar ion-title{
+        padding-left:55px;
+    }
     .scroll {
         height: 100%;
       }
@@ -10,15 +13,25 @@ page-store-locator {
         height: 40%;
       }
       ion-icon {
-        display: inline-block;
-        font-size: 1.2em;
-        padding: 10px;
+        display: block;
+        font-size: rem;
+        float:left;
+        padding-top:20px;
     }
-    ion-item p{
-        padding: 0 0 0 30px;
-    }
+  
     .label-md {
         margin: 5px 8px 13px 0;
     }
+    .stylediv1{
+        display:block;
+        float:left;
+        font-family: 'Gotham Book';
+        padding:10px 0 0 20px;
+        }
+        .stylediv1 p{
+            font-size: 1.2rem;
+            font-family: 'Gotham Book';
+            }
+        
     }
 }
