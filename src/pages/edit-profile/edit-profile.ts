@@ -6,7 +6,7 @@ import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
-import { Base64 } from '@ionic-native/base64';
+// import { Base64 } from '@ionic-native/base64';
 import { HomePage } from '../home/home';
 import { DateTimeData } from 'ionic-angular/util/datetime-util';
 
@@ -32,7 +32,6 @@ export class EditProfilePage {
         public providerGlobal: ProvidersGlobal,
         public navParams: NavParams,
         private imagePicker: ImagePicker,
-        private base64: Base64,
         public navCtrl: NavController,
         public events: Events) {
     }
@@ -51,7 +50,6 @@ export class EditProfilePage {
             this.email = user_data[0].email;
             this.phone_no = user_data[0].phone_no;
             this.mydob = user_data[0].dob;
-            console.log("this.mydob", this.mydob);
             this.myPhoto = user_data[0].profile_pic;
         }
         else {
@@ -105,13 +103,7 @@ export class EditProfilePage {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
             this.navCtrl.setRoot(HomePage);
         }
-        else if (this.status == 400) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else if (this.status == 402) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else if (this.status == 500) {
+        else if (this.status == 400 || this.status == 402 || this.status == 500) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else {
@@ -158,7 +150,6 @@ export class EditProfilePage {
 
         this.camera.getPicture(optionsgallery).then((imageData) => {
             this.myPhoto = 'data:image/jpeg;base64,' + imageData;
-            console.log(this.myPhoto);
 
         }, (err) => {
             this.providerGlobal.presentToast('Error while selecting image.');
@@ -178,7 +169,6 @@ export class EditProfilePage {
 
         this.camera.getPicture(options).then((imageData) => {
             this.myPhoto = 'data:image/jpeg;base64,' + imageData;
-            console.log(this.myPhoto);
 
         }, (err) => {
             this.providerGlobal.presentToast('Error while selecting image.');

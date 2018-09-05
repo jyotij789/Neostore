@@ -1,9 +1,12 @@
 <ion-header>
-
-    <ion-navbar color="danger">
+    <ion-toolbar color="danger">
+        <ion-buttons left>
+            <button ion-button navPop icon-only>
+                <ion-icon clear class="icon-back" aria-hidden="true"></ion-icon>
+            </button>
+        </ion-buttons>
         <ion-title>Register</ion-title>
-    </ion-navbar>
-
+    </ion-toolbar>
 </ion-header>
 
 
@@ -18,34 +21,34 @@
             <ion-col>
                 <ion-label ion-text class="custom-register-label">
                     <div class="innericon">
-                        <ion-icon color="light" name="contact" large></ion-icon>
+                        <ion-icon color="light" class="icon-user" large></ion-icon>
                         <ion-input type="text" placeholder="First Name" name="firstname" [(ngModel)]="firstName" required>
                         </ion-input>
                     </div>
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="contact" large></ion-icon>
+                        <ion-icon color="light" class="icon-user" large></ion-icon>
                         <ion-input type="text" placeholder="Last Name" name="lastname" [(ngModel)]="lastName" required>
                         </ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="mail" large></ion-icon>
+                        <ion-icon color="light" class="icon-mail" large></ion-icon>
                         <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
                         </ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="lock" large></ion-icon>
+                        <ion-icon color="light" class="icon-lock" large></ion-icon>
                         <ion-input type="text" placeholder="Password" name="password" [(ngModel)]="password" required>
                         </ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="lock" large></ion-icon>
+                        <ion-icon color="light" class="icon-lock" large></ion-icon>
                         <ion-input type="text" placeholder="Confirm Password" name="confirm password" [(ngModel)]="confirmPassword" required>
                         </ion-input>
                     </div>
@@ -59,7 +62,7 @@
                     </ion-list>
 
                     <div class="innericon">
-                        <ion-icon color="light" name="phone-portrait" large></ion-icon>
+                        <ion-icon color="light" class="icon-device" large></ion-icon>
                         <ion-input type="number" placeholder="Phone Number" name="phone number" [(ngModel)]="phoneNumber" required>
                         </ion-input>
                     </div>

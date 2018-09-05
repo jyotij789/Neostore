@@ -1,8 +1,8 @@
 page-list-address {
-    ion-navbar{
+    ion-toolbar{
         ion-title{
             margin:auto;
-            padding-left:55px;
+            padding-left:75px;
             font-family: 'Gotham Bold';
         }
         
@@ -10,6 +10,15 @@ page-list-address {
     form ion-label{
         font-size: 2rem;
     }
+    .icon-cross:before {   
+        content: "\ea0f";
+        color:map-get($colors, secondary);
+      }
+      .icon-pencil:before {
+        content: "\e917";
+        color:map-get($colors, secondary);
+
+      }
     label{
         width: -webkit-fill-available;
         height: auto;
@@ -35,7 +44,7 @@ page-list-address {
         border-radius: 1px;
         overflow: hidden;
         height: 2rem;
-        font-size: 1rem;
+        font-size: 0.7rem;
         color:map-get($colors, secondary );
 
 }

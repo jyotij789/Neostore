@@ -53,31 +53,16 @@ export class HomePage {
                 this.events.publish('user:created', this.formattedData);
             }
         }
-        else if (status == 402) {
-            this.providerglobal.alertMessage(response.message, "Error");
-        }
-        else if (status == 500) {
+        else if (status == 402 || status == 500 || status == 404) {
             this.providerglobal.alertMessage(response.message, "Error");
         }
         else {
-            this.providerglobal.alertMessage("Method has to be post.", "Error");
+            this.providerglobal.alertMessage("Try to load again.", "Error");
         }
     }
 
-    openTablesPage() {
-        this.navCtrl.push(TablesPage, { product_category_id: 1, category_name: 'Table' });
-
-    }
-    openSofaPage() {
-        this.navCtrl.push(TablesPage, { product_category_id: 3, category_name: 'Sofa' });
-
-    }
-    openChairPage() {
-        this.navCtrl.push(TablesPage, { product_category_id: 2, category_name: 'Chair' });
-
-    }
-    openCupboardPage() {
-        this.navCtrl.push(TablesPage, { product_category_id: 4, category_name: 'Cupboard' });
+    openTablesPage(id, name) {
+        this.navCtrl.push(TablesPage, { product_category_id: id, category_name: name });
 
     }
 

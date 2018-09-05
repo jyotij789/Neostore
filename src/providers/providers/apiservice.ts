@@ -97,9 +97,7 @@ export class ProvidersApiservice {
 
                 // Browser post method
                 console.log(this.body);
-                console.log(Object.keys(this.body));
                 let body = new FormData();
-                console.log("length", Object.keys(this.body).length);
                 if (Object.keys(this.body).length > 0) {
                     for (this.i = 0; this.i < Object.keys(this.body).length; this.i++) {
                         body.append(Object.keys(this.body)[this.i], (<any>Object).values(this.body)[this.i]);

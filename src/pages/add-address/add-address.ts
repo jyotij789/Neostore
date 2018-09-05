@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
@@ -20,8 +20,7 @@ export class AddAddressPage {
     public edit_status: number;
     public items: any;
     public local_address: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
-    // public editAddress: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
-    constructor(public events: Events, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {

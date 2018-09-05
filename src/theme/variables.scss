@@ -123,8 +123,168 @@ $colors: (
       font-weight:normal;  
       src: url("../assets/fonts/Gotham Medium Regular.ttf");
     }
-// $font-family-base: 'Gotham Bold','Gotham Book','Gotham Medium';
-// $font-family-ios-base: 'Gotham Bold','Gotham Book','Gotham Medium';
-// $font-family-md-base: 'Gotham Bold','Gotham Book','Gotham Medium';
-// $font-family-wp-base: 'Gotham Bold','Gotham Book','Gotham Medium';
+    @font-face {
+        font-family: 'icomoon';
+        // src:  url('../assets/fonts/svg/icomoon.eot?bd32lt');
+        // src:  url('../assets/fonts/svg/icomoon.eot?bd32lt#iefix'),
+          src: url('../assets/fonts/svg/icomoon.ttf');
+        //   url('../assets/fonts/svg/icomoon.woff?bd32lt'),
+        //   url('../assets/fonts/svg/icomoon.svg?bd32lt#icomoon');
+        font-weight: normal;
+        font-style: normal;
+      }
+      
+      [class^="icon-"], [class*=" icon-"] {
+        /* use !important to prevent issues with browser extensions that change fonts */
+        font-family: 'icomoon' ;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+      
+        /* Better Font Rendering =========== */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .icon-back:before {
+        content: "\e919";
+        color: #fff;
+font-size: 20px;
+      }
+      .icon-add:before {
+        content: "\e901";
+        color: #fff;
+      }
+      .icon-add2:before {
+        content: "\e902";
+        color: #fff;
+      }
+      .icon-cart1:before {
+        content: "\e903";
+        color: #fff;
+      }
+      .icon-chair:before {
+        content: "\e904";
+        color: #fff;
+      }
+      .icon-cupboard:before {
+        content: "\e905";
+        color: #fff;
+      }
+      .icon-delete:before {
+        content: "\e906";
+        color: #fff;
+      }
+      .icon-device:before {
+        content: "\e907";
+        color: #fff;
+      }
+      .icon-down_arrow:before {
+        content: "\e908";
+        color: #fff;
+      }
+      .icon-event_seat1:before {
+        content: "\e909";
+        color: #fff;
+      }
+      .icon-lock:before {
+        content: "\e90a";
+        color: #fff;
+      }
+      .icon-logout:before {
+        content: "\e90b";
+        color: #fff;
+      }
+      .icon-mail:before {
+        content: "\e90c";
+        color: #fff;
+      }
+      .icon-pin:before {
+        content: "\e90d";
+        color: #fff;
+      }
+      .icon-profile1:before {
+        content: "\e90e";
+        color: #fff;
+      }
+      .icon-rupees:before {
+        content: "\e90f";
+        color: #fff;
+      }
+      .icon-search:before {
+        content: "\e910";
+        color: #fff;
+      }
+      .icon-settings:before {
+        content: "\e911";
+        color: #fff;
+      }
+      .icon-sofa:before {
+        content: "\e912";
+        color: #fff;
+      }
+      .icon-star:before {
+        content: "\e913";
+      }
+      .icon-table:before {
+        content: "\e914";
+        color: #fff;
+      }
+      .icon-user:before {
+        content: "\e915";
+        color: #fff;
+      }
+      .icon-add1:before {
+        content: "\e916";
+        color: #fff;
+      }
+      .icon-birthday:before {
+        content: "\e918";
+        color: #fff;
 
+      }
+      .icon-pencil:before {
+        content: "\e917";
+        color: #fff;
+
+      }
+      .icon-phone:before {
+        content: "\e942";
+        color: #fff;
+
+      }
+      .icon-gift:before {
+        content: "\e99f";
+        color: #fff;
+
+      }
+      .icon-bin:before {
+        content: "\e9ac";
+        color: #fff;
+
+      }
+      .icon-clipboard:before {
+        content: "\e9b8";
+        color: #fff;
+
+      }
+      .icon-menu:before {
+        content: "\e9bd";
+        color: #fff;
+
+      }
+      .icon-star-empty:before {
+        content: "\e9d7";
+        border-color: gray;
+      }
+      .icon-cross:before {   
+        content: "\ea0f";
+      }
+      .icon-share:before {
+        content: "\ea82";
+        font-size: 20px;
+
+      }
+      

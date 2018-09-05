@@ -1,15 +1,18 @@
 <ion-header>
-
-    <ion-navbar color="danger">
-        <ion-title>{{category_name}}</ion-title>
-
-        <ion-buttons end>
-            <button ion-button icon-only>
-                <ion-icon name="search"></ion-icon>
+    <ion-toolbar color="danger">
+        <ion-buttons left>
+            <button ion-button navPop icon-only>
+                <ion-icon clear class="icon-back" aria-hidden="true"></ion-icon>
             </button>
         </ion-buttons>
-    </ion-navbar>
+        <ion-title>{{category_name}}</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only end>
+                <ion-icon class="icon-add2"></ion-icon>
+            </button>
+        </ion-buttons>
 
+    </ion-toolbar>
 </ion-header>
 
 
@@ -24,7 +27,7 @@
             <div>
                 <h1 style="float:left">Rs.{{data.cost}}</h1>
                 <i style="float:right">
-                    <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [name]="i < data.rating ? 'star' : 'star-outline'"></ion-icon>
+                    <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [class]="i < data.rating ? 'icon-star' : 'fa fa-star'"></ion-icon>
                 </i>
             </div>
         </button>

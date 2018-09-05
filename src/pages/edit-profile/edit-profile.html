@@ -1,14 +1,17 @@
 <ion-header>
-
-    <ion-navbar color="danger">
-        <ion-title>EditProfile</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only>
-                <ion-icon name="search"></ion-icon>
+    <ion-toolbar color="danger">
+        <ion-buttons left>
+            <button ion-button navPop icon-only>
+                <ion-icon clear class="icon-back" aria-hidden="true"></ion-icon>
             </button>
         </ion-buttons>
-    </ion-navbar>
-
+        <ion-title>EditProfile</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only end>
+                <ion-icon class="icon-add2"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
 </ion-header>
 
 
@@ -27,31 +30,31 @@
             <ion-col>
                 <ion-label ion-text class="custom-register-label">
                     <div class="innericon">
-                        <ion-icon color="light" name="contact"></ion-icon>
+                        <ion-icon color="light" class="icon-user"></ion-icon>
                         <ion-input type="text" placeholder="First Name" name="first_name" [(ngModel)]="first_name"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="contact"></ion-icon>
+                        <ion-icon color="light" class="icon-user"></ion-icon>
                         <ion-input type="text" placeholder="Last Name" name="last_name" [(ngModel)]="last_name"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="mail"></ion-icon>
+                        <ion-icon color="light" class="icon-mail"></ion-icon>
                         <ion-input type="text" placeholder="Email" name="email" [(ngModel)]="email"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="phone-portrait"></ion-icon>
+                        <ion-icon color="light" class="icon-device"></ion-icon>
                         <ion-input type="text" placeholder="Phone Number" name="phone_no" [(ngModel)]="phone_no"></ion-input>
                     </div>
 
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon class="fa fa-birthday-cake" color="light" aria-hidden="true"></ion-icon>
+                        <ion-icon class="icon-birthday" color="light" aria-hidden="true"></ion-icon>
                         <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" name="mydob" placeholder="DOB" [(ngModel)]="mydob"></ion-datetime>
                     </div>
 

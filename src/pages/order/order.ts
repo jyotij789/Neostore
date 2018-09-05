@@ -39,10 +39,7 @@ export class OrderPage {
             console.log("this.order", this.order);
             this.total_cost = response.data.cost;
         }
-        else if (status == 404) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else if (status == 402) {
+        else if (status == 404 || status == 402) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else {

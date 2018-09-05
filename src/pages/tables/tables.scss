@@ -1,7 +1,7 @@
 page-tables {
-    ion-navbar{
+    ion-toolbar{
         ion-title{
-            padding-left:60px;
+            padding-left:100px;
             font-weight:bold;
             font-family: 'Gotham Bold';
 
@@ -14,14 +14,21 @@ page-tables {
                 border-bottom-color: map-get($colors,secondary);
             
         }
+        .fa{
+            font-size: 16px;
+        }
+        .icon-star:before {
+            content: "\e913";
+            color: #ffba00;
+            font-size: 15px;
     
+          }
         ion-app.md [padding] {
             padding: 0px;
         }
         ion-content ion-icon{
-            color:map-get($colors,yellowcolor);
+            color:map-get($colors,secondary);
             // padding-top:35px;
-
         }
         ion-content ion-list button h2{
             padding:5px 0 0 0;

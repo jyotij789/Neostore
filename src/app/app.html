@@ -8,25 +8,47 @@
         </ion-label>
         <ion-list>
             <button ion-item color="dark2" menuClose (click)="openmycartpage()" icon-start>
-                <ion-icon name="cart"></ion-icon>My Cart
+                <i class="icon-cart1"></i>
+                <label>My Cart</label>
                 <span style="margin-left:100px; border:1px; border-radius:5px">{{carts}}</span>
             </button>
-            <button ion-item color="dark2" menuClose (click)="opentablespage()" icon-start>
-                <ion-icon class="fa fa-cubes"></ion-icon>Tables</button>
-            <button ion-item color="dark2" menuClose (click)="openSofaPage()" icon-start>
-                <ion-icon class="fa fa-bed"></ion-icon>Sofas</button>
-            <button ion-item color="dark2" menuClose (click)="openChairPage()" icon-start>
-                <ion-icon class="fa fa-wheelchair"></ion-icon>Chairs</button>
-            <button ion-item color="dark2" menuClose (click)="openCupboardPage()" icon-start>
-                <ion-icon class="fa fa-trello"></ion-icon>Cupboards</button>
+
+            <button ion-item color="dark2" menuClose (click)="opentablespage(1,'Tables')" icon-start>
+                <i class="icon-table"></i>
+                <label>Tables</label>
+            </button>
+
+            <button ion-item color="dark2" menuClose (click)="opentablespage(3,'Sofas')" icon-start>
+                <i class="icon-sofa"></i>
+                <label>Sofas</label>
+            </button>
+
+            <button ion-item color="dark2" menuClose (click)="opentablespage(2,'Chairs')" icon-start>
+                <i class="icon-chair"></i>
+                <label>Chairs</label>
+            </button>
+
+            <button ion-item color="dark2" menuClose (click)="opentablespage(4,'Cupboards')" icon-start>
+                <i class="icon-cupboard"></i>
+                <label>Cupboards</label>
+            </button>
+
             <button ion-item color="dark2" menuClose (click)="openmyaccountpage()" icon-start>
-                <ion-icon name="person"></ion-icon>My Account</button>
+                <i class="icon-user"></i>
+                <label>My Account</label>
+            </button>
             <button ion-item color="dark2" menuClose (click)="storelocator()" icon-start>
-                <ion-icon class="fn-pin" color="light"></ion-icon>Store Locator</button>
+                <i class="icon-pin"></i>
+                <label>Store Locator</label>
+            </button>
             <button ion-item color="dark2" menuClose (click)="myorderspage()" icon-start>
-                <ion-icon name="list-box"></ion-icon>My Orders</button>
+                <i class="icon-profile1"></i>
+                <label>My Orders</label>
+            </button>
             <button ion-item color="dark2" menuClose (click)="logout()" icon-start>
-                <ion-icon name="log-out"></ion-icon>Logout</button>
+                <i class="icon-logout"></i>
+                <label>Logout</label>
+            </button>
 
         </ion-list>
     </ion-content>

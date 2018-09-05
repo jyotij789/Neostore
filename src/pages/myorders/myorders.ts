@@ -16,7 +16,6 @@ export class MyordersPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad MyordersPage');
-
     }
 
     ionViewWillEnter() {
@@ -47,18 +46,6 @@ export class MyordersPage {
     getOrder(orderid) {
         this.navCtrl.push(OrderPage, { order_id: orderid });
     }
-    ionViewDidEnter() {
-        console.log('ionViewDidEnter MyordersPage');
 
-    }
-    ionViewwillLeave() {
-        console.log('ionViewwillLeave MyordersPage');
-    }
-    ionViewDidLeave() {
-        console.log('ionViewDidLeave MyordersPage');
-    }
-    ionViewwillUnload() {
-        console.log('ionViewwillUnload MyordersPage');
-    }
 }
 

@@ -1,14 +1,23 @@
 page-itemdetails {
-    ion-navbar{
+    ion-toolbar{
         ion-title{
             margin:auto;
             align-content: center;
             font-weight:bold;
             font-family: 'Gotham Medium';
+            padding-left:20px; 
         }
     }
 ion-list{
+    .fa{
+        font-size: 21px;
+    }
+    .icon-star:before {
+        content: "\e913";
+        color: #ffba00;
+        font-size: 20px;
 
+      }
         h1{
             color:map-get($colors,dark4);
             font-family: 'Gotham Medium';
@@ -20,8 +29,7 @@ ion-list{
 
         }
         ion-icon{
-            color:map-get($colors,yellowcolor);
-            font-size: 1.4em;
+            color:map-get($colors,secondary);
         
         }
         ion-item ion-row ion-col h3{

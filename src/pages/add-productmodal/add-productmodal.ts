@@ -18,7 +18,6 @@ export class AddProductmodalPage {
         console.log('ionViewDidLoad AddProductmodalPage');
         let data = this.navParams.get('data');
         this.product_data.push(data);
-        console.log('product_data', this.product_data);
     }
     ondismiss() {
         if (this.quantity == null || this.quantity == undefined) {
@@ -29,8 +28,6 @@ export class AddProductmodalPage {
                 'product_id': this.product_data[0].product_id
             }
             this.viewCtrl.dismiss(data);
-            console.log("modal dismissed");
-
         }
     }
     close() {

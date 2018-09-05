@@ -11,6 +11,11 @@ ion-row ion-col .button{
     font-family: 'Gotham Medium';
 
  }
+ .icon-cross:before {
+    content: "\ea0f";
+    color: #fff;
+    font-size:15px;
+  }
  .text-input-md {
     margin: 10px 5px;
     padding: 0;

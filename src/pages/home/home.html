@@ -1,12 +1,12 @@
 <ion-header>
     <ion-navbar color="danger">
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
+        <button ion-button icon-only menuToggle>
+            <i class="icon-menu"></i>
         </button>
         <ion-title>NeoSTORE</ion-title>
         <ion-buttons end>
             <button ion-button icon-only>
-                <ion-icon name="search"></ion-icon>
+                <ion-icon class="icon-add2"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
@@ -23,15 +23,15 @@
     <div class="divcontainer">
         <ion-row>
             <ion-col>
-                <button ion-item class="table" (click)="openTablesPage()">
+                <button ion-item class="table" (click)="openTablesPage(1,'Tables')">
                     <h5 style="padding:15px 0px 0px 65px;" ion-text>Tables</h5>
-                    <span style="color:white;font-size:60px;padding:15px 0px 15px 15px;" class="fa fa-cubes"></span>
+                    <span style="color:white;font-size:60px;padding:15px 0px 15px 15px;" class="icon-table"></span>
                 </button>
             </ion-col>
 
             <ion-col>
-                <button ion-item class="sofa" (click)="openSofaPage()">
-                    <span style="color:white;font-size:60px;padding:10px 15px 17px 65px;" class="fa fa-bed"></span>
+                <button ion-item class="sofa" (click)="openTablesPage(3,'Sofa')">
+                    <span style="color:white;font-size:60px;padding:10px 15px 17px 65px;" class="icon-sofa"></span>
                     <h5 style="padding:0px 60px 15px 15px;" ion-text text-left>Sofa</h5>
                 </button>
             </ion-col>
@@ -39,14 +39,14 @@
 
         <ion-row>
             <ion-col>
-                <button ion-item class="chairs" (click)="openChairPage()">
+                <button ion-item class="chairs" (click)="openTablesPage(2,'Chairs')">
                     <h5 style="padding:15px 60px 0px 15px;" ion-text>Chairs</h5>
-                    <ion-icon style="color:white;font-size:70px;padding:0px 0px 15px 75px;font-weight:bold;" class="fa fa-wheelchair"></ion-icon>
+                    <ion-icon style="color:white;font-size:70px;padding:0px 0px 15px 75px;font-weight:bold;" class="icon-chair"></ion-icon>
                 </button>
             </ion-col>
 
             <ion-col>
-                <button ion-item class="cupboards" (click)="openCupboardPage()">
+                <button ion-item class="cupboards" (click)="openTablesPage(4,'Cupboards')">
                     <span style="color:white;font-size:60px;padding:15px 15px 0px 50px;font-weight:bold;" class="fa fa-trello"></span>
                     <h5 style="padding:7px 15px 15px 20px;" ion-text>Cupboards</h5>
                 </button>

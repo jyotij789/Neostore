@@ -63,13 +63,8 @@ export class ForgotpasswordPage {
             this.providerGlobal.alertMessage(message + "<br>" + user_message, "Success");
             this.navCtrl.push(LoginPage);
         }
-        else if (status == 500) {
+        else if (status == 500 || status == 404) {
             this.providerGlobal.alertMessage(message + "<br>" + user_message, "Error");
-
-        }
-        else if (status == 404) {
-            this.providerGlobal.alertMessage(message + "<br>" + user_message, "Error");
-
         }
         else {
             this.providerGlobal.alertMessage("Something is wrong", "Error");

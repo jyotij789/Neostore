@@ -38,11 +38,6 @@ export class ItemdetailsPage {
         this.platform.stopLoader();
         let status = response.status;
         console.log("productDetailscallback", response);
-        return this.getProductDetails(status, response);
-
-    }
-    getProductDetails(status, response) {
-        console.log("itemdetails getUserstatus", status);
         if (status == 200) {
             this.category_name = this.navParams.get('product_category_name');
             this.productDetails.push(response.data);
@@ -66,6 +61,7 @@ export class ItemdetailsPage {
         this.Sharing.share(name, description, null, null);
     }
 
+    // Code for buy product model
     openAddProductModal(name) {
         const myModalOptions: ModalOptions = {
             showBackdrop: true,
@@ -104,6 +100,8 @@ export class ItemdetailsPage {
             this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
     }
+
+    // Code for Rating model
     openRatingProductModal(name) {
         const myModalOptions: ModalOptions = {
             showBackdrop: true,

@@ -19,9 +19,14 @@ page-rating-productmodal {
     }
     ion-content ion-icon{
         color:map-get($colors,yellowcolor);
-        font-size: 4em;
+        font-size: 3.1em;
         // text-align:center;
     }
+    .icon-cross:before {
+        content: "\ea0f";
+        color: #fff;
+        font-size:15px;
+      }
     .div{
     align-content: center;
     display: table;

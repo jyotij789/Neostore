@@ -16,9 +16,6 @@ export class ListAddressPage {
     public items: any;
     public pendingadd: any;
     constructor(public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
-        events.subscribe('edited:address', (data) => {
-            this.deleteAddress(data);
-        });
     }
 
     ionViewDidLoad() {
@@ -47,9 +44,7 @@ export class ListAddressPage {
         this.local_address = JSON.parse(localStorage.getItem("savedAddresses"));
         for (let i = 0; i < this.local_address.length; i++) {
             this.items = this.local_address;
-            console.log("this.items", this.items[i].address);
             if (this.items[i].address == value) {
-                console.log(this.local_address[i].status);
                 this.local_address[i].status = 1;
             }
         }
@@ -88,7 +83,6 @@ export class ListAddressPage {
         this.local_address = JSON.parse(localStorage.getItem("savedAddresses"));
         for (let i = 0; i < this.local_address.length; i++) {
             this.items = this.local_address;
-            console.log("this.items", this.items);
             if (this.items[i].address == data.address) {
                 this.local_address[i].status = 2;
             }

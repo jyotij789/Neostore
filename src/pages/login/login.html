@@ -7,12 +7,12 @@
             <ion-col>
                 <ion-label>
                     <div class="innericon">
-                        <ion-icon color="light" name="contact"></ion-icon>
+                        <ion-icon color="light" class="icon-user"></ion-icon>
                         <ion-input ion-text type="text" placeholder="Username" id="username" name="username" [(ngModel)]="email"></ion-input>
                     </div>
                     <div class="spacetag"></div>
                     <div class="innericon">
-                        <ion-icon color="light" name="lock"></ion-icon>
+                        <ion-icon color="light" class="icon-lock"></ion-icon>
                         <ion-input ion-text type="password" placeholder="Password" id="password" name="password" [(ngModel)]="password"></ion-input>
                     </div>
                     <br>
@@ -39,7 +39,7 @@
                 <strong>DONT HAVE AN ACCOUNT ?</strong>
             </ion-label>
             <button item-end ion-button color="danger2" (click)="createAccount()">
-                <ion-icon name="add" end></ion-icon>
+                <ion-icon class="icon-add" end></ion-icon>
             </button>
         </ion-row>
 

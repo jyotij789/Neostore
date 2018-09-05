@@ -69,11 +69,15 @@ ion-menu{
         font-family: 'Gotham Medium';
 
     }
-    ion-list button ion-icon{
-        height: 6vh;
-        width:15vw;
-        padding:10px;
+    ion-list button label {
+        font-family: inherit;
+        line-height: normal;
+        padding-left:20px;
     }
+    // ion-list button ion-icon{
+    //     height: 6vh;
+    //     width:15vw;
+    // }
     ion-list button span{
         margin:0 0px 0 100px;
         border: 2px;
@@ -100,21 +104,74 @@ ion-menu{
     border-radius: 5px;
     box-shadow: 0 16px 20px rgba(0,0,0,.4);
   }
-  ion-icon {
-    &[class*="fn-"] {
-       background-size: contain;
-       background-position: 50% 50%;
-       background-repeat: no-repeat;
-       width: 1em;
-       height: 1em;
-    }
+
+  
+//   ion-icon {
+//     &[class*="fn-"] {
+//        background-size: contain;
+//        background-position: 50% 50%;
+//        background-repeat: no-repeat;
+//        width: 0.8em;
+//        height: 0.8em;
+//        padding:10px;
+//     }
     
-    &[class*="fn-pin"] {
-        background-image: url(../assets/fonts/L.svg);
-       color:map-get($colors, light);
-    }
-    &[class*="fn-chair"] {
-        background-image: url(../assets/fonts/O.svg);
-        color:white !important;
-    }
-}
+//     &[class*="fn-pin"] {
+//         background-image: url(../assets/fonts/pin.svg);
+//        color:map-get($colors, light);
+//     }
+//     &[class*="fn-chair"] {
+//         background-image: url(../assets/fonts/event_seat.svg);
+//     }
+//     &[class*="fn-add"] {
+//         background-image: url(../assets/fonts/add.svg);
+//        color:map-get($colors, light);
+//     }
+//     &[class*="fn-cart"] {
+//         background-image: url(../assets/fonts/cart.svg);
+//     }
+//     &[class*="fn-person"] {
+//         background-image: url(../assets/fonts/user.svg);
+//        color:map-get($colors, light);
+//     }
+//     &[class*="fn-cupboard"] {
+//         background-image: url(../assets/fonts/cupboard.svg);
+//     }
+//     &[class*="fn-delete"] {
+//         background-image: url(../assets/fonts/delete.svg);
+//        color:map-get($colors, light);
+//     }
+//     &[class*="fn-down_arrow"] {
+//         background-image: url(../assets/fonts/down_arrow.svg);
+//     }
+//     &[class*="fn-lock"] {
+//         background-image: url(../assets/fonts/lock.svg);
+//     }
+//     &[class*="fn-logout"] {
+//         background-image: url(../assets/fonts/logout.svg);
+//     }
+//     &[class*="fn-mail"] {
+//         background-image: url(../assets/fonts/mail.svg);
+//     }
+//     &[class*="fn-rupees"] {
+//         background-image: url(../assets/fonts/rupees.svg);
+//     }
+//     &[class*="fn-search"] {
+//         background-image: url(../assets/fonts/search.svg);
+//     }
+//     &[class*="fn-settings"] {
+//         background-image: url(../assets/fonts/settings.svg);
+//     }
+//     &[class*="fn-sofa"] {
+//         background-image: url(../assets/fonts/sofa.svg);
+//     }
+//     &[class*="fn-star"] {
+//         background-image: url(../assets/fonts/star.svg);
+//     }
+//     &[class*="fn-table"] {
+//         background-image: url(../assets/fonts/table.svg);
+//     }
+//     &[class*="fn-list"] {
+//         background-image: url(../assets/fonts/profile.svg);
+//     }
+// }

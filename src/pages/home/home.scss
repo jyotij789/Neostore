@@ -4,12 +4,38 @@ page-home{
         font-family:'Gotham Bold';
 
     }
+    .icon-menu:before {
+        content: "\e9bd";
+        color: #fff;
+        font-size: 25px;
+
+      }
+    .icon-add2:before {
+        content: "\e902";
+        color: #fff;
+        font-size: 25px;
+      }
+     
     ion-content{
         ion-slides{
             width:auto;
             height:40vh;
         }
-       
+            .icon-table:before {
+            content: "\e914";
+            color: #fff;
+            font-size:75px;
+          }
+          .icon-chair:before {
+            content: "\e904";
+            color: #fff;
+            font-size:70px;
+          }
+          .icon-sofa:before {
+            content: "\e912";
+            color: #fff;
+            font-size:75px;
+          }
           ion-slide ion-img {
             height: -webkit-fill-available;
             width: -webkit-fill-available;

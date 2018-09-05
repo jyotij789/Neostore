@@ -72,10 +72,7 @@ export class LoginPage {
             localStorage.setItem("formattedResponse", JSON.stringify(this.accessToken));
             this.navCtrl.setRoot(HomePage);
         }
-        else if (this.status == 401) {
-            this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
-        }
-        else if (this.status == 500) {
+        else if (this.status == 401 || this.status == 500) {
             this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
         else {

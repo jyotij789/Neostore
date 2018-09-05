@@ -72,7 +72,6 @@ export class MyApp {
 
                 if (apiToken != null || apiToken != undefined) {
                     let data = null;
-                    // this.apiservice.globalApiRequest('get', this.providerUrl.Fetchaccount, data, apiToken, this.callback);
                     this.nav.setRoot(HomePage);
 
                 }
@@ -83,22 +82,11 @@ export class MyApp {
 
     openmyaccountpage() {
         this.nav.push(MyAccountPage);
-
     }
-    opentablespage() {
-        this.nav.push(TablesPage, { product_category_id: 1, category_name: 'Table' });
-    }
-    openSofaPage() {
-        this.nav.push(TablesPage, { product_category_id: 3, category_name: 'Sofa' });
-
-    }
-    openChairPage() {
-        this.nav.push(TablesPage, { product_category_id: 2, category_name: 'Chairs' });
-
-    }
-    openCupboardPage() {
-        this.nav.push(TablesPage, { product_category_id: 4, category_name: 'Cupboard' });
-
+    opentablespage(id, name) {
+        console.log(name);
+        console.log(id);
+        this.nav.push(TablesPage, { product_category_id: id, category_name: name });
     }
     openmycartpage() {
         this.nav.push(MycartPage);

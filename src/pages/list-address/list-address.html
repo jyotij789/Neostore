@@ -1,12 +1,17 @@
 <ion-header>
-    <ion-navbar color="danger">
-        <ion-title>Address List</ion-title>
-        <ion-buttons end>
-            <button ion-button icon-only (click)="addAddress($event)">
-                <ion-icon name="add"></ion-icon>
+    <ion-toolbar color="danger">
+        <ion-buttons left>
+            <button ion-button navPop icon-only>
+                <ion-icon clear class="icon-back" aria-hidden="true"></ion-icon>
             </button>
         </ion-buttons>
-    </ion-navbar>
+        <ion-title>Address List</ion-title>
+        <ion-buttons right>
+            <button ion-button icon-only end (click)="addAddress($event)">
+                <ion-icon class="icon-add1"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-toolbar>
 
 </ion-header>
 
@@ -18,12 +23,12 @@
         <ion-row *ngFor="let data of getSavedAddress;let i=index">
             <label for="enum_answer_{{data.address}}">
                 <button class="closebutton" clear ion-button icon-only (click)="deleteAddress(data.address)">
-                    <ion-icon name="close"></ion-icon>
+                    <ion-icon class="icon-cross"></ion-icon>
                 </button>
 
                 <input id="enum_answer_{{data.address}}" [value]='data?.address' type="radio" name="address" [(ngModel)]="address"> {{data.address}}
                 <button class="editbutton" clear ion-button icon-only (click)="editAddress(data)" style="float:right;margin-bottom:-1rem">
-                    <ion-icon name="create"></ion-icon>
+                    <ion-icon class="icon-pencil"></ion-icon>
                 </button>
             </label>
         </ion-row>

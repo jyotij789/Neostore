@@ -2,7 +2,7 @@
     <ion-navbar color="danger">
         <ion-buttons end>
             <button icon-only ion-button clear (click)="close()">
-                <ion-icon name="close"></ion-icon>
+                <ion-icon class="icon-cross"></ion-icon>
             </button>
         </ion-buttons>
     </ion-navbar>
@@ -26,7 +26,7 @@
     <ion-row center>
         <ion-col>
             <div class="div" *ngFor="let data of rating_data">
-                <ion-icon *ngFor="let n of [0,1,2,3,4];let i=index;" [name]="i < data.product_rating ?'star':'star-outline'" (click)="onRatingChange(i)">
+                <ion-icon *ngFor="let n of [0,1,2,3,4];let i=index;" [class]="i < data.product_rating ?'icon-star':'icon-star-empty'" (click)="onRatingChange(i)">
                 </ion-icon>
             </div>
         </ion-col>
