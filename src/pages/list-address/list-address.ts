@@ -4,6 +4,8 @@ import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { AddAddressPage } from '../add-address/add-address';
+import { AlertController } from 'ionic-angular';
+
 import { HomePage } from '../home/home';
 @Component({
     selector: 'page-list-address',
@@ -15,7 +17,7 @@ export class ListAddressPage {
     public address: string;
     public items: any;
     public pendingadd: any;
-    constructor(public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public deleteAlert: AlertController, public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -41,15 +43,32 @@ export class ListAddressPage {
 
     deleteAddress(value) {
         console.log("value", value);
-        this.local_address = JSON.parse(localStorage.getItem("savedAddresses"));
-        for (let i = 0; i < this.local_address.length; i++) {
-            this.items = this.local_address;
-            if (this.items[i].address == value) {
-                this.local_address[i].status = 1;
-            }
-        }
-        localStorage.setItem("savedAddresses", JSON.stringify(this.local_address));
-        this.ionViewWillEnter();
+        let alert = this.deleteAlert.create({
+            title: 'Confirm Delete',
+            message: 'Do you want to delete this item?',
+            buttons: [
+                {
+                    text: 'No',
+                    handler: () => {
+                    }
+                },
+                {
+                    text: 'Yes',
+                    handler: () => {
+                        this.local_address = JSON.parse(localStorage.getItem("savedAddresses"));
+                        for (let i = 0; i < this.local_address.length; i++) {
+                            this.items = this.local_address;
+                            if (this.items[i].address == value) {
+                                this.local_address[i].status = 1;
+                            }
+                        }
+                        localStorage.setItem("savedAddresses", JSON.stringify(this.local_address));
+                        this.ionViewWillEnter();
+                    }
+                }
+            ]
+        });
+        alert.present();
     }
     placeOrder() {
         console.log(this.address);
