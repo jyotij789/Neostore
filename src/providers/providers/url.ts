@@ -8,7 +8,7 @@ export class ProvidersUrl {
         return 'http://staging.php-dev.in:8844/trainingapp/api';
     }
 
-    constructor(public http: HTTP) {
+    constructor() {
         console.log('Hello ProvidersUrl Provider');
     }
 

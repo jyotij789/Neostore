@@ -22,7 +22,15 @@ export class AddProductmodalPage {
     ondismiss() {
         if (this.quantity == null || this.quantity == undefined) {
             this.Providers.alertMessage("Enter quantity", "Error");
-        } else {
+        }
+        else if (this.quantity > 8) {
+            this.Providers.alertMessage("Quantity must be 1 to 8", "Error");
+        }
+        else if (isNaN(this.quantity)) {
+            this.Providers.alertMessage("Quantity must be in numbers Only", "Error");
+
+        }
+        else {
             let data = {
                 'quantity': this.quantity,
                 'product_id': this.product_data[0].product_id

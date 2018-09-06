@@ -20,7 +20,7 @@ export class StoreLocatorPage {
     },
     {
         name: "NeoSOFT Technologies",
-        address: "4th Floor,The Ruby, 29,Senapati Bapat Marg,Dadar West",
+        address: "4th Floor,The Ruby,29,Senapati Bapat Marg,Dadar West",
         latitude: 19.024365,
         longitude: 72.84428100000002
     },
@@ -44,9 +44,10 @@ export class StoreLocatorPage {
         let latLng = new google.maps.LatLng(19.1410776, 73.008735);
         this.loadMap(7, latLng);
         this.getMarkers();
-        console.log(this.storeList.length);
     }
-
+    refresh() {
+        this.ionViewDidLoad();
+    }
     loadMap(zoom, latLng) {
         let mapOptions = {
             center: latLng,
@@ -66,7 +67,10 @@ export class StoreLocatorPage {
 
     addMarkersToMap(store) {
         let position = new google.maps.LatLng(store.latitude, store.longitude);
-        let storeLocator = new google.maps.Marker({ map: this.map, position: position });
+        let storeLocator = new google.maps.Marker({ map: this.map, position: position, title: 'Click to zoom' });
+        google.maps.event.addListener(storeLocator, 'click', () => {
+            this.itemTapped(event, store)
+        });
     }
 
     itemTapped($event, store) {
