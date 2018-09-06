@@ -9,7 +9,7 @@ import { ImagePicker } from '@ionic-native/image-picker';
 // import { Base64 } from '@ionic-native/base64';
 import { HomePage } from '../home/home';
 import { DateTimeData } from 'ionic-angular/util/datetime-util';
-
+import { Observable, Observer } from 'rxjs';
 @Component({
     selector: 'page-edit-profile',
     templateUrl: 'edit-profile.html',
@@ -24,7 +24,7 @@ export class EditProfilePage {
     public status: number;
     public path: string;
     public myPhoto: any;
-    public user_data = [];
+    public Photo: any;
     constructor(private camera: Camera,
         public actionSheetCtrl: ActionSheetController,
         public apiservice: ProvidersApiservice,
@@ -51,65 +51,46 @@ export class EditProfilePage {
             this.phone_no = user_data[0].phone_no;
             this.mydob = user_data[0].dob;
             this.myPhoto = user_data[0].profile_pic;
+            this.Photo = user_data[0].profile_pic;
+            this.getBase64ImageFromURL(this.Photo).subscribe(base64data => {
+                console.log(base64data);
+                this.myPhoto = base64data;
+                // this.base64Image = 'data:image/jpg;base64,'+base64data;
+            });
+
         }
         else {
             this.myPhoto = "../../assets/imgs/logo.png";
         }
     }
-    submitprofile() {
-        let phoneregex = /^[0-9#*+]{10,12}$/;
-        let emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
-        let data = {
-            'first_name': this.first_name,
-            'last_name': this.last_name,
-            'email': this.email,
-            'dob': this.mydob,
-            'phone_no': this.phone_no,
-            'profile_pic': this.myPhoto
-        }
-        if (this.myPhoto == null || this.myPhoto == "") {
-            return this.providerGlobal.alertMessage("Choose Profile", "Error");
-        }
-        else if (this.first_name == null || this.first_name == "") {
-            return this.providerGlobal.alertMessage("Enter First Name", "Error");
-        }
-        else if (this.last_name == null || this.last_name == "") {
-            return this.providerGlobal.alertMessage("Enter Last Name", "Error");
-        }
-        else if (this.email == null || this.email == "" || !emailregex.test(this.email)) {
-            return this.providerGlobal.alertMessage("Enter Valid Email", "Error");
-        }
-        else if (this.phone_no == null || this.phone_no == "") {
-            return this.providerGlobal.alertMessage("Enter Phone Number", "Error");
-        }
-        else if (!phoneregex.test(this.phone_no)) {
-            return this.providerGlobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
-        }
-
-        else if (this.mydob == null) {
-            return this.providerGlobal.alertMessage("Enter DOB", "Error");
-        }
-
-        else {
-            let token = "token";
-            this.apiservice.globalApiRequest('post', this.providerUrl.updateaccount, data, token, this.callback);
-        }
+    getBase64ImageFromURL(url: string) {
+        return Observable.create((observer: Observer<string>) => {
+            let img = new Image();
+            img.crossOrigin = 'Anonymous';
+            img.src = url;
+            if (!img.complete) {
+                img.onload = () => {
+                    observer.next(this.getBase64Image(img));
+                    observer.complete();
+                };
+                img.onerror = (err) => {
+                    observer.error(err);
+                };
+            } else {
+                observer.next(this.getBase64Image(img));
+                observer.complete();
+            }
+        });
     }
-    callback = (response) => {
-        console.log("update profile", response);
-        let formattedData = response;
-        this.status = formattedData.status;
-        if (this.status == 200) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
-            this.navCtrl.setRoot(HomePage);
-        }
-        else if (this.status == 400 || this.status == 402 || this.status == 500) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
 
-        }
+    getBase64Image(img: HTMLImageElement) {
+        var canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        var ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0);
+        var dataURL = canvas.toDataURL("image/jpeg");
+        return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
     }
     public presentActionSheet() {
         let actionSheet = this.actionSheetCtrl.create({
@@ -174,6 +155,63 @@ export class EditProfilePage {
             this.providerGlobal.presentToast('Error while selecting image.');
 
         });
+    }
+    submitprofile() {
+        let phoneregex = /^[0-9#*+]{10,12}$/;
+        let emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
+
+        if (this.myPhoto == null || this.myPhoto == "") {
+            return this.providerGlobal.alertMessage("Choose Profile", "Error");
+        }
+        else if (this.first_name == null || this.first_name == "") {
+            return this.providerGlobal.alertMessage("Enter First Name", "Error");
+        }
+        else if (this.last_name == null || this.last_name == "") {
+            return this.providerGlobal.alertMessage("Enter Last Name", "Error");
+        }
+        else if (this.email == null || this.email == "" || !emailregex.test(this.email)) {
+            return this.providerGlobal.alertMessage("Enter Valid Email", "Error");
+        }
+        else if (this.phone_no == null || this.phone_no == "") {
+            return this.providerGlobal.alertMessage("Enter Phone Number", "Error");
+        }
+        else if (!phoneregex.test(this.phone_no)) {
+            return this.providerGlobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
+        }
+
+        else if (this.mydob == null) {
+            return this.providerGlobal.alertMessage("Enter DOB", "Error");
+        }
+
+        else {
+            console.log("myPhoto1", this.myPhoto);
+            let data = {
+                'first_name': this.first_name,
+                'last_name': this.last_name,
+                'email': this.email,
+                'dob': this.mydob,
+                'phone_no': this.phone_no,
+                'profile_pic': this.myPhoto
+            }
+            let token = "token";
+            this.apiservice.globalApiRequest('post', this.providerUrl.updateaccount, data, token, this.callback);
+        }
+    }
+    callback = (response) => {
+        console.log("update profile", response);
+        let formattedData = response;
+        this.status = formattedData.status;
+        if (this.status == 200) {
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
+            this.navCtrl.setRoot(HomePage);
+        }
+        else if (this.status == 400 || this.status == 402 || this.status == 500) {
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+        }
+        else {
+            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+
+        }
     }
 
 }
