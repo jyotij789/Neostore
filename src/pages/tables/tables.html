@@ -5,7 +5,15 @@
                 <ion-icon clear class="icon-back" aria-hidden="true"></ion-icon>
             </button>
         </ion-buttons>
-        <ion-title>{{category_name}}</ion-title>
+        <ion-title *ngIf="!isSearchBarOpen">{{category_name}}</ion-title>
+        <ion-searchbar *ngIf="isSearchBarOpen" (ionInput)="onInput($event)" showCancelButton="true" (ionCancel)="ionViewDidLoad()"
+            placeholder="Search..."></ion-searchbar>
+        <ion-buttons right *ngIf="!isSearchBarOpen" (click)="isSearchBarOpen=true">
+            <button ion-button icon-only>
+                <ion-icon clear class="icon-add2" aria-hidden="true"></ion-icon>
+            </button>
+        </ion-buttons>
+
     </ion-toolbar>
 </ion-header>
 

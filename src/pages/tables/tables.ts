@@ -17,6 +17,7 @@ export class TablesPage {
     public page: number = 1;
     public limit: number = 7;
     public infiniteScrollvar: any;
+    public isSearchBarOpen: any = false;
     constructor(public platformGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
         this.category_id = this.navParams.get('product_category_id');
         this.category_name = this.navParams.get('category_name');
@@ -24,6 +25,7 @@ export class TablesPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad TablesPage');
+        this.isSearchBarOpen = false
         this.getApiHit();
     }
     getApiHit(infiniteScroll?) {
@@ -93,5 +95,22 @@ export class TablesPage {
 
         }
         this.navCtrl.push(ItemdetailsPage, { product_id: product_id, product_category_name: this.category_name });
+    }
+
+    onInput(event: any) {
+        console.log("ssss");
+        // Reset items back to all of the items
+        this.productlist;
+
+        // set val to the value of the searchbar
+        const val = event.target.value;
+
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.productlist = this.productlist.filter((item) => {
+                console.log(item.name);
+                return item.name.toLowerCase().indexOf(val.toLowerCase()) > -1;
+            })
+        }
     }
 }

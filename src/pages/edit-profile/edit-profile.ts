@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, DateTime } from 'ionic-angular';
-import { ActionSheetController, Platform } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import { ActionSheetController } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { ImagePicker } from '@ionic-native/image-picker';
 // import { Base64 } from '@ionic-native/base64';
 import { HomePage } from '../home/home';
 import { DateTimeData } from 'ionic-angular/util/datetime-util';
@@ -29,11 +28,9 @@ export class EditProfilePage {
         public actionSheetCtrl: ActionSheetController,
         public apiservice: ProvidersApiservice,
         public providerUrl: ProvidersUrl,
-        public providerGlobal: ProvidersGlobal,
+        public providerglobal: ProvidersGlobal,
         public navParams: NavParams,
-        private imagePicker: ImagePicker,
-        public navCtrl: NavController,
-        public events: Events) {
+        public navCtrl: NavController) {
     }
 
     ionViewDidLoad() {
@@ -98,22 +95,18 @@ export class EditProfilePage {
             buttons: [
                 {
                     text: 'Gallery',
-                    icon: 'images',
                     handler: () => {
                         this.choosePicture(0);
                     }
                 },
                 {
                     text: 'Camera',
-                    icon: 'camera',
-
                     handler: () => {
                         this.takePicture(1);
                     }
                 },
                 {
                     text: 'Cancel',
-                    icon: 'undo',
                     role: 'cancel'
                 }
             ]
@@ -133,7 +126,7 @@ export class EditProfilePage {
             this.myPhoto = 'data:image/jpeg;base64,' + imageData;
 
         }, (err) => {
-            this.providerGlobal.presentToast('Error while selecting image.');
+            this.providerglobal.presentToast('Error while selecting image.');
 
         });
 
@@ -152,7 +145,7 @@ export class EditProfilePage {
             this.myPhoto = 'data:image/jpeg;base64,' + imageData;
 
         }, (err) => {
-            this.providerGlobal.presentToast('Error while selecting image.');
+            this.providerglobal.presentToast('Error while selecting image.');
 
         });
     }
@@ -161,26 +154,26 @@ export class EditProfilePage {
         let emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
 
         if (this.myPhoto == null || this.myPhoto == "") {
-            return this.providerGlobal.alertMessage("Choose Profile", "Error");
+            return this.providerglobal.alertMessage("Choose Profile", "Error");
         }
         else if (this.first_name == null || this.first_name == "") {
-            return this.providerGlobal.alertMessage("Enter First Name", "Error");
+            return this.providerglobal.alertMessage("Enter First Name", "Error");
         }
         else if (this.last_name == null || this.last_name == "") {
-            return this.providerGlobal.alertMessage("Enter Last Name", "Error");
+            return this.providerglobal.alertMessage("Enter Last Name", "Error");
         }
         else if (this.email == null || this.email == "" || !emailregex.test(this.email)) {
-            return this.providerGlobal.alertMessage("Enter Valid Email", "Error");
+            return this.providerglobal.alertMessage("Enter Valid Email", "Error");
         }
         else if (this.phone_no == null || this.phone_no == "") {
-            return this.providerGlobal.alertMessage("Enter Phone Number", "Error");
+            return this.providerglobal.alertMessage("Enter Phone Number", "Error");
         }
         else if (!phoneregex.test(this.phone_no)) {
-            return this.providerGlobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
+            return this.providerglobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
         }
 
         else if (this.mydob == null) {
-            return this.providerGlobal.alertMessage("Enter DOB", "Error");
+            return this.providerglobal.alertMessage("Enter DOB", "Error");
         }
 
         else {
@@ -202,14 +195,14 @@ export class EditProfilePage {
         let formattedData = response;
         this.status = formattedData.status;
         if (this.status == 200) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
+            this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
             this.navCtrl.setRoot(HomePage);
         }
         else if (this.status == 400 || this.status == 402 || this.status == 500) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
 
         }
     }
