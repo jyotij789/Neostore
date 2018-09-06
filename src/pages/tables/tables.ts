@@ -25,7 +25,7 @@ export class TablesPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad TablesPage');
-        this.isSearchBarOpen = false
+        this.isSearchBarOpen = false;
         this.getApiHit();
     }
     getApiHit(infiniteScroll?) {

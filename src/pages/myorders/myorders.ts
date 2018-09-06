@@ -11,19 +11,21 @@ import { OrderPage } from '../order/order';
 })
 export class MyordersPage {
     public orders: any = [];
+    public isSearchBarOpen: any = false;
+
     constructor(public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad MyordersPage');
+        this.isSearchBarOpen = false;
+        let data = null;
+        let apitoken = "token";
+        this.apiservice.globalApiRequest('get', this.providerUrl.orderList, data, apitoken, this.ordersListCallback);
     }
 
     ionViewWillEnter() {
         console.log('ionViewWillEnter MyordersPage');
-        let data = null;
-        let apitoken = "token";
-        this.apiservice.globalApiRequest('get', this.providerUrl.orderList, data, apitoken, this.ordersListCallback);
-
     }
     ordersListCallback = (response) => {
         this.providerGlobal.stopLoader();
@@ -33,10 +35,7 @@ export class MyordersPage {
             this.orders = response.data;
             console.log("this.orders", this.orders);
         }
-        else if (status == 404) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-        }
-        else if (status == 402) {
+        else if (status == 404 || status == 402) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else {
@@ -46,6 +45,22 @@ export class MyordersPage {
     getOrder(orderid) {
         this.navCtrl.push(OrderPage, { order_id: orderid });
     }
+    onInput(event: any) {
+        console.log("ssss");
+        // Reset items back to all of the items
+        this.orders;
 
+        // set val to the value of the searchbar
+        const val = event.target.value;
+        console.log("val", val);
+
+        // if the value is an empty string don't filter the items
+        if (val && val.trim() != '') {
+            this.orders = this.orders.filter((item) => {
+                console.log(String(item.id).startsWith(val));
+                return String(item.id).startsWith(val);
+            })
+        }
+    }
 }
 
