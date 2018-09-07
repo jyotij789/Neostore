@@ -24,6 +24,9 @@ import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
 import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
 import { MyordersPage } from '../pages/myorders/myorders';
 import { StoreLocatorPage } from '../pages/store-locator/store-locator';
+import { ProvidersNetwork } from '../providers/providers/network'
+import { Network } from '@ionic-native/network';
+
 @Component({
     templateUrl: 'app.html',
 })
@@ -38,7 +41,16 @@ export class MyApp {
     public last_name: string;
     public profile_pic: string;
     pages: Array<{ title: string, component: any }>;
-    constructor(public events: Events, public Providers: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    constructor(public network: Network,
+        public events: Events,
+        public Providers: ProvidersGlobal,
+        public providerUrl: ProvidersUrl,
+        public apiservice: ProvidersApiservice,
+        public platform: Platform,
+        public statusBar: StatusBar,
+        public splashScreen: SplashScreen,
+        public providerNetwork: ProvidersNetwork) {
+
         this.initializeApp();
         events.subscribe('cart:created', (data) => {
             console.log('cartdata', data);
@@ -61,6 +73,21 @@ export class MyApp {
     initializeApp() {
         this.platform.ready().then(() => {
             this.splashScreen.hide();
+            this.network.onDisconnect().subscribe(res => {
+                console.log(res);
+                console.log('network was Disconnected');
+                this.providerNetwork.offlineAlert();
+
+            });
+            this.network.onConnect().subscribe(res => {
+                if (this.network.type != "unknown" || this.network.type != undefined) {
+                    this.providerNetwork.onlineAlertDismiss();
+                } else {
+                    this.providerNetwork.offlineAlert();
+
+                }
+
+            });
             let apiToken = "";
             let formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
             if (!formattedData) {
@@ -77,6 +104,7 @@ export class MyApp {
                 }
 
             }
+
         });
     }
 

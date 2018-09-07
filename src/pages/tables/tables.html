@@ -29,7 +29,7 @@
             <div>
                 <h1 style="float:left">Rs.{{data.cost}}</h1>
                 <i style="float:right">
-                    <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [class]="i < data.rating ? 'icon-star' : 'fa fa-star'"></ion-icon>
+                    <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [class]="i < data.rating ? 'icon-star' : 'icon-star-empty'"></ion-icon>
                 </i>
             </div>
         </button>

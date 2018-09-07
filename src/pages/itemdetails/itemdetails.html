@@ -19,7 +19,7 @@
                 <ion-col>
                     <h3 style="float:left;padding-top:5px;">{{data.producer}}</h3>
                     <div style="float:right;">
-                        <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [class]="i < data.rating ? 'icon-star' : 'fa fa-star'"></ion-icon>
+                        <ion-icon item-end *ngFor="let n of [1,2,3,4,5]; let i = index" [class]="i < data.rating ? 'icon-star' : 'icon-star-empty'"></ion-icon>
                     </div>
                 </ion-col>
             </ion-row>

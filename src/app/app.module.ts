@@ -33,6 +33,7 @@ import { AddAddressPage } from '../pages/add-address/add-address';
 import { ListAddressPage } from '../pages/list-address/list-address';
 import { Geolocation } from '@ionic-native/geolocation';
 import { StoreLocatorPage } from '../pages/store-locator/store-locator';
+import { ProvidersNetwork } from '../providers/providers/network';
 @NgModule({
     declarations: [
         MyApp,
@@ -52,7 +53,7 @@ import { StoreLocatorPage } from '../pages/store-locator/store-locator';
         ItemdetailsPage,
         StoreLocatorPage,
         AddProductmodalPage,
-        RatingProductmodalPage
+        RatingProductmodalPage,
     ],
     imports: [
         BrowserModule,
@@ -90,6 +91,7 @@ import { StoreLocatorPage } from '../pages/store-locator/store-locator';
         ProvidersUrl,
         ProvidersApiservice,
         ProvidersGlobal,
+        ProvidersNetwork,
         Network,
         HomePage,
         HTTP,

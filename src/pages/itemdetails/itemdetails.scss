@@ -9,8 +9,10 @@ page-itemdetails {
         }
     }
 ion-list{
-    .fa{
-        font-size: 21px;
+    .icon-star-empty:before {
+        font-size: 20px;
+        fill: map-get($colors,secondary);
+
     }
     .icon-star:before {
         content: "\e913";
