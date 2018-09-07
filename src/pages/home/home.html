@@ -10,11 +10,15 @@
 
 
 <ion-content padding>
-    <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
-        <ion-slide *ngFor="let image of imagesArray">
-            <img src={{image.icon_image}}/>
-        </ion-slide>
-    </ion-slides>
+    <ion-row>
+        <ion-col>
+            <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
+                <ion-slide *ngFor="let image of imagesArray">
+                    <img src={{image.icon_image}}/>
+                </ion-slide>
+            </ion-slides>
+        </ion-col>
+    </ion-row>
     <div class="divcontainer">
         <ion-row>
             <ion-col>

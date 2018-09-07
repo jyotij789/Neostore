@@ -26,19 +26,14 @@ export class MyAccountPage {
         this.getUserdetails();
 
     }
-    ionViewWillEnter() {
-        console.log('ionViewwillEnter MyAccountPage');
-
-    }
     getUserdetails() {
 
         let formattedData = JSON.parse(localStorage.getItem("User_Account_Details"));
         if (formattedData != null || formattedData != undefined) {
             this.userFormattedData.push(formattedData.user_data);
-            console.log("userFormattedData myaccount", this.userFormattedData);
-        }
-        else {
-            this.path = "../../assets/imgs/logo.png";
+            let photo: any = this.userFormattedData[0].profile_pic;
+            photo == "" ? this.path = "../../assets/imgs/logo.png" : this.path = this.userFormattedData[0].profile_pic;
+
         }
     }
     editProfile() {

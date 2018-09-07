@@ -12,14 +12,14 @@ export class AddAddressPage {
     public address: any;
     public landmark: string;
     public city: string;
-    public zip_code: number;
+    public zip_code: string;
     public country: string;
     public state: string;
     public savedAddress: Array<{}>;
     public address_data: any;
     public edit_status: number;
     public items: any;
-    public local_address: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
+    public local_address: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: string, country: string }>;
     constructor(public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
@@ -40,8 +40,8 @@ export class AddAddressPage {
 
     saveAddress() {
         let addregex = /^\s*\S+(?:\s+\S+){2}/;
-        // let zip_coderegex = /^{6}$/;
-        let regex = /^[a-zA-Z]{2,30}$/;
+        let zip_coderegex = /^[0-9 ]{6,10}$/;
+        let regex = /^[a-zA-Z ]{2,30}$/;
         if (this.address == null || this.address == "") {
             this.providerglobal.alertMessage("Enter address", "Error");
         }
@@ -69,9 +69,9 @@ export class AddAddressPage {
         else if (this.zip_code == null) {
             this.providerglobal.alertMessage("Enter zip_code", "Error");
         }
-        // else if (!zip_coderegex.test(this.zip_code)) {
-        //     this.providerglobal.alertMessage("zip_code must be between of 6 digits", "Error");
-        // }
+        else if (zip_coderegex.test(this.zip_code) == false) {
+            this.providerglobal.alertMessage("zip_code must be between of 6 digits", "Error");
+        }
         else if (this.country == null || this.country == "") {
             this.providerglobal.alertMessage("Enter country", "Error");
         }

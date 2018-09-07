@@ -85,6 +85,8 @@ export class RegisterPage {
 
     callback = (data) => {
         console.log("registration", data);
+        this.providerGlobal.stopLoader();
+
         this.navCtrl.setRoot(LoginPage);
     }
     termsChecked($event) {

@@ -45,6 +45,8 @@ export class ResetPasswordPage {
     }
     callback = (formattedData) => {
         console.log(formattedData);
+        this.providerglobal.stopLoader();
+
         let status = formattedData.status;
         let message = formattedData.message;
         let user_msg = formattedData.user_message;

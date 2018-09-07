@@ -48,6 +48,7 @@ export class ForgotpasswordPage {
     }
 
     callback = (response) => {
+        this.providerGlobal.stopLoader();
         let formattedResponse = response;
         console.log("formattedResponse", formattedResponse);
         this.status = formattedResponse.status;

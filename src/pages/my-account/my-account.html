@@ -18,7 +18,8 @@
         <ion-row>
             <ion-col text-center>
                 <ion-avatar *ngFor="let data of userFormattedData">
-                    <img src="{{data.profile_pic}}" />
+                    <img src="{{path}}" />
+                    <!-- <img *ngIf="data.profile_pic==" " " src="../../assets/imgs/logo.png" /> -->
                 </ion-avatar>
             </ion-col>
         </ion-row>

@@ -64,7 +64,8 @@ export class MyApp {
             this.first_name = this.userFormattedData.first_name;
             this.last_name = this.userFormattedData.last_name;
             this.email = this.userFormattedData.email;
-            this.profile_pic = this.userFormattedData.profile_pic;
+            let photo: any = this.userFormattedData.profile_pic;
+            photo == "" ? this.profile_pic = "../../assets/imgs/logo.png" : this.profile_pic = this.userFormattedData[0].profile_pic;
 
         });
     }

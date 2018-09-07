@@ -18,7 +18,7 @@ export class EditProfilePage {
     public last_name: string;
     public email: string;
     public phone_no: string;
-    public mydob: DateTimeData;
+    public mydob: any;
     public userFormattedData = [];
     public status: number;
     public path: string;
@@ -46,14 +46,20 @@ export class EditProfilePage {
             this.last_name = user_data[0].last_name;
             this.email = user_data[0].email;
             this.phone_no = user_data[0].phone_no;
-            this.mydob = user_data[0].dob;
-            this.myPhoto = user_data[0].profile_pic;
+            let date: string = user_data[0].dob;
+            let dob = new Date(date).toISOString();
+            console.log("date", dob);
+            this.mydob = dob;
+            console.log("date", this.mydob);
             this.Photo = user_data[0].profile_pic;
-            this.getBase64ImageFromURL(this.Photo).subscribe(base64data => {
-                console.log(base64data);
-                this.myPhoto = base64data;
-                // this.base64Image = 'data:image/jpg;base64,'+base64data;
-            });
+            this.Photo == "" ? this.myPhoto = "../../assets/imgs/logo.png" : this.myPhoto = user_data[0].profile_pic;
+
+            // this.Photo = user_data[0].profile_pic;
+            // this.getBase64ImageFromURL(this.Photo).subscribe(base64data => {
+            //     console.log(base64data);
+            //     this.myPhoto = base64data;
+            //     // this.base64Image = 'data:image/jpg;base64,'+base64data;
+            // });
 
         }
         else {
@@ -193,7 +199,9 @@ export class EditProfilePage {
     callback = (response) => {
         console.log("update profile", response);
         let formattedData = response;
+        this.providerglobal.stopLoader();
         this.status = formattedData.status;
+
         if (this.status == 200) {
             this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
             this.navCtrl.setRoot(HomePage);
