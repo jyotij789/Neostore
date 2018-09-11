@@ -22,7 +22,7 @@ export class RegisterPage {
     public autoManufacturers: any;
     public term: any;
     public gender: string;
-    constructor(private alertCtrl: AlertController, public providerGlobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams, public providerurl: ProvidersUrl, public apiservice: ProvidersApiservice) {
+    constructor(private alertCtrl: AlertController, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams, public providerurl: ProvidersUrl, public apiservice: ProvidersApiservice) {
     }
 
     ionViewDidLoad() {
@@ -45,37 +45,37 @@ export class RegisterPage {
         }
 
         if (this.firstName == null || this.firstName == "") {
-            this.providerGlobal.alertMessage("Enter First Name", "Error");
+            this.providerglobal.alertMessage("Enter First Name", "Error");
         }
         else if (!regex.test(this.firstName)) {
-            this.providerGlobal.alertMessage("Enter First Name of 2-30 characters", "Error");
+            this.providerglobal.alertMessage("Enter First Name of 2-30 characters", "Error");
         }
         else if (this.lastName == null || this.lastName == "") {
-            this.providerGlobal.alertMessage("Enter Lastname", "Error");
+            this.providerglobal.alertMessage("Enter Lastname", "Error");
         }
         else if (!regex.test(this.lastName)) {
-            this.providerGlobal.alertMessage("Enter Last Name of 2-30 characters", "Error");
+            this.providerglobal.alertMessage("Enter Last Name of 2-30 characters", "Error");
         }
         else if (this.email == null || this.email == "") {
-            this.providerGlobal.alertMessage("Enter Valid Email", "Error");
+            this.providerglobal.alertMessage("Enter Valid Email", "Error");
         }
         else if (!emailRegex.test(this.email)) {
-            this.providerGlobal.alertMessage("Enter Valid Email", "Error");
+            this.providerglobal.alertMessage("Enter Valid Email", "Error");
         }
         else if (this.password == null || this.password == "") {
-            this.providerGlobal.alertMessage("Enter Password", "Error");
+            this.providerglobal.alertMessage("Enter Password", "Error");
         }
         else if (this.confirmPassword == null || this.confirmPassword == "") {
-            this.providerGlobal.alertMessage("Enter Confirm password", "Error");
+            this.providerglobal.alertMessage("Enter Confirm password", "Error");
         }
         else if (this.phoneNumber == null) {
-            this.providerGlobal.alertMessage("Enter Phone Number", "Error");
+            this.providerglobal.alertMessage("Enter Phone Number", "Error");
         }
         else if (this.password != this.confirmPassword) {
-            this.providerGlobal.alertMessage("Password must be same", "Error");
+            this.providerglobal.alertMessage("Password must be same", "Error");
         }
         else if (!phoneRegex.test(this.phoneNumber)) {
-            this.providerGlobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
+            this.providerglobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
         }
         else {
             let token = "token";
@@ -85,19 +85,19 @@ export class RegisterPage {
 
     callback = (response) => {
         console.log("registration", response);
-        this.providerGlobal.stopLoader();
+        this.providerglobal.stopLoader();
         this.status = response.status;
         console.log("device/browser accessToken", this.status);
         if (this.status == 200) {
-            this.providerGlobal.alertMessage(response.user_msg, "Success");
+            this.providerglobal.alertMessage(response.user_msg, "Success");
             this.navCtrl.setRoot(LoginPage);
 
         }
         else if (this.status == 401 || this.status == 500) {
-            this.providerGlobal.alertMessage(response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.user_msg, "Error");
         }
         else if (this.status == 0) {
-            this.providerGlobal.alertMessage(response.error, "Error");
+            this.providerglobal.offlinealert();
         }
     }
     termsChecked($event) {

@@ -27,9 +27,10 @@ export class HomePage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad HomePage');
-
+        // this.getuserdata();
     }
     ionViewWillEnter() {
+        console.log('ionViewWillEnter HomePage');
         this.accessToken = JSON.parse(localStorage.getItem("formattedResponse"));
         let data = null;
         let apitoken = this.accessToken;
@@ -57,7 +58,7 @@ export class HomePage {
             this.providerglobal.alertMessage(response.message, "Error");
         }
         else if (status == 0) {
-            this.providerglobal.alertMessage(response.error, "Error");
+            this.providerglobal.offlinealert();
         }
         else {
             this.providerglobal.alertMessage("Try to load again.", "Error");

@@ -21,7 +21,7 @@ export class ItemdetailsPage {
     public category_name: string
     public setProductImage: string;
     public ratings: number;
-    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public events: Events, public Sharing: SocialSharing, public platform: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public alertCtrl: AlertController, public events: Events, public Sharing: SocialSharing, public providerglobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public modalCtrl: ModalController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -35,7 +35,7 @@ export class ItemdetailsPage {
         this.apiservice.globalApiRequest('get', this.providerUrl.getDetail, data, token, this.productDetailscallback);
     }
     productDetailscallback = (response) => {
-        this.platform.stopLoader();
+        this.providerglobal.stopLoader();
         let status = response.status;
         console.log("productDetailscallback", response);
         if (status == 200) {
@@ -46,10 +46,10 @@ export class ItemdetailsPage {
             this.ratings = response.data.rating;
         }
         else if (status == 402 || status == 500) {
-            this.platform.alertMessage("Invalid Access Token", "Error");
+            this.providerglobal.alertMessage("Invalid Access Token", "Error");
         }
         else {
-            this.platform.alertMessage("Something is Wrong.", "Error");
+            this.providerglobal.alertMessage("Something is Wrong.", "Error");
         }
     }
 
@@ -89,7 +89,7 @@ export class ItemdetailsPage {
 
     buyProductModalCallback = (response) => {
         console.log("addProductModalCallback", response);
-        this.platform.stopLoader();
+        this.providerglobal.stopLoader();
         let status = response.status;
         if (status == 200) {
             let carts = response.total_carts;
@@ -97,10 +97,10 @@ export class ItemdetailsPage {
             this.gotoCart();
         }
         else if (status == 401 || status == 402 || status == 405) {
-            this.platform.alertMessage(response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.user_msg, "Error");
         }
         else if (status == 0) {
-            this.platform.alertMessage(response.error, "Error");
+            this.providerglobal.alertMessage(response.error, "Error");
         }
     }
 
@@ -131,16 +131,16 @@ export class ItemdetailsPage {
     }
     RatingModalCallback = (response) => {
         console.log("ratingModalCallback", response);
-        this.platform.stopLoader();
+        this.providerglobal.stopLoader();
         let status = response.status;
         if (status == 200) {
-            this.platform.alertMessage(response.message + response.user_msg, "Success");
+            this.providerglobal.alertMessage(response.message + response.user_msg, "Success");
         }
         else if (status == 400 || status == 401 || status == 405) {
-            this.platform.alertMessage(response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.user_msg, "Error");
         }
         else if (status == 0) {
-            this.platform.alertMessage(response.error, "Error");
+            this.providerglobal.offlinealert();
         }
     }
 

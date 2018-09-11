@@ -13,7 +13,7 @@ export class OrderPage {
     public orderId: number;
     total_cost: number;
     public order = [];
-    constructor(public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public providerglobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -31,7 +31,7 @@ export class OrderPage {
 
     }
     orderCallback = (response) => {
-        this.providerGlobal.stopLoader();
+        this.providerglobal.stopLoader();
         console.log("ordersListCallback", response);
         let status = response.status;
         if (status == 200) {
@@ -40,13 +40,13 @@ export class OrderPage {
             this.total_cost = response.data.cost;
         }
         else if (status == 404 || status == 402) {
-            this.providerGlobal.alertMessage(response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.user_msg, "Error");
         }
         else if (status == 0) {
-            this.providerGlobal.alertMessage(response.error, "Error");
+            this.providerglobal.offlinealert();
         }
         else {
-            this.providerGlobal.alertMessage("Try again to load", "Error");
+            this.providerglobal.alertMessage("Try again to load", "Error");
         }
     }
 }

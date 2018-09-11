@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
 import { Stripe } from '@ionic-native/stripe';
 import { Http, Response, RequestOptions, Headers, Request, RequestMethod } from '@angular/http';
+import { HTTP } from '@ionic-native/http';
 
 @IonicPage()
 @Component({
@@ -9,16 +10,20 @@ import { Http, Response, RequestOptions, Headers, Request, RequestMethod } from 
     templateUrl: 'paycard.html',
 })
 export class PaycardPage {
-    cardNumber: string;
-    cardMonth: number;
-    cardYear: number;
-    cardCVV: string;
-    cardinfo: any;
-    constructor(public stripe: Stripe, public http: Http, public navCtrl: NavController, public navParams: NavParams) {
+    public cardNumber: string;
+    public cardMonth: number;
+    public cardYear: number;
+    public cardCVV: string;
+    public cardinfo: any;
+    constructor(public stripe: Stripe, public HTTP: HTTP, public http: Http, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad PaycardPage');
+        this.cardCVV = '242',
+            this.cardYear = 2019,
+            this.cardMonth = 2,
+            this.cardNumber = '4242424242424242'
     }
 
 
@@ -31,17 +36,26 @@ export class PaycardPage {
         }
         this.stripe.setPublishableKey('pk_test_w0XMPTXQ5FlE2L5DqwEQ1Vj4');
         this.stripe.createCardToken(this.cardinfo).then((token) => {
-            var data = 'stripetoken=' + token + '&amount=50';
+            console.log(token);
+            // var data = 'stripetoken=' + token + '&amount=50';
+            var data = {
+                'stripetoken': token.id,
+                'amount': 50
+            }
             var headers = new Headers();
-            headers.append('Conent-Type', 'application/x-www-form-urlencoded');
-            this.http.post('http://192.168.2.255:3333/processpay', data, { headers: headers })
+            headers.append('Content-Type', 'application/json');
+            this.http.post('http://192.168.2.1:3333/processpay', data, {})
                 .subscribe((res) => {
-                    if (res.json().success)
-                        alert('transaction Successfull!!')
+                    console.log("server.res", res);
+                    if (res.json().success && res.json().status == 200)
+                        return this.paymentgatewaycallback();
+                    alert('transaction Successfull!!')
                 })
-        })
+        });
     }
+    paymentgatewaycallback = () => {
 
+    }
     // validateCard() {
     //     let card = {
     //         number: this.cardNumber,

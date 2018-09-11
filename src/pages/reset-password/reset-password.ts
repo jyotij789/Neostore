@@ -12,7 +12,7 @@ export class ResetPasswordPage {
     public oldpassword: string;
     public confirmpassword: string;
     public newpassword: string;
-    constructor(public providerUrl: ProvidersUrl, public providerGlobal: ProvidersGlobal, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams, public providerglobal: ProvidersGlobal) {
+    constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams, public providerglobal: ProvidersGlobal) {
     }
 
     ionViewDidLoad() {
@@ -51,18 +51,18 @@ export class ResetPasswordPage {
         let message = formattedData.message;
         let user_msg = formattedData.user_message;
         if (status == 200) {
-            this.providerGlobal.alertMessage(message + "<br>" + user_msg, "Success");
+            this.providerglobal.alertMessage(message + "<br>" + user_msg, "Success");
             localStorage.removeItem("formattedResponse");
             this.navCtrl.push(LoginPage);
         }
         else if (status == 401 || status == 500 || status == 404) {
-            this.providerGlobal.alertMessage(message + "<br>" + user_msg, "Error");
+            this.providerglobal.alertMessage(message + "<br>" + user_msg, "Error");
         }
         else if (status == 0) {
-            this.providerGlobal.alertMessage(formattedData.error, "Error");
+            this.providerglobal.offlinealert();
         }
         else {
-            this.providerGlobal.alertMessage("Something is wrong", "Error");
+            this.providerglobal.alertMessage("Something is wrong", "Error");
         }
 
     }

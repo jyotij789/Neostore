@@ -2,6 +2,7 @@ import { IonicPage, NavController, Platform, LoadingController } from 'ionic-ang
 import { Injectable, Component } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+
 @Injectable()
 export class ProvidersGlobal {
     public currentPlatform: any;
@@ -19,6 +20,21 @@ export class ProvidersGlobal {
             buttons: ['Ok']
         });
         alert.present();
+    }
+    offlinealert() {
+        let offlinealert = this.alertCtrl.create({
+            title: 'No internet access',
+            message: 'Please connect your device to internet',
+            buttons: [
+                {
+                    text: 'Ok',
+                    handler: () => {
+                        this.platform.exitApp();
+                    }
+                }
+            ], enableBackdropDismiss: false
+        });
+        offlinealert.present();
     }
 
     platformDetect() {

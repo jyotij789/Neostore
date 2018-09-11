@@ -23,7 +23,7 @@ export class LoginPage {
     public responseType: string;
     public accessToken: any;
 
-    constructor(public navCtrl: NavController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, private alertCtrl: AlertController, public apiservice: ProvidersApiservice) {
+    constructor(public navCtrl: NavController, public providerglobal: ProvidersGlobal, public providerUrl: ProvidersUrl, private alertCtrl: AlertController, public apiservice: ProvidersApiservice) {
         // this.callback = this.callback.bind(this);
 
     }
@@ -39,13 +39,13 @@ export class LoginPage {
             'password': this.password
         }
         if (this.email == null || this.email == "") {
-            this.providerGlobal.alertMessage("Enter Username", "Error");
+            this.providerglobal.alertMessage("Enter Username", "Error");
         }
         else if (!emailRegex.test(this.email)) {
-            this.providerGlobal.alertMessage("Enter Valid Email", "Error");
+            this.providerglobal.alertMessage("Enter Valid Email", "Error");
         }
         else if (this.password == null || this.password == "") {
-            this.providerGlobal.alertMessage("Enter password", "Error");
+            this.providerglobal.alertMessage("Enter password", "Error");
         }
         else {
             let token = null;
@@ -53,7 +53,7 @@ export class LoginPage {
         }
     }
     callback = (response) => {
-        this.providerGlobal.stopLoader();
+        this.providerglobal.stopLoader();
         console.log("login", response);
         return this.gotoHome(response);
 
@@ -62,21 +62,7 @@ export class LoginPage {
         console.log('ionViewDidLoad LoginPage');
         // this.email = 'aaa123@gmail.com';
         // this.password = 'aaa123';
-        let apiToken = "";
-        let formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
-        if (!formattedData) {
-            formattedData = [];
-        }
-        else {
-            apiToken = formattedData;
-            console.log('apiToken', apiToken);
-            if (apiToken != null || apiToken != undefined) {
-                let data = null;
-                this.navCtrl.setRoot(HomePage);
 
-            }
-
-        }
     }
 
     public gotoHome(response) {
@@ -89,10 +75,10 @@ export class LoginPage {
             this.navCtrl.setRoot(HomePage);
         }
         else if (this.status == 401 || this.status == 500) {
-            this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
+            this.providerglobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
         else if (this.status == 0) {
-            this.providerGlobal.alertMessage(response.error, "Error");
+            this.providerglobal.offlinealert();
         }
     }
 

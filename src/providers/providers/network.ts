@@ -29,29 +29,14 @@ export class ProvidersNetwork {
         // this.offlinealert.present();
         this.offlinealert = this.loder.create({
             content: 'No internet connection.',
-            duration: 5000
+            duration: 4000
         });
 
         this.offlinealert.present();
     }
 
     //define again alert
-    onlineAlert() {
-        this.onlinealert = this.alertCtrl.create({
-            title: 'Disconnected',
-            message: 'online your device not connected to internet',
-            buttons: [
-                {
-                    text: 'Ok',
-                    handler: () => {
-                        // this.platform.exitApp();
-                    }
-                }
-            ], enableBackdropDismiss: false
-        });
-        console.log('online network is connected');
-        this.onlinealert.present();
-    }
+
 
     onlineAlertDismiss() {
         this.offlinealert.dismiss();

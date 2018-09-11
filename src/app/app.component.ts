@@ -74,6 +74,20 @@ export class MyApp {
     initializeApp() {
         this.platform.ready().then(() => {
             this.splashScreen.hide();
+            let apiToken = "";
+            let formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
+            if (!formattedData) {
+                formattedData = [];
+            }
+            else {
+                apiToken = formattedData;
+                console.log('apiToken', apiToken);
+                if (apiToken != null || apiToken != undefined) {
+                    this.nav.setRoot(HomePage);
+
+                }
+
+            }
             this.network.onConnect().subscribe(res => {
                 console.log("onConnect", res);
                 if (this.network.type != "unknown" || this.network.type != undefined) {

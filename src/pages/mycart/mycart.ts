@@ -16,7 +16,7 @@ export class MycartPage {
     public cartList = [];
     public total: number;
     public quant: number;
-    constructor(public events: Events, public deleteAlert: AlertController, public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public events: Events, public deleteAlert: AlertController, public providerglobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -36,7 +36,7 @@ export class MycartPage {
     }
 
     cartListCallback = (response) => {
-        this.providerGlobal.stopLoader();
+        this.providerglobal.stopLoader();
         console.log("cartListCallback", response);
         return this.listCartitemCallback(response);
 
@@ -52,10 +52,10 @@ export class MycartPage {
 
         }
         else if (status == 402 || status == 404) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
         else if (status == 0) {
-            this.providerGlobal.alertMessage(response.error, "Error");
+            this.providerglobal.alertMessage(response.error, "Error");
         }
 
     }
@@ -86,7 +86,7 @@ export class MycartPage {
     }
 
     deleteCartitemCallback = (response) => {
-        this.providerGlobal.stopLoader();
+        this.providerglobal.stopLoader();
         console.log("deleteCartitemCallback", response);
         let status = response.status;
         if (status == 200 && response.data == true) {
@@ -94,11 +94,10 @@ export class MycartPage {
 
         }
         else if (status == 401 || status == 402 || status == 405) {
-            this.providerGlobal.alertMessage(response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.user_msg, "Error");
         }
-        else {
-            this.providerGlobal.alertMessage("Try to load again", "Error");
-
+        else if (status == 0) {
+            this.providerglobal.offlinealert();
         }
     }
 
@@ -114,17 +113,20 @@ export class MycartPage {
         }
     }
     editCartCallback = (response) => {
-        this.providerGlobal.stopLoader();
+        this.providerglobal.stopLoader();
         console.log("editCartitemsCallback", response);
         let status = response.status;
         if (status == 200 && response.data != null) {
-            this.providerGlobal.alertMessage(response.user_msg, "Success");
+            this.providerglobal.alertMessage(response.user_msg, "Success");
         }
         else if (status == 404 || status == 500) {
-            this.providerGlobal.alertMessage(response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.user_msg, "Error");
+        }
+        else if (status == 0) {
+            this.providerglobal.offlinealert();
         }
         else {
-            this.providerGlobal.alertMessage("Try again to load", "Error");
+            this.providerglobal.alertMessage("Try again to load", "Error");
         }
 
     }
