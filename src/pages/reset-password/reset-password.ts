@@ -58,6 +58,9 @@ export class ResetPasswordPage {
         else if (status == 401 || status == 500 || status == 404) {
             this.providerGlobal.alertMessage(message + "<br>" + user_msg, "Error");
         }
+        else if (status == 0) {
+            this.providerGlobal.alertMessage(formattedData.error, "Error");
+        }
         else {
             this.providerGlobal.alertMessage("Something is wrong", "Error");
         }

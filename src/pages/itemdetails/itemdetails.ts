@@ -97,7 +97,10 @@ export class ItemdetailsPage {
             this.gotoCart();
         }
         else if (status == 401 || status == 402 || status == 405) {
-            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.platform.alertMessage(response.user_msg, "Error");
+        }
+        else if (status == 0) {
+            this.platform.alertMessage(response.error, "Error");
         }
     }
 
@@ -134,11 +137,10 @@ export class ItemdetailsPage {
             this.platform.alertMessage(response.message + response.user_msg, "Success");
         }
         else if (status == 400 || status == 401 || status == 405) {
-            this.platform.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.platform.alertMessage(response.user_msg, "Error");
         }
-        else {
-            this.platform.alertMessage("UpdateFailed", "Error");
-
+        else if (status == 0) {
+            this.platform.alertMessage(response.error, "Error");
         }
     }
 

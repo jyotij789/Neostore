@@ -54,6 +54,9 @@ export class MycartPage {
         else if (status == 402 || status == 404) {
             this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
         }
+        else if (status == 0) {
+            this.providerGlobal.alertMessage(response.error, "Error");
+        }
 
     }
 
@@ -91,7 +94,7 @@ export class MycartPage {
 
         }
         else if (status == 401 || status == 402 || status == 405) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.providerGlobal.alertMessage(response.user_msg, "Error");
         }
         else {
             this.providerGlobal.alertMessage("Try to load again", "Error");
@@ -115,10 +118,10 @@ export class MycartPage {
         console.log("editCartitemsCallback", response);
         let status = response.status;
         if (status == 200 && response.data != null) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
+            this.providerGlobal.alertMessage(response.user_msg, "Success");
         }
         else if (status == 404 || status == 500) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.providerGlobal.alertMessage(response.user_msg, "Error");
         }
         else {
             this.providerGlobal.alertMessage("Try again to load", "Error");

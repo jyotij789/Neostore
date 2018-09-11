@@ -11,20 +11,18 @@
 
 <ion-content padding>
     <ion-row>
-        <ion-col>
-            <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
-                <ion-slide *ngFor="let image of imagesArray">
-                    <img src={{image.icon_image}}/>
-                </ion-slide>
-            </ion-slides>
-        </ion-col>
+        <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
+            <ion-slide *ngFor="let image of imagesArray">
+                <img src={{image.icon_image}}/>
+            </ion-slide>
+        </ion-slides>
     </ion-row>
     <div class="divcontainer">
         <ion-row>
             <ion-col>
                 <button ion-item class="table" (click)="openTablesPage(1,'Tables')">
                     <h5 style="padding:15px 0px 0px 65px;" ion-text>Tables</h5>
-                    <span style="color:white;font-size:60px;padding:15px 0px 15px 15px;" class="icon-table"></span>
+                    <span style="color:white;font-size:60px;padding:15px 0px 40px 15px;" class="icon-table"></span>
                 </button>
             </ion-col>
 
@@ -35,7 +33,6 @@
                 </button>
             </ion-col>
         </ion-row>
-
         <ion-row>
             <ion-col>
                 <button ion-item class="chairs" (click)="openTablesPage(2,'Chairs')">

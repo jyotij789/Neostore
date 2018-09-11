@@ -203,15 +203,14 @@ export class EditProfilePage {
         this.status = formattedData.status;
 
         if (this.status == 200) {
-            this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Success");
+            this.providerglobal.alertMessage(response.user_msg, "Success");
             this.navCtrl.setRoot(HomePage);
         }
         else if (this.status == 400 || this.status == 402 || this.status == 500) {
-            this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.providerglobal.alertMessage(response.user_msg, "Error");
         }
-        else {
-            this.providerglobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
-
+        else if (this.status == 0) {
+            this.providerglobal.alertMessage(response.error, "Error");
         }
     }
 

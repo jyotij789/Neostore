@@ -65,7 +65,7 @@ export class MyApp {
             this.last_name = this.userFormattedData.last_name;
             this.email = this.userFormattedData.email;
             let photo: any = this.userFormattedData.profile_pic;
-            photo == "" ? this.profile_pic = "../../assets/imgs/logo.png" : this.profile_pic = this.userFormattedData[0].profile_pic;
+            (photo == "" || photo == null) ? this.profile_pic = "../../assets/imgs/logo.png" : this.profile_pic = this.userFormattedData[0].profile_pic;
 
         });
     }
@@ -74,37 +74,23 @@ export class MyApp {
     initializeApp() {
         this.platform.ready().then(() => {
             this.splashScreen.hide();
-            this.network.onDisconnect().subscribe(res => {
-                console.log(res);
-                console.log('network was Disconnected');
-                this.providerNetwork.offlineAlert();
-
-            });
             this.network.onConnect().subscribe(res => {
+                console.log("onConnect", res);
                 if (this.network.type != "unknown" || this.network.type != undefined) {
                     this.providerNetwork.onlineAlertDismiss();
                 } else {
+                    console.log("not connected");
                     this.providerNetwork.offlineAlert();
 
                 }
 
             });
-            let apiToken = "";
-            let formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
-            if (!formattedData) {
-                formattedData = [];
-            }
-            else {
-                apiToken = formattedData;
-                console.log('apiToken', apiToken);
 
-                if (apiToken != null || apiToken != undefined) {
-                    let data = null;
-                    this.nav.setRoot(HomePage);
+            this.network.onDisconnect().subscribe(res => {
+                console.log('network was Disconnected');
+                this.providerNetwork.offlineAlert();
 
-                }
-
-            }
+            });
 
         });
     }

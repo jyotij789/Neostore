@@ -18,7 +18,7 @@ export class TablesPage {
     public limit: number = 7;
     public infiniteScrollvar: any;
     public isSearchBarOpen: any = false;
-    constructor(public platformGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public providerGlobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public navCtrl: NavController, public navParams: NavParams) {
         this.category_id = this.navParams.get('product_category_id');
         this.category_name = this.navParams.get('category_name');
     }
@@ -34,7 +34,7 @@ export class TablesPage {
         this.apiservice.globalApiRequest('get', this.providerUrl.getlist, data, token, this.categoryListcallback);
     }
     categoryListcallback = (response) => {
-        this.platformGlobal.stopLoader();
+        this.providerGlobal.stopLoader();
         console.log("tables page", response);
         let formattedData = response;
         let status = formattedData.status;
@@ -48,21 +48,15 @@ export class TablesPage {
             this.productlist = this.productlist.concat(data);
             console.log('Object.keys(this.productlist).length', Object.keys(this.productlist).length);
             let products = Object.keys(this.productlist).length;
-            this.platformGlobal.presentToast(products + " " + 'of' + " " + products);
+            this.providerGlobal.presentToast(products + " " + 'of' + " " + products);
         }
-        else if (status == 401) {
-            this.platformGlobal.alertMessage("Invalid product category id.", "Error");
+        else if (status == 401 || status == 400 || status == 404) {
+            this.providerGlobal.alertMessage("Data missing", "Error");
         }
-        else if (status == 400) {
-            this.platformGlobal.alertMessage("Product category id missing.", "Error");
+        else if (status == 0) {
+            this.providerGlobal.alertMessage(data.error, "Error");
         }
-        else if (status == 404) {
-            this.platformGlobal.alertMessage("Method has to be get.", "Error");
-        }
-        else {
-            this.platformGlobal.alertMessage("Something is wrong.", "Error");
 
-        }
     }
     loadMore(infiniteScroll) {
         setTimeout(() => {

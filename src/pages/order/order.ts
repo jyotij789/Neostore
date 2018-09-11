@@ -40,7 +40,10 @@ export class OrderPage {
             this.total_cost = response.data.cost;
         }
         else if (status == 404 || status == 402) {
-            this.providerGlobal.alertMessage(response.message + "<br>" + response.user_msg, "Error");
+            this.providerGlobal.alertMessage(response.user_msg, "Error");
+        }
+        else if (status == 0) {
+            this.providerGlobal.alertMessage(response.error, "Error");
         }
         else {
             this.providerGlobal.alertMessage("Try again to load", "Error");

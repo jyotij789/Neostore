@@ -52,23 +52,21 @@ export class ForgotpasswordPage {
         let formattedResponse = response;
         console.log("formattedResponse", formattedResponse);
         this.status = formattedResponse.status;
-        this.message = formattedResponse.message;
-        this.user_message = formattedResponse.user_msg;
-        return this.passwordChanged(this.status, this.message, this.user_message);
+        return this.passwordChanged(this.status, response);
 
     }
 
-    passwordChanged(status, message, user_message) {
+    passwordChanged(status, formattedResponse) {
         console.log(status);
         if (status == 200) {
-            this.providerGlobal.alertMessage(message + "<br>" + user_message, "Success");
+            this.providerGlobal.alertMessage(formattedResponse.user_message, "Success");
             this.navCtrl.push(LoginPage);
         }
         else if (status == 500 || status == 404) {
-            this.providerGlobal.alertMessage(message + "<br>" + user_message, "Error");
+            this.providerGlobal.alertMessage(formattedResponse.user_message, "Error");
         }
-        else {
-            this.providerGlobal.alertMessage("Something is wrong", "Error");
+        else if (this.status == 0) {
+            this.providerGlobal.alertMessage(formattedResponse.error, "Error");
         }
     }
     createAccount() {

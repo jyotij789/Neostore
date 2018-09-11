@@ -29,6 +29,7 @@ export class ProvidersNetwork {
         // this.offlinealert.present();
         this.offlinealert = this.loder.create({
             content: 'No internet connection.',
+            duration: 5000
         });
 
         this.offlinealert.present();

@@ -45,8 +45,9 @@ export class ProvidersApiservice {
                     })
                     .catch(error => {
                         console.log("GlobalgetwithHeader_service error", error);
-                        var formattedResponse = JSON.parse(error.error);
-                        return callback(formattedResponse);
+                        let formattedData: any;
+                        error.status == 0 ? formattedData = error : formattedData = JSON.parse(error.error);
+                        return callback(formattedData);
                     });
 
 
@@ -64,8 +65,9 @@ export class ProvidersApiservice {
                     })
                     .catch(error => {
                         console.log("GlobalpostwithHeader_service error", error);
-                        var formattedResponse = JSON.parse(error.error);
-                        return callback(formattedResponse);
+                        let formattedData: any
+                        error.status == 0 ? formattedData = error : formattedData = JSON.parse(error.error);
+                        return callback(formattedData);
 
                     });
             }
@@ -88,6 +90,7 @@ export class ProvidersApiservice {
                             return callback(formattedData);
                         },
                             error => {
+                                console.log("GlobalgetwithHeader_service error", error);
                                 var formattedData = error.json();
                                 return callback(formattedData);
                             });
@@ -122,7 +125,9 @@ export class ProvidersApiservice {
 
                         },
                             error => {
-                                let formattedData = error.json();
+                                console.log("GlobalpostwithHeader_service error", error);
+                                console.log(error.status);
+                                let formattedData: any;
                                 return callback(formattedData);
 
                             });

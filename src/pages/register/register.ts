@@ -12,7 +12,7 @@ import { LoginPage } from '../login/login';
     templateUrl: 'register.html',
 })
 export class RegisterPage {
-
+    public status: number;
     public firstName: string;
     public lastName: string;
     public email: string;
@@ -83,11 +83,22 @@ export class RegisterPage {
         }
     }
 
-    callback = (data) => {
-        console.log("registration", data);
+    callback = (response) => {
+        console.log("registration", response);
         this.providerGlobal.stopLoader();
+        this.status = response.status;
+        console.log("device/browser accessToken", this.status);
+        if (this.status == 200) {
+            this.providerGlobal.alertMessage(response.user_msg, "Success");
+            this.navCtrl.setRoot(LoginPage);
 
-        this.navCtrl.setRoot(LoginPage);
+        }
+        else if (this.status == 401 || this.status == 500) {
+            this.providerGlobal.alertMessage(response.user_msg, "Error");
+        }
+        else if (this.status == 0) {
+            this.providerGlobal.alertMessage(response.error, "Error");
+        }
     }
     termsChecked($event) {
         if (!$event.checked) {

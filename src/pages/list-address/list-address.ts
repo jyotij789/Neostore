@@ -5,6 +5,7 @@ import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { AddAddressPage } from '../add-address/add-address';
 import { AlertController } from 'ionic-angular';
+import { PaycardPage } from '../paycard/paycard';
 
 import { HomePage } from '../home/home';
 @Component({
@@ -72,16 +73,17 @@ export class ListAddressPage {
     }
     placeOrder() {
         console.log(this.address);
-        if (this.address == undefined || this.address == null) {
-            this.providerglobal.alertMessage("Choose an Address", "Alert");
-        }
-        else {
-            let data = {
-                'address': this.address
-            };
-            let apitoken = "token";
-            this.apiservice.globalApiRequest('post', this.providerUrl.order, data, apitoken, this.orderCallback);
-        }
+        this.navCtrl.push(PaycardPage);
+        // if (this.address == undefined || this.address == null) {
+        //     this.providerglobal.alertMessage("Choose an Address", "Alert");
+        // }
+        // else {
+        //     let data = {
+        //         'address': this.address
+        //     };
+        //     let apitoken = "token";
+        //     this.apiservice.globalApiRequest('post', this.providerUrl.order, data, apitoken, this.orderCallback);
+        // }
     }
 
     orderCallback = (response) => {

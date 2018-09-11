@@ -34,6 +34,9 @@ import { ListAddressPage } from '../pages/list-address/list-address';
 import { Geolocation } from '@ionic-native/geolocation';
 import { StoreLocatorPage } from '../pages/store-locator/store-locator';
 import { ProvidersNetwork } from '../providers/providers/network';
+import { Stripe } from '@ionic-native/stripe';
+import { PaycardPage } from '../pages/paycard/paycard';
+
 @NgModule({
     declarations: [
         MyApp,
@@ -54,6 +57,7 @@ import { ProvidersNetwork } from '../providers/providers/network';
         StoreLocatorPage,
         AddProductmodalPage,
         RatingProductmodalPage,
+        PaycardPage
     ],
     imports: [
         BrowserModule,
@@ -79,6 +83,7 @@ import { ProvidersNetwork } from '../providers/providers/network';
         StoreLocatorPage,
         ItemdetailsPage,
         AddProductmodalPage,
+        PaycardPage,
         RatingProductmodalPage
     ],
     providers: [
@@ -86,6 +91,7 @@ import { ProvidersNetwork } from '../providers/providers/network';
         SplashScreen,
         ImagePicker,
         Camera,
+        Stripe,
         Keyboard,
         { provide: ErrorHandler, useClass: IonicErrorHandler },
         ProvidersUrl,

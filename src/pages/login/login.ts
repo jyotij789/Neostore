@@ -60,9 +60,25 @@ export class LoginPage {
     }
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
-        this.email = 'aaa123@gmail.com';
-        this.password = 'aaa123'
+        // this.email = 'aaa123@gmail.com';
+        // this.password = 'aaa123';
+        let apiToken = "";
+        let formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
+        if (!formattedData) {
+            formattedData = [];
+        }
+        else {
+            apiToken = formattedData;
+            console.log('apiToken', apiToken);
+            if (apiToken != null || apiToken != undefined) {
+                let data = null;
+                this.navCtrl.setRoot(HomePage);
+
+            }
+
+        }
     }
+
     public gotoHome(response) {
         let formattedData = response;
         this.status = formattedData.status;
@@ -75,8 +91,8 @@ export class LoginPage {
         else if (this.status == 401 || this.status == 500) {
             this.providerGlobal.alertMessage("User login unsuccessful. Email or password is wrong. try again", "Error");
         }
-        else {
-            this.providerGlobal.alertMessage("Try again to load", "Error");
+        else if (this.status == 0) {
+            this.providerGlobal.alertMessage(response.error, "Error");
         }
     }
 

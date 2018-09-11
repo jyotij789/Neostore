@@ -1,0 +1,41 @@
+<ion-header>
+    <ion-toolbar color="danger">
+        <ion-buttons left>
+            <button ion-button navPop icon-only>
+                <ion-icon clear class="icon-back" aria-hidden="true"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>Payment</ion-title>
+    </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Card Number</ion-label>
+            <ion-input type="text" placeholder="Enter your 16 digit card number" [(ngModel)]="cardNumber"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Expiration Month</ion-label>
+            <ion-input type="number" placeholder="Enter your card expiration month" [(ngModel)]="cardMonth"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>Expiration Year</ion-label>
+            <ion-input type="number" placeholder="Enter your card expiration year" [(ngModel)]="cardYear"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label color="primary" stacked>CVV</ion-label>
+            <ion-input type="number" placeholder="Enter your CVV" [(ngModel)]="cardCVV"></ion-input>
+        </ion-item>
+        <ion-item>
+            <button ion-button large full color="danger" (click)="pay()"> Pay Now </button>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -56,8 +56,12 @@ export class HomePage {
         else if (status == 402 || status == 500 || status == 404) {
             this.providerglobal.alertMessage(response.message, "Error");
         }
+        else if (status == 0) {
+            this.providerglobal.alertMessage(response.error, "Error");
+        }
         else {
             this.providerglobal.alertMessage("Try to load again.", "Error");
+
         }
     }
 
