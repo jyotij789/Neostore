@@ -11,8 +11,42 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-list>
+<ion-content>
+    <ion-row class="login-head">
+        <ion-col>NeoSTORE</ion-col>
+    </ion-row>
+    <form name="login_form">
+        <ion-row>
+            <ion-col>
+                <ion-label>
+                    <div class="innericon">
+                        <ion-icon color="light" class="icon-clipboard"></ion-icon>
+                        <ion-input type="text" name="cardNumber" placeholder="Enter your 16 digit card number" [(ngModel)]="cardNumber"></ion-input>
+                    </div>
+                    <div class="spacetag"></div>
+                    <div class="innericon">
+                        <ion-icon color="light" class="icon-clipboard"></ion-icon>
+                        <ion-input type="number" name="cardMonth" placeholder="Enter your card expiration month" [(ngModel)]="cardMonth"></ion-input>
+                    </div>
+                    <div class="spacetag"></div>
+                    <div class="innericon">
+                        <ion-icon color="light" class="icon-clipboard"></ion-icon>
+                        <ion-input type="number" name="cardYear" placeholder="Enter your card expiration year" [(ngModel)]="cardYear"></ion-input>
+                    </div>
+                    <div class="spacetag"></div>
+                    <div class="innericon">
+                        <ion-icon color="light" class="icon-clipboard"></ion-icon>
+                        <ion-input type="number" name="cardCVV" placeholder="Enter your CVV" [(ngModel)]="cardCVV"></ion-input>
+                    </div>
+                    <br>
+                    <button class="pay-btn" type="submit" ion-button block color="danger" (click)="pay()"> Pay Now </button>
+                </ion-label>
+
+            </ion-col>
+        </ion-row>
+
+    </form>
+    <!-- <ion-list>
 
         <ion-item>
             <ion-label color="primary" stacked>Card Number</ion-label>
@@ -36,6 +70,6 @@
         <ion-item>
             <button ion-button large full color="danger" (click)="pay()"> Pay Now </button>
         </ion-item>
-    </ion-list>
+    </ion-list> -->
 
 </ion-content>

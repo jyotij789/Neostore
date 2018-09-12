@@ -15,30 +15,40 @@ page-home{
         color: #fff;
         font-size: 25px;
       }
-     
+      
     ion-content{
         ion-slides{
-            width:auto;
-            height:40vh;
+            width:100%;
+            height:auto;
         }
+        .grid {
+            padding: 0px !important;
+        }
+
             .icon-table:before {
             content: "\e914";
             color: #fff;
-            font-size:75px;
+            font-size:100px;
           }
           .icon-chair:before {
             content: "\e904";
             color: #fff;
-            font-size:70px;
+            font-size:90px;
+            padding-left:40px;
           }
           .icon-sofa:before {
             content: "\e912";
             color: #fff;
-            font-size:75px;
+            font-size:100px;
+            padding: 2px;
+            text-align: end;
           }
-          ion-slide ion-img {
-            height: -webkit-fill-available;
-            width: -webkit-fill-available;
+          .icon-cupboard:before {
+            content: "\e905";
+            color: #fff;
+            font-size:80px;
+            padding-left:30px;
+
           }
           
         .swiper-container-horizontal > 
@@ -46,37 +56,31 @@ page-home{
             margin: 0 5px;
             background: map-get($colors,danger);
         }
-       
-          .divcontainer{
-            padding:15px 10px 0px 10px;          }
-        ion-row{
-            padding:0px 0px 0px 0px;
-        }
-        .label-md {
-            margin: 0px 0px 0px 0px;;
-        }
-        ion-item{
-            height:20vh;
-            width:10vw;
-            position: relative;
-        }
-          .table{
-            
-            display: inline-flex;
+       .col{
+           margin: 5px 5px 5px 5px !important;
+           position: relative;
+       }
+        //   .divcontainer{
+        //     padding:10px 10px 0px 10px;          
+        // }
+        // ion-row{
+        //     padding:0px 0px 0px 0px;
+        // }
+        // .label-md {
+        //     margin: 0px 0px 0px 0px;;
+        // }
+        // ion-item{
+        //     height:20vh;
+        //     width:10vw;
+        //     position: relative;
+        // }
+          .table{      
+            // display: inline-flex;
             background-color: map-get($colors,danger);
+            padding:10px;
         }      
-          .sofa{            
-            background-color: map-get($colors,danger);
-        }
-        .chairs{
-            background-color: map-get($colors,danger);
-        }
-                
-          .cupboards{
-            display:inline-flex;
-            background-color: map-get($colors,danger);
-        }
-        .item-md h5{
+
+        .table h5{
             font-size: 2.2rem;
             font-weight: bold;
             line-height: normal;
@@ -86,13 +90,14 @@ page-home{
             font-family: 'Gotham Medium';
 
     }
-    .item-md.item-block .item-inner {
-        padding-right: 0px;
-        border-bottom: 0px;
-    }
-
-    .item-md {
-     padding-left: 0px; 
+    ion-footer {
+        left: 0;
+        bottom: 0;
+        position: absolute;
+        z-index: 10;
+        display: block;
+        width: 100%;
+        padding: 0 10px 30px 10px ;
     }
 
 }

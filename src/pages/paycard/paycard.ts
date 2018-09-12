@@ -33,37 +33,54 @@ export class PaycardPage {
             this.cardNumber = '4242424242424242'
     }
 
-
     pay() {
-        this.cardinfo = {
-            number: this.cardNumber,
-            expMonth: this.cardMonth,
-            expYear: this.cardYear,
-            cvc: this.cardCVV
+        var cardregex = /^[0-9]{16}$/;
+        var cardCVVregex = /^[0-9]{3}$/;
+        var today = new Date();
+        let today_year = today.getFullYear();
+        if (this.cardNumber == null || this.cardNumber == "" || cardregex.test(this.cardNumber) == false) {
+            this.providerglobal.alertMessage("Card number must be of 16 digits", "Error");
         }
-        this.providerglobal.showLoader();
-        this.stripe.setPublishableKey('pk_test_w0XMPTXQ5FlE2L5DqwEQ1Vj4');
-        this.stripe.createCardToken(this.cardinfo).then((token) => {
-            console.log(token);
-            // var data = 'stripetoken=' + token + '&amount=50';
-            var data = {
-                'stripetoken': token.id,
-                'amount': 2000
+        else if (this.cardMonth == null || isNaN(this.cardMonth) || this.cardMonth < 1 || this.cardMonth > 12) {
+            this.providerglobal.alertMessage("Invalid card month" + "<br>" + "Enter in 1-12 format", "Error");
+        }
+        else if (this.cardYear == null || isNaN(this.cardYear) || this.cardYear < today_year) {
+            this.providerglobal.alertMessage("Invalid card year", "Error");
+        }
+        else if (this.cardCVV == null || this.cardCVV == "" || cardCVVregex.test(this.cardCVV) == false) {
+            this.providerglobal.alertMessage("cardCVV must be of 3 digits", "Error");
+        }
+        else {
+            this.providerglobal.showLoader();
+            this.cardinfo = {
+                number: this.cardNumber,
+                expMonth: this.cardMonth,
+                expYear: this.cardYear,
+                cvc: this.cardCVV
             }
-            this.http.post('http://192.168.2.1:3333/processpay', data, {})
+            this.stripe.setPublishableKey('pk_test_w0XMPTXQ5FlE2L5DqwEQ1Vj4');
+            this.stripe.createCardToken(this.cardinfo).then((token) => {
+                console.log(token);
+                // var data = 'stripetoken=' + token + '&amount=50';
+                var data = {
+                    'stripetoken': token.id,
+                    'amount': 2000
+                }
+                this.http.post('http://192.168.2.1:3333/processpay', data, {})
 
-                .subscribe((res) => {
-                    console.log("server.res", res);
-                    if (res.json().success && res.status == 200) {
-                        this.providerglobal.stopLoader();
-                        return this.paymentgatewaycallback();
-                    }
-                    else {
-                        this.providerglobal.stopLoader();
-                        alert("transaction failed");
-                    }
-                })
-        });
+                    .subscribe((res) => {
+                        console.log("server.res", res);
+                        if (res.json().success && res.status == 200) {
+                            this.providerglobal.stopLoader();
+                            return this.paymentgatewaycallback();
+                        }
+                        else {
+                            this.providerglobal.stopLoader();
+                            alert("transaction failed");
+                        }
+                    })
+            });
+        }
     }
     paymentgatewaycallback = () => {
         let data = {

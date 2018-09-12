@@ -16,14 +16,14 @@ page-tables {
             
         }
         .icon-star-empty:before {
-            font-size: 15px;
+            font-size: 12px;
             fill: map-get($colors,secondary);
 
         }
         .icon-star:before {
             content: "\e913";
             color: #ffba00;
-             font-size: 15px;
+             font-size: 12px;
    
           }
         ion-app.md [padding] {

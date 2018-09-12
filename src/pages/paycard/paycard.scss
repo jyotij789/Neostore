@@ -3,5 +3,103 @@ page-paycard {
         padding-left:80px;
         font-family: 'Gotham Bold';
 
+    } 
+    ion-content{
+        background-image: url('../../assets/imgs/Android_bg.jpg');
+        background-repeat: no-repeat;
+        background-size:cover;
     }
+    .login-head{
+        padding-bottom:2px 0px 2px 0px;
+        color:map-get($colors,light);
+        font-size: 40px;
+        flex-wrap: nowrap;
+        margin-top:50px;
+        font-family: 'Gotham Bold';
+    }
+    .scroll-content{
+        padding:0px !important;
+    }
+    form{
+        margin: 0;
+        padding-top:25px;
+        padding-left:25px;
+        padding-right:25px;
+        padding-bottom:0px;
+
+    }
+    ion-row {
+        align-items: center;
+        text-align: center;
+      }
+      .innericon  ion-icon ion-input{
+        font-family: 'Gotham Medium';
+        font-size: 18px;
+        color:map-get($colors,light);
+        height: 7vh;
+        
+    }
+    .innericon{
+        position: relative;
+        border:1px solid map-get($colors,light);
+        border-radius: 0px !important;
+        font-size:18px;
+    }
+    .spacetag{
+        height: 10px;
+    }
+    .innericon ion-icon{
+        float: left;
+        height: 100%;
+        width:10%;
+        display: block;
+        margin: 8px 8px 10px 8px;    
+    }
+    .text-input::-webkit-input-placeholder { 
+        color: map-get($colors,light);
+        font-size: 1.5rem;
+    }
+    .ion-text::placeholder { 
+        color: map-get($colors,light);
+        opacity: 1; 
+    }
+    
+    .custom-login-label input[type]{
+        margin-left: 0px;
+    }
+    .custom-login-label i {
+        position: absolute;
+        bottom: 12px;
+    }
+    .text-input-md {
+        margin: 8px 10px;
+        padding: initial;
+        color:map-get($colors,light);
+        width: calc(100% - 8px - 8px);
+    }
+    .ion-text{
+        font-size:2rem;
+        font-family: 'Gotham Medium';
+    }
+     b, strong {
+            font-weight: bold;
+            font-size: 15px;
+            font-family: 'Gotham Medium';
+
+    }
+    .pay-btn{
+        border:2px solid map-get($colors,light);
+        border-radius: 5px;
+        background:map-get($colors,light);
+        color:map-get($colors,danger);
+        font-size: 25px;
+        font-family: 'Gotham Medium';
+
+    }
+    .button-block-md {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px;
+    }
+
 }

@@ -20,7 +20,7 @@ export class StoreLocatorPage {
     },
     {
         name: "NeoSOFT Technologies",
-        address: "4th Floor,The Ruby,29,Senapati Bapat Marg,Dadar West",
+        address: "The Ruby,29,Senapati Bapat Marg,Dadar West",
         latitude: 19.024365,
         longitude: 72.84428100000002
     },
@@ -76,7 +76,7 @@ export class StoreLocatorPage {
     itemTapped($event, store) {
         console.log("store", store.name);
         let latLng = new google.maps.LatLng(store.latitude, store.longitude);
-        this.loadMap(15, latLng);
+        this.loadMap(20, latLng);
         let marker = new google.maps.Marker({ map: this.map, position: latLng, title: store.name });
         this.addInfoWindow(marker, store.address);
 

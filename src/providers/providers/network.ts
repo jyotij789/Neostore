@@ -12,21 +12,7 @@ export class ProvidersNetwork {
 
 
     offlineAlert() {
-        // this.offlinealert = this.alertCtrl.create({
-        //     title: 'Disconnected',
-        //     message: ' offline Please connect your device to internet',
-        //     buttons: [
-        //         {
-        //             text: 'Close',
-        //             handler: () => {
-        //                 this.platform.exitApp();
-        //             }
-        //         }
-        //     ], enableBackdropDismiss: false
-        // });
 
-        // console.log('offline network was Disconnected');
-        // this.offlinealert.present();
         this.offlinealert = this.loder.create({
             content: 'No internet connection.',
             duration: 4000
@@ -34,9 +20,6 @@ export class ProvidersNetwork {
 
         this.offlinealert.present();
     }
-
-    //define again alert
-
 
     onlineAlertDismiss() {
         this.offlinealert.dismiss();

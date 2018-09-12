@@ -9,44 +9,39 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-row>
-        <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
-            <ion-slide *ngFor="let image of imagesArray">
-                <img src={{image.icon_image}}/>
-            </ion-slide>
-        </ion-slides>
-    </ion-row>
-    <div class="divcontainer">
+<ion-content>
+    <ion-grid>
         <ion-row>
-            <ion-col>
-                <button ion-item class="table" (click)="openTablesPage(1,'Tables')">
-                    <h5 style="padding:15px 0px 0px 65px;" ion-text>Tables</h5>
-                    <span style="color:white;font-size:60px;padding:15px 0px 40px 15px;" class="icon-table"></span>
-                </button>
-            </ion-col>
+            <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
+                <ion-slide *ngFor="let image of imagesArray">
+                    <img src={{image.icon_image}} style="height:200px;; width:1000px" />
+                </ion-slide>
+            </ion-slides>
+        </ion-row>
+        <br>
 
-            <ion-col>
-                <button ion-item class="sofa" (click)="openTablesPage(3,'Sofa')">
-                    <span style="color:white;font-size:60px;padding:10px 15px 17px 65px;" class="icon-sofa"></span>
-                    <h5 style="padding:0px 60px 15px 15px;" ion-text text-left>Sofa</h5>
-                </button>
+        <!-- <ion-footer> -->
+        <ion-row>
+            <ion-col class="table" (click)="openTablesPage(1,'Tables')">
+                <h5 style="color:white;float:right;font-size:25px" ion-text>Tables</h5>
+                <ion-icon class="icon-table"></ion-icon>
+            </ion-col>
+            <ion-col class="table" (click)="openTablesPage(3,'Sofa')">
+                <ion-icon class="icon-sofa"></ion-icon>
+                <h5 style="color:white;float:right;font-size:25px" ion-text>Sofa</h5>
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
-                <button ion-item class="chairs" (click)="openTablesPage(2,'Chairs')">
-                    <h5 style="padding:15px 60px 0px 15px;" ion-text>Chairs</h5>
-                    <ion-icon style="color:white;font-size:70px;padding:0px 0px 15px 75px;font-weight:bold;" class="icon-chair"></ion-icon>
-                </button>
+            <ion-col class="table" (click)="openTablesPage(2,'Chairs')">
+                <h5 style="color:white;float:left;font-size:25px" ion-text>Chairs</h5>
+                <ion-icon class="icon-chair"></ion-icon>
             </ion-col>
-
-            <ion-col>
-                <button ion-item class="cupboards" (click)="openTablesPage(4,'Cupboards')">
-                    <span style="color:white;font-size:60px;padding:15px 15px 0px 50px;font-weight:bold;" class="fa fa-trello"></span>
-                    <h5 style="padding:7px 15px 15px 20px;" ion-text>Cupboards</h5>
-                </button>
+            <ion-col class="table" (click)="openTablesPage(4,'Cupboards')">
+                <ion-icon class="icon-cupboard"></ion-icon>
+                <h5 style="color:white;text-align:center;font-size:25px;padding-top:10px;" ion-text>Cupboards</h5>
             </ion-col>
         </ion-row>
-    </div>
+        <!-- </ion-footer> -->
+    </ion-grid>
+
 </ion-content>

@@ -51,7 +51,6 @@ export class ProvidersGlobal {
     showLoader() {
         this.loading = this.loadingCtrl.create({
             content: 'Loading...',
-            duration: 7000
         });
 
         this.loading.present();
