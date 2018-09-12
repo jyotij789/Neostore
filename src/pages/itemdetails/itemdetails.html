@@ -44,11 +44,11 @@
                 </ion-col>
             </ion-row>
             <ion-row>
-                <ion-col *ngFor="let images of productimages">
+                <div class="selectimg" *ngFor="let images of productimages">
                     <ion-avatar>
                         <img src={{images.image}} (click)="setImage(images.image)" />
                     </ion-avatar>
-                </ion-col>
+                </div>
 
             </ion-row>
 

@@ -60,8 +60,8 @@ export class LoginPage {
     }
     ionViewDidLoad() {
         console.log('ionViewDidLoad LoginPage');
-        // this.email = 'aaa123@gmail.com';
-        // this.password = 'aaa123';
+        this.email = 'jyot123@gmail.com';
+        this.password = 'jyot123';
 
     }
 
