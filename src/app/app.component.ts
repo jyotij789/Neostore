@@ -59,13 +59,12 @@ export class MyApp {
         events.subscribe('user:created', (user) => {
             this.carts = user.total_carts;
             this.userFormattedData = user.user_data;
-            console.log('userdata', this.userFormattedData.email);
             this.email = this.userFormattedData.email;
             this.first_name = this.userFormattedData.first_name;
             this.last_name = this.userFormattedData.last_name;
             this.email = this.userFormattedData.email;
             let photo: any = this.userFormattedData.profile_pic;
-            (photo == "" || photo == null) ? this.profile_pic = "../../assets/imgs/logo.png" : this.profile_pic = this.userFormattedData[0].profile_pic;
+            (photo == "" || photo == null) ? this.profile_pic = "../../assets/imgs/logo.png" : this.profile_pic = this.userFormattedData.profile_pic;
 
         });
     }

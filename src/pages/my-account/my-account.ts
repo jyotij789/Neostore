@@ -32,7 +32,7 @@ export class MyAccountPage {
         if (formattedData != null || formattedData != undefined) {
             this.userFormattedData.push(formattedData.user_data);
             let photo: any = this.userFormattedData[0].profile_pic;
-            photo == "" ? this.path = "../../assets/imgs/logo.png" : this.path = this.userFormattedData[0].profile_pic;
+            (photo == "" || photo == null) ? this.path = "../../assets/imgs/logo.png" : this.path = this.userFormattedData[0].profile_pic;
 
         }
     }

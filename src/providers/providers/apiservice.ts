@@ -55,7 +55,6 @@ export class ProvidersApiservice {
             else {
                 //Device post method
                 this.apiToken != null ? this.data = { 'access_token': this.apiToken } : this.data = {};
-                // let data = { 'access_token': this.apiToken };
                 this.HTTP.post(url, this.body, this.data)
                     .then(response => {
                         console.log("GlobalpostwithHeader_service success", response);
@@ -105,24 +104,18 @@ export class ProvidersApiservice {
                     for (this.i = 0; this.i < Object.keys(this.body).length; this.i++) {
                         body.append(Object.keys(this.body)[this.i], (<any>Object).values(this.body)[this.i]);
                     }
-
                 }
-                else {
-                    alert("empty body");
-                }
+                else { alert("empty body"); }
                 const header = new Headers({
                     'access_token': this.apiToken,
                     'Access-Control-Allow-Headers': 'X-Custom-Header'
                 })
-
                 console.log("post");
                 return new Promise((resolve, reject) => {
                     this.http.post(url, body, { headers: header })
                         .subscribe(response => {
                             let formattedData = response.json();
                             return callback(formattedData);
-
-
                         },
                             error => {
                                 console.log("GlobalpostwithHeader_service error", error);

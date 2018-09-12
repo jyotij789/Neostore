@@ -52,15 +52,7 @@ export class EditProfilePage {
             this.mydob = dob;
             console.log("date", this.mydob);
             this.Photo = user_data[0].profile_pic;
-            this.Photo == "" ? this.myPhoto = "../../assets/imgs/logo.png" : this.myPhoto = user_data[0].profile_pic;
-
-            // this.Photo = user_data[0].profile_pic;
-            // this.getBase64ImageFromURL(this.Photo).subscribe(base64data => {
-            //     console.log(base64data);
-            //     this.myPhoto = base64data;
-            //     // this.base64Image = 'data:image/jpg;base64,'+base64data;
-            // });
-
+            (this.Photo == "" || this.Photo == null) ? this.myPhoto = "../../assets/imgs/logo.png" : this.myPhoto = user_data[0].profile_pic;
         }
         else {
             this.myPhoto = "../../assets/imgs/logo.png";

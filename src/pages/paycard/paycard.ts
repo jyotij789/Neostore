@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
 import { Stripe } from '@ionic-native/stripe';
-import { Http, Response, RequestOptions, Headers, Request, RequestMethod } from '@angular/http';
-import { HTTP } from '@ionic-native/http';
+import { Http } from '@angular/http';
+import { ProvidersGlobal } from '../../providers/providers/global';
+import { ProvidersApiservice } from '../../providers/providers/apiservice'
+import { ProvidersUrl } from '../../providers/providers/url';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -15,11 +18,15 @@ export class PaycardPage {
     public cardYear: number;
     public cardCVV: string;
     public cardinfo: any;
-    constructor(public stripe: Stripe, public HTTP: HTTP, public http: Http, public navCtrl: NavController, public navParams: NavParams) {
+    public user_address: any;
+    constructor(public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice,
+        public providerglobal: ProvidersGlobal, public stripe: Stripe,
+        public http: Http, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad PaycardPage');
+        this.user_address = this.navParams.get('user_address');
         this.cardCVV = '242',
             this.cardYear = 2019,
             this.cardMonth = 2,
@@ -34,40 +41,47 @@ export class PaycardPage {
             expYear: this.cardYear,
             cvc: this.cardCVV
         }
+        this.providerglobal.showLoader();
         this.stripe.setPublishableKey('pk_test_w0XMPTXQ5FlE2L5DqwEQ1Vj4');
         this.stripe.createCardToken(this.cardinfo).then((token) => {
             console.log(token);
             // var data = 'stripetoken=' + token + '&amount=50';
             var data = {
                 'stripetoken': token.id,
-                'amount': 50
+                'amount': 2000
             }
-            var headers = new Headers();
-            headers.append('Content-Type', 'application/json');
             this.http.post('http://192.168.2.1:3333/processpay', data, {})
+
                 .subscribe((res) => {
                     console.log("server.res", res);
-                    if (res.json().success && res.json().status == 200)
+                    if (res.json().success && res.status == 200) {
+                        this.providerglobal.stopLoader();
                         return this.paymentgatewaycallback();
-                    alert('transaction Successfull!!')
+                    }
+                    else {
+                        this.providerglobal.stopLoader();
+                        alert("transaction failed");
+                    }
                 })
         });
     }
     paymentgatewaycallback = () => {
-
+        let data = {
+            'address': this.user_address
+        };
+        let apitoken = "token";
+        this.apiservice.globalApiRequest('post', this.providerUrl.order, data, apitoken, this.orderCallback);
     }
-    // validateCard() {
-    //     let card = {
-    //         number: this.cardNumber,
-    //         expMonth: this.cardMonth,
-    //         expYear: this.cardYear,
-    //         cvc: this.cardCVV
-    //     };
-
-    //     // Run card validation here and then attempt to tokenise
-
-    //     this.stripe.createCardToken(card)
-    //         .then(token => console.log(token))
-    //         .catch(error => console.error(error));
-    // }
+    orderCallback = (response) => {
+        this.providerglobal.stopLoader();
+        console.log("orderCallback", response);
+        let status = response.status;
+        if (status == 200) {
+            this.providerglobal.alertMessage(response.user_msg, "Success");
+            this.navCtrl.setRoot(HomePage);
+        }
+        else {
+            this.providerglobal.alertMessage("Error", "Error");
+        }
+    }
 }

@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
-import { ProvidersApiservice } from '../../providers/providers/apiservice'
-import { ProvidersUrl } from '../../providers/providers/url';
+// import { ProvidersApiservice } from '../../providers/providers/apiservice'
+// import { ProvidersUrl } from '../../providers/providers/url';
 import { AddAddressPage } from '../add-address/add-address';
 import { AlertController } from 'ionic-angular';
 import { PaycardPage } from '../paycard/paycard';
-
-import { HomePage } from '../home/home';
 @Component({
     selector: 'page-list-address',
     templateUrl: 'list-address.html',
@@ -18,7 +16,7 @@ export class ListAddressPage {
     public address: string;
     public items: any;
     public pendingadd: any;
-    constructor(public deleteAlert: AlertController, public events: Events, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public deleteAlert: AlertController, public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
     ionViewDidLoad() {
@@ -73,32 +71,13 @@ export class ListAddressPage {
     }
     placeOrder() {
         console.log(this.address);
-        this.navCtrl.push(PaycardPage);
-        // if (this.address == undefined || this.address == null) {
-        //     this.providerglobal.alertMessage("Choose an Address", "Alert");
-        // }
-        // else {
-        //     let data = {
-        //         'address': this.address
-        //     };
-        //     let apitoken = "token";
-        //     this.apiservice.globalApiRequest('post', this.providerUrl.order, data, apitoken, this.orderCallback);
-        // }
-    }
-
-    orderCallback = (response) => {
-        this.providerglobal.stopLoader();
-        console.log("orderCallback", response);
-        let status = response.status;
-        if (status == 200) {
-            this.providerglobal.alertMessage(response.message, "Success");
-            this.navCtrl.setRoot(HomePage);
+        if (this.address == undefined || this.address == null) {
+            this.providerglobal.alertMessage("Choose an Address", "Alert");
         }
         else {
-            this.providerglobal.alertMessage("Try again", "Error");
+            this.navCtrl.push(PaycardPage, { user_address: this.address });
         }
     }
-
     editAddress = (data) => {
         console.log("editAddress", data.address);
         this.local_address = JSON.parse(localStorage.getItem("savedAddresses"));
