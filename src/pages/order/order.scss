@@ -4,6 +4,17 @@ page-order {
         font-family: 'Gotham Bold';
 
     }
+    .scroll-content{
+        padding:0px !important;
+    }
+    .list-ios > .item-block:first-child {
+        border-top: none;
+        border-bottom: 2px solid map-get($colors,secondary);
+
+    }
+    .list-ios {
+        margin: -1px 0 0px;
+    }
     
     .list-md {
         margin: 0px 0 0 0px;

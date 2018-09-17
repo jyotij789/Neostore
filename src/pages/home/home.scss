@@ -4,6 +4,9 @@ page-home{
         font-family:'Gotham Bold';
 
     }
+    .scroll-content {
+        padding: 0px !important;
+    }
     .icon-menu:before {
         content: "\e9bd";
         color: #fff;
@@ -60,20 +63,7 @@ page-home{
            margin: 5px 5px 5px 5px !important;
            position: relative;
        }
-        //   .divcontainer{
-        //     padding:10px 10px 0px 10px;          
-        // }
-        // ion-row{
-        //     padding:0px 0px 0px 0px;
-        // }
-        // .label-md {
-        //     margin: 0px 0px 0px 0px;;
-        // }
-        // ion-item{
-        //     height:20vh;
-        //     width:10vw;
-        //     position: relative;
-        // }
+        
           .table{      
             // display: inline-flex;
             background-color: map-get($colors,danger);

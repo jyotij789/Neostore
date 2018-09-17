@@ -10,17 +10,17 @@
 
 
 <ion-content>
-    <ion-grid>
-        <ion-row>
-            <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
-                <ion-slide *ngFor="let image of imagesArray">
-                    <img src={{image.icon_image}} style="height:200px;; width:1000px" />
-                </ion-slide>
-            </ion-slides>
-        </ion-row>
-        <br>
+    <ion-row>
+        <ion-slides pager="true" autoplay="true" shouldEnableKeyboard="true" autoplayDisableOnInteraction="false">
+            <ion-slide *ngFor="let image of imagesArray">
+                <img src={{image.icon_image}} style="height:200px;; width:1000px" />
+            </ion-slide>
+        </ion-slides>
+    </ion-row>
+    <br>
 
-        <!-- <ion-footer> -->
+    <!-- <ion-footer> -->
+    <ion-grid>
         <ion-row>
             <ion-col class="table" (click)="openTablesPage(1,'Tables')">
                 <h5 style="color:white;float:right;font-size:25px" ion-text>Tables</h5>

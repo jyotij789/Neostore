@@ -21,7 +21,7 @@
                 <ion-label>
                     <div class="innericon">
                         <ion-icon color="light" class="icon-clipboard"></ion-icon>
-                        <ion-input type="text" name="cardNumber" placeholder="Enter your 16 digit card number" [(ngModel)]="cardNumber"></ion-input>
+                        <ion-input type="password" name="cardNumber" placeholder="Enter your 16 digit card number" [(ngModel)]="cardNumber"></ion-input>
                     </div>
                     <div class="spacetag"></div>
                     <div class="innericon">
@@ -36,7 +36,7 @@
                     <div class="spacetag"></div>
                     <div class="innericon">
                         <ion-icon color="light" class="icon-clipboard"></ion-icon>
-                        <ion-input type="number" name="cardCVV" placeholder="Enter your CVV" [(ngModel)]="cardCVV"></ion-input>
+                        <ion-input type="password" name="cardCVV" placeholder="Enter your CVV" [(ngModel)]="cardCVV"></ion-input>
                     </div>
                     <br>
                     <button class="pay-btn" type="submit" ion-button block color="danger" (click)="pay()"> Pay Now </button>

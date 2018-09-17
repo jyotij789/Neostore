@@ -22,16 +22,22 @@ ion-menu{
         background-color: map-get($colors,dark2);
         font-size: 20px;
     }
+    .label-ios ,.label-md  {
+       margin: 0px;
+    }
+    .scroll-content{
+        background-color: map-get($colors,dark2);
+    }
     ion-label img{
         text-align: center;
         border:2px solid map-get($colors,light);
         border-radius:50%;
-        height:13vh;
-        width:22vw;
+        height:15vh;
+        width:25vw;
         background-repeat: no-repeat;
         // background-position: cover;
         margin-left: 110px;
-        margin-top: 53px;
+        margin-top:30px;
     }
     ion-label .div2{
         color:map-get($colors,light);
@@ -50,16 +56,14 @@ ion-menu{
         font-family: 'Gotham Medium';
 
     }
-    .label-md {
-        margin:0;
-        padding:7px;
-    }
+    
     .list-md {
         margin: 0px 0 0px;
         padding:14px 0 0 0;
     }
     ion-list{
         background-color: map-get($colors,dark2);
+        padding-top:20px;
     }
     
     ion-item {
@@ -75,10 +79,65 @@ ion-menu{
         line-height: normal;
         padding-left:20px;
     }
-    // ion-list button ion-icon{
-    //     height: 6vh;
-    //     width:15vw;
-    // }
+    .icon-cart1:before {
+        content: "\e903";
+        color: #fff;
+        font-size: 22px;
+      }
+      .icon-chair:before {
+        content: "\e904";
+        color: #fff;
+        font-size: 22px;
+
+      }
+      .icon-cupboard:before {
+        content: "\e905";
+        color: #fff;
+        font-size: 22px;
+
+      }
+      .icon-logout:before {
+        content: "\e90b";
+        color: #fff;
+        font-size: 22px;
+
+      }
+      .icon-pin:before {
+        content: "\e90d";
+        color: #fff;
+        font-size: 22px;
+
+      }
+      .icon-profile1:before {
+        content: "\e90e";
+        color: #fff;
+        font-size: 22px;
+
+      }
+      .icon-table:before {
+        content: "\e914";
+        color: #fff;
+        font-size: 22px;
+      }
+      .icon-user:before {
+        content: "\e915";
+        color: #fff;
+        font-size: 22px;
+      }
+      .icon-sofa:before {
+        content: "\e912";
+        color: #fff;
+        font-size: 22px;
+      }
+      .list-ios .item-block .item-inner {
+        border-bottom: 0.55px solid map-get($colors,dark4);
+    }
+    .list-ios > .item-block:first-child {
+        border-top: 0.55px solid  map-get($colors,dark4);
+    }
+    .list-ios > .item-block:last-child{
+        border-bottom: 0.55px solid map-get($colors,dark4);
+    }
     ion-list button span{
         margin:0 0px 0 100px;
         border: 2px;
@@ -105,74 +164,3 @@ ion-menu{
     border-radius: 5px;
     box-shadow: 0 16px 20px rgba(0,0,0,.4);
   }
-
-  
-//   ion-icon {
-//     &[class*="fn-"] {
-//        background-size: contain;
-//        background-position: 50% 50%;
-//        background-repeat: no-repeat;
-//        width: 0.8em;
-//        height: 0.8em;
-//        padding:10px;
-//     }
-    
-//     &[class*="fn-pin"] {
-//         background-image: url(../assets/fonts/pin.svg);
-//        color:map-get($colors, light);
-//     }
-//     &[class*="fn-chair"] {
-//         background-image: url(../assets/fonts/event_seat.svg);
-//     }
-//     &[class*="fn-add"] {
-//         background-image: url(../assets/fonts/add.svg);
-//        color:map-get($colors, light);
-//     }
-//     &[class*="fn-cart"] {
-//         background-image: url(../assets/fonts/cart.svg);
-//     }
-//     &[class*="fn-person"] {
-//         background-image: url(../assets/fonts/user.svg);
-//        color:map-get($colors, light);
-//     }
-//     &[class*="fn-cupboard"] {
-//         background-image: url(../assets/fonts/cupboard.svg);
-//     }
-//     &[class*="fn-delete"] {
-//         background-image: url(../assets/fonts/delete.svg);
-//        color:map-get($colors, light);
-//     }
-//     &[class*="fn-down_arrow"] {
-//         background-image: url(../assets/fonts/down_arrow.svg);
-//     }
-//     &[class*="fn-lock"] {
-//         background-image: url(../assets/fonts/lock.svg);
-//     }
-//     &[class*="fn-logout"] {
-//         background-image: url(../assets/fonts/logout.svg);
-//     }
-//     &[class*="fn-mail"] {
-//         background-image: url(../assets/fonts/mail.svg);
-//     }
-//     &[class*="fn-rupees"] {
-//         background-image: url(../assets/fonts/rupees.svg);
-//     }
-//     &[class*="fn-search"] {
-//         background-image: url(../assets/fonts/search.svg);
-//     }
-//     &[class*="fn-settings"] {
-//         background-image: url(../assets/fonts/settings.svg);
-//     }
-//     &[class*="fn-sofa"] {
-//         background-image: url(../assets/fonts/sofa.svg);
-//     }
-//     &[class*="fn-star"] {
-//         background-image: url(../assets/fonts/star.svg);
-//     }
-//     &[class*="fn-table"] {
-//         background-image: url(../assets/fonts/table.svg);
-//     }
-//     &[class*="fn-list"] {
-//         background-image: url(../assets/fonts/profile.svg);
-//     }
-// }
