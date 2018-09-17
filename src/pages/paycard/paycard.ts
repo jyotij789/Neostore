@@ -62,9 +62,11 @@ export class PaycardPage {
             this.stripe.createCardToken(this.cardinfo).then((token) => {
                 console.log(token);
                 // var data = 'stripetoken=' + token + '&amount=50';
+                let fname = 'jyoti';
                 var data = {
                     'stripetoken': token.id,
-                    'amount': 2000
+                    'amount': 2000,
+                    'name': fname
                 }
                 this.http.post('http://192.168.2.1:3333/processpay', data, {})
 

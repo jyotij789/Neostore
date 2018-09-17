@@ -10,8 +10,14 @@ declare var google;
 })
 export class StoreLocatorPage {
     @ViewChild('map') mapElement: ElementRef;
+    @ViewChild('map') directionsPanel: ElementRef;
     public map: any
     public marker: any;
+    public currentLatitude: any;
+    public currentLongitude: any;
+
+    public directionsService = new google.maps.DirectionsService;
+    public directionsDisplay = new google.maps.DirectionsRenderer;
     public storeList = [{
         name: "NeoSOFT Technologies",
         address: "Unit No 501, Sigma IT Park, Plot No R-203,204",
@@ -41,9 +47,12 @@ export class StoreLocatorPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad StoreLocatorPage');
-        let latLng = new google.maps.LatLng(19.1410776, 73.008735);
-        this.loadMap(7, latLng);
-        this.getMarkers();
+
+    }
+    ionViewWillEnter() {
+        console.log('ionViewWillEnter StoreLocatorPage');
+        this.getCurrentLocation();
+
     }
     refresh() {
         this.ionViewDidLoad();
@@ -58,29 +67,64 @@ export class StoreLocatorPage {
         this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
     }
+
+    getCurrentLocation() {
+        this.geolocation.getCurrentPosition().then((position) => {
+            this.currentLatitude = position.coords.latitude;
+            this.currentLongitude = position.coords.longitude;
+            let currentlatLng = new google.maps.LatLng(this.currentLatitude, this.currentLongitude);
+            console.log("current position", this.currentLatitude + this.currentLongitude);
+            let mapOptions = {
+                center: currentlatLng,
+                zoom: 7,
+                map: this.map,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+            this.getMarkers();
+
+        }, (err) => {
+            console.log(err);
+        });
+
+    }
     getMarkers() {
         for (let i = 0; i < this.storeList.length; i++) {
             if (i >= 0)
                 this.addMarkersToMap(this.storeList[i]);
         }
     }
-
     addMarkersToMap(store) {
         let position = new google.maps.LatLng(store.latitude, store.longitude);
         let storeLocator = new google.maps.Marker({ map: this.map, position: position, title: 'Click to zoom' });
-        google.maps.event.addListener(storeLocator, 'click', () => {
-            this.itemTapped(event, store)
-        });
+
     }
 
     itemTapped($event, store) {
         console.log("store", store.name);
         let latLng = new google.maps.LatLng(store.latitude, store.longitude);
-        this.loadMap(20, latLng);
-        let marker = new google.maps.Marker({ map: this.map, position: latLng, title: store.name });
-        this.addInfoWindow(marker, store.address);
+        // this.loadMap(20, latLng);
+        // let marker = new google.maps.Marker({ map: this.map, position: latLng, title: store.name });
+        // this.addInfoWindow(marker, store.address);
+        this.directionsDisplay.setMap(this.map);
+        this.directionsDisplay.setPanel(this.directionsPanel.nativeElement);
+
+        this.directionsService.route({
+            origin: { lat: this.currentLatitude, lng: this.currentLongitude },
+            destination: { lat: store.latitude, lng: store.longitude },
+            travelMode: 'DRIVING'
+        }, (res, status) => {
+
+            if (status == google.maps.DirectionsStatus.OK) {
+                this.directionsDisplay.setDirections(res);
+            } else {
+                console.warn(status);
+            }
+
+        });
 
     }
+
     addInfoWindow(marker, content) {
         let infoWindow = new google.maps.InfoWindow({
             content: content
