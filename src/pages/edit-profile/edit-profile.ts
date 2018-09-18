@@ -19,11 +19,14 @@ export class EditProfilePage {
     public email: string;
     public phone_no: string;
     public mydob: any;
+    public pickerdob: any;
     public userFormattedData = [];
     public status: number;
     public path: string;
     public myPhoto: any;
     public Photo: any;
+    public isdob: any = false;
+
     constructor(private camera: Camera,
         public actionSheetCtrl: ActionSheetController,
         public apiservice: ProvidersApiservice,
@@ -35,6 +38,7 @@ export class EditProfilePage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad EditProfilePage');
+        this.isdob = false;
 
     }
     ionViewWillEnter() {
@@ -46,10 +50,10 @@ export class EditProfilePage {
             this.last_name = user_data[0].last_name;
             this.email = user_data[0].email;
             this.phone_no = user_data[0].phone_no;
-            let date: string = user_data[0].dob;
-            let dob = new Date(date).toISOString();
-            console.log("date", dob);
-            this.mydob = dob;
+            // let date: string = user_data[0].dob;
+            // let dob = new Date(date).toISOString();
+            // console.log("date", dob);
+            this.mydob = user_data[0].dob;
             console.log("date", this.mydob);
             this.Photo = user_data[0].profile_pic;
             (this.Photo == "" || this.Photo == null) ? this.myPhoto = "../../assets/imgs/logo.png" : this.myPhoto = user_data[0].profile_pic;
@@ -57,6 +61,9 @@ export class EditProfilePage {
         else {
             this.myPhoto = "../../assets/imgs/logo.png";
         }
+    }
+    calldatepicker() {
+        this.isdob = true;
     }
     getBase64ImageFromURL(url: string) {
         return Observable.create((observer: Observer<string>) => {
@@ -150,6 +157,9 @@ export class EditProfilePage {
     submitprofile() {
         let phoneregex = /^[0-9#*+]{10,12}$/;
         let emailregex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
+        let birthdate: any;
+        this.pickerdob == null ? birthdate = this.mydob : birthdate = this.pickerdob;
+        console.log(birthdate);
 
         if (this.myPhoto == null || this.myPhoto == "") {
             return this.providerglobal.alertMessage("Choose Profile", "Error");
@@ -169,18 +179,15 @@ export class EditProfilePage {
         else if (!phoneregex.test(this.phone_no)) {
             return this.providerglobal.alertMessage("Phone number must be between of 10-12 digits", "Error");
         }
-
-        else if (this.mydob == null) {
+        else if (birthdate == null) {
             return this.providerglobal.alertMessage("Enter DOB", "Error");
         }
-
         else {
-            console.log("myPhoto1", this.myPhoto);
             let data = {
                 'first_name': this.first_name,
                 'last_name': this.last_name,
                 'email': this.email,
-                'dob': this.mydob,
+                'dob': birthdate,
                 'phone_no': this.phone_no,
                 'profile_pic': this.myPhoto
             }
@@ -205,5 +212,6 @@ export class EditProfilePage {
             this.providerglobal.alertMessage(response.error, "Error");
         }
     }
+
 
 }

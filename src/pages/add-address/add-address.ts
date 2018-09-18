@@ -12,14 +12,14 @@ export class AddAddressPage {
     public address: any;
     public landmark: string;
     public city: string;
-    public zip_code: string;
+    public zip_code: number;
     public country: string;
     public state: string;
     public savedAddress: Array<{}>;
     public address_data: any;
     public edit_status: number;
     public items: any;
-    public local_address: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: string, country: string }>;
+    public local_address: Array<{ status: number, address: string, landmark: string, city: string, state: string, zip_code: number, country: string }>;
     constructor(public providerglobal: ProvidersGlobal, public navCtrl: NavController, public navParams: NavParams) {
     }
 
@@ -69,7 +69,7 @@ export class AddAddressPage {
         else if (this.zip_code == null) {
             this.providerglobal.alertMessage("Enter zip_code", "Error");
         }
-        else if (zip_coderegex.test(this.zip_code) == false) {
+        else if (isNaN(this.zip_code) || this.zip_code.toString().length != 6) {
             this.providerglobal.alertMessage("zip_code must be between of 6 digits", "Error");
         }
         else if (this.country == null || this.country == "") {

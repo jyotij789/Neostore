@@ -78,7 +78,6 @@ export class MyordersPage {
         }, 1000);
     }
     onInput(event: any) {
-        console.log("ssss");
         // Reset items back to all of the items
         this.orders;
 

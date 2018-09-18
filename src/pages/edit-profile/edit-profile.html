@@ -48,9 +48,15 @@
                     </div>
 
                     <div class="spacetag"></div>
-                    <div class="innericon">
+                    <div class="innericon" *ngIf="!isdob" (click)="isdob=true">
                         <ion-icon class="icon-birthday" color="light" aria-hidden="true"></ion-icon>
-                        <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" [min]="2001" name="mydob" placeholder="DOB" [(ngModel)]="mydob"></ion-datetime>
+                        <ion-input name="dob" placeholder="DOB" [(ngModel)]="mydob" [readonly]="true" (focus)="isdob=true">
+                        </ion-input>
+
+                    </div>
+                    <div class="innericon" *ngIf="isdob">
+                        <ion-icon class="icon-birthday" color="light" aria-hidden="true"></ion-icon>
+                        <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" name="mydob" placeholder="DOB" [(ngModel)]="pickerdob"></ion-datetime>
                     </div>
 
                     <div class="spacetag"></div>
