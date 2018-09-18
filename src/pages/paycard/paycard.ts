@@ -66,10 +66,8 @@ export class PaycardPage {
                 var data = {
                     'stripetoken': token.id,
                     'amount': 2000,
-                    'name': fname
                 }
                 this.http.post('http://192.168.2.1:3333/processpay', data, {})
-
                     .subscribe((res) => {
                         console.log("server.res", res);
                         if (res.json().success && res.status == 200) {

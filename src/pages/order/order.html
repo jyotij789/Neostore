@@ -21,15 +21,16 @@
             <p>{{data.prod_cat_name}}</p>
             <h2 style="float:left"> QTY:{{data.quantity}}</h2>
             <h2 style="float:right">
-                <i class="fa fa-rupee"></i>{{data.total}}
+                <ion-icon class="icon-rupees"></ion-icon>{{data.total}}
             </h2>
         </ion-item>
     </ion-list>
     <ion-list>
         <ion-item>
-            <h3 style="float:left">TOTAL</h3>
-            <h3 style="float:right">
-                <i class="fa fa-rupee"></i>{{total_cost}}</h3>
+            <h3 style="float:left;font-weight:bold">TOTAL</h3>
+            <h3 style="float:right;padding-top:0px;font-weight:bold">
+                <ion-icon class="icon-rupees"></ion-icon>{{total_cost}}
+            </h3>
         </ion-item>
     </ion-list>
 </ion-content>

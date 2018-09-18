@@ -26,11 +26,14 @@
                 <p>Ordered Date:{{data.created}}</p>
             </div>
             <div class="stylediv2">
-                <h3>
-                    <i class="fa fa-rupee"></i>{{data.cost}}
-                </h3>
-
+                <h2>
+                    <ion-icon class="icon-rupees"></ion-icon>{{data.cost}}
+                </h2>
             </div>
         </ion-item>
     </ion-list>
+
+    <ion-infinite-scroll (ionInfinite)="loadMoreOrder($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

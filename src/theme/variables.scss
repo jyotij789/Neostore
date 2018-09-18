@@ -211,7 +211,9 @@ font-size: 20px;
       }
       .icon-rupees:before {
         content: "\e90f";
-        color: #fff;
+        color:map-get($colors,darkr4);
+        font-size:16px;
+        font-weight:bold
       }
       .icon-search:before {
         content: "\e910";

@@ -91,6 +91,7 @@ export class TablesPage {
         this.navCtrl.push(ItemdetailsPage, { product_id: product_id, product_category_name: this.category_name });
     }
 
+    //search item using order id
     onInput(event: any) {
         console.log("ssss");
         // Reset items back to all of the items

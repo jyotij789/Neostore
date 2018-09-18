@@ -55,7 +55,7 @@ export class StoreLocatorPage {
 
     }
     refresh() {
-        this.ionViewDidLoad();
+        this.ionViewWillEnter();
     }
     loadMap(zoom, latLng) {
         let mapOptions = {
@@ -97,7 +97,9 @@ export class StoreLocatorPage {
     addMarkersToMap(store) {
         let position = new google.maps.LatLng(store.latitude, store.longitude);
         let storeLocator = new google.maps.Marker({ map: this.map, position: position, title: 'Click to zoom' });
-
+        google.maps.event.addListener(storeLocator, 'click', () => {
+            this.itemTapped(event, store)
+        });
     }
 
     itemTapped($event, store) {
