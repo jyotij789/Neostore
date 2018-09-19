@@ -21,7 +21,6 @@ import { HttpModule } from '@angular/http';
 import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';
 import { ProvidersGlobal } from '../providers/providers/global';
 import { HTTP } from '@ionic-native/http';
-import { Http } from '@angular/http';
 import { Camera } from '@ionic-native/camera';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -36,6 +35,7 @@ import { StoreLocatorPage } from '../pages/store-locator/store-locator';
 import { ProvidersNetwork } from '../providers/providers/network';
 import { Stripe } from '@ionic-native/stripe';
 import { PaycardPage } from '../pages/paycard/paycard';
+import { Push } from '@ionic-native/push';
 
 @NgModule({
     declarations: [
@@ -102,7 +102,8 @@ import { PaycardPage } from '../pages/paycard/paycard';
         HomePage,
         HTTP,
         SocialSharing,
-        Geolocation
+        Geolocation,
+        Push
     ]
 })
 export class AppModule { }

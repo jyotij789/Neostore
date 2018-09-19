@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Form } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Stripe } from '@ionic-native/stripe';
 import { Http } from '@angular/http';
 import { ProvidersGlobal } from '../../providers/providers/global';
@@ -62,7 +62,6 @@ export class PaycardPage {
             this.stripe.createCardToken(this.cardinfo).then((token) => {
                 console.log(token);
                 // var data = 'stripetoken=' + token + '&amount=50';
-                let fname = 'jyoti';
                 var data = {
                     'stripetoken': token.id,
                     'amount': 2000,

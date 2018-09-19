@@ -1,8 +1,6 @@
-import { Component, Renderer } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
-import { ProvidersApiservice } from '../../providers/providers/apiservice'
-import { ProvidersUrl } from '../../providers/providers/url';
 @Component({
     selector: 'page-add-productmodal',
     templateUrl: 'add-productmodal.html',

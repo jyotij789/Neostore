@@ -50,7 +50,7 @@
                     <div class="spacetag"></div>
                     <div class="innericon" *ngIf="!isdob" (click)="isdob=true">
                         <ion-icon class="icon-birthday" color="light" aria-hidden="true"></ion-icon>
-                        <ion-input name="dob" placeholder="DOB" [(ngModel)]="mydob" [readonly]="true" (focus)="isdob=true">
+                        <ion-input name="dob" placeholder="DOB" [(ngModel)]="mydob" [readonly]="true" (ionFocus)="isdob=true">
                         </ion-input>
 
                     </div>

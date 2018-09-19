@@ -103,11 +103,6 @@ export class StoreLocatorPage {
     }
 
     itemTapped($event, store) {
-        console.log("store", store.name);
-        let latLng = new google.maps.LatLng(store.latitude, store.longitude);
-        // this.loadMap(20, latLng);
-        // let marker = new google.maps.Marker({ map: this.map, position: latLng, title: store.name });
-        // this.addInfoWindow(marker, store.address);
         this.directionsDisplay.setMap(this.map);
         this.directionsDisplay.setPanel(this.directionsPanel.nativeElement);
 

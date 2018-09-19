@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { EditProfilePage } from '../edit-profile/edit-profile';
 import { ResetPasswordPage } from '../reset-password/reset-password';
-import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({

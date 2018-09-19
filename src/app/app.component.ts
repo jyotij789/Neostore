@@ -2,31 +2,22 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Keyboard } from '@ionic-native/keyboard';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
-import { ForgotpasswordPage } from '../pages/forgotpassword/forgotpassword';
 import { MyAccountPage } from '../pages/my-account/my-account';
-import { EditProfilePage } from '../pages/edit-profile/edit-profile';
-import { ResetPasswordPage } from '../pages/reset-password/reset-password';
 import { ViewChild } from '@angular/core';
-import { Nav, Events, AlertController } from 'ionic-angular';
+import { Nav, Events } from 'ionic-angular';
 import { MycartPage } from '../pages/mycart/mycart';
 import { TablesPage } from '../pages/tables/tables';
-import { ItemdetailsPage } from '../pages/itemdetails/itemdetails';
 import { ProvidersGlobal } from '../providers/providers/global';
 import { ProvidersApiservice } from '../providers/providers/apiservice'
 import { ProvidersUrl } from '../providers/providers/url';
-import { Http } from '@angular/http';
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { AddProductmodalPage } from '../pages/add-productmodal/add-productmodal'
-import { RatingProductmodalPage } from '../pages/rating-productmodal/rating-productmodal'
 import { MyordersPage } from '../pages/myorders/myorders';
 import { StoreLocatorPage } from '../pages/store-locator/store-locator';
 import { ProvidersNetwork } from '../providers/providers/network'
 import { Network } from '@ionic-native/network';
-
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { Keyboard } from '@ionic-native/keyboard';
 @Component({
     templateUrl: 'app.html',
 })
@@ -49,7 +40,8 @@ export class MyApp {
         public platform: Platform,
         public statusBar: StatusBar,
         public splashScreen: SplashScreen,
-        public providerNetwork: ProvidersNetwork) {
+        public providerNetwork: ProvidersNetwork,
+        private push: Push) {
 
         this.initializeApp();
         events.subscribe('cart:created', (data) => {
@@ -72,7 +64,9 @@ export class MyApp {
 
     initializeApp() {
         this.platform.ready().then(() => {
+            // Keyboard.disableScroll(true);
             this.splashScreen.hide();
+            this.pushSetup();
             let apiToken = "";
             let formattedData = JSON.parse(localStorage.getItem("formattedResponse"));
             if (!formattedData) {
@@ -107,7 +101,31 @@ export class MyApp {
 
         });
     }
+    pushSetup() {
+        const options: PushOptions = {
+            android: {
+                senderID: '941222465816'
+            },
+            ios: {
+                alert: 'true',
+                badge: true,
+                sound: 'false'
+            },
+            windows: {},
+            browser: {
+                pushServiceURL: 'http://push.api.phonegap.com/v1/push'
+            }
+        };
 
+        const pushObject: PushObject = this.push.init(options);
+
+
+        pushObject.on('notification').subscribe((notification: any) => console.log('Received a notification', notification));
+
+        pushObject.on('registration').subscribe((registration: any) => console.log('Device registered', registration));
+
+        pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
+    }
     openmyaccountpage() {
         this.nav.push(MyAccountPage);
     }

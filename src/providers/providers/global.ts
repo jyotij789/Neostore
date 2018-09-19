@@ -1,5 +1,5 @@
-import { IonicPage, NavController, Platform, LoadingController } from 'ionic-angular';
-import { Injectable, Component } from '@angular/core';
+import { Platform, LoadingController } from 'ionic-angular';
+import { Injectable } from '@angular/core';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 

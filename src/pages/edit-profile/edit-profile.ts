@@ -5,9 +5,7 @@ import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-// import { Base64 } from '@ionic-native/base64';
 import { HomePage } from '../home/home';
-import { DateTimeData } from 'ionic-angular/util/datetime-util';
 import { Observable, Observer } from 'rxjs';
 @Component({
     selector: 'page-edit-profile',

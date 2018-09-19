@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Events, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Events, NavController, NavParams } from 'ionic-angular';
 import { TablesPage } from '../tables/tables';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';

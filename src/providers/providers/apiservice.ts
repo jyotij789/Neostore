@@ -1,14 +1,9 @@
 import { Injectable, ViewChild } from '@angular/core';
 // import { HttpClientModule, HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Http, Response, RequestOptions, Headers, Request, RequestMethod } from '@angular/http';
+import { Http, RequestOptions, Headers } from '@angular/http';
 import { HTTP } from '@ionic-native/http';
-import { LoadingController, AlertController, Header } from 'ionic-angular';
-import { Network } from '@ionic-native/network';
-import { ProvidersUrl } from '../providers/url';
-import { HomePage } from '../../pages/home/home';
 import { ProvidersGlobal } from '../../providers/providers/global';
-import { Platform, IonicPage, Nav, NavParams } from 'ionic-angular';
-import { LoginPage } from '../../pages/login/login';
+import { Nav } from 'ionic-angular';
 @Injectable()
 export class ProvidersApiservice {
     public data: any;

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Network } from '@ionic-native/network';
-import { Platform, AlertController, NavController, LoadingController } from 'ionic-angular';
+import { Platform, AlertController, LoadingController } from 'ionic-angular';
 
 @Injectable()
 export class ProvidersNetwork {

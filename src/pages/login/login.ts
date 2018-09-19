@@ -1,10 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { ForgotpasswordPage } from '../forgotpassword/forgotpassword';
-import { MyAccountPage } from '../my-account/my-account';
 import { HomePage } from '../home/home';
-import { AlertController } from 'ionic-angular';
 import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
@@ -23,13 +21,12 @@ export class LoginPage {
     public responseType: string;
     public accessToken: any;
 
-    constructor(public navCtrl: NavController, public providerglobal: ProvidersGlobal, public providerUrl: ProvidersUrl, private alertCtrl: AlertController, public apiservice: ProvidersApiservice) {
+    constructor(public navCtrl: NavController, public providerglobal: ProvidersGlobal, public providerUrl: ProvidersUrl, public apiservice: ProvidersApiservice) {
         // this.callback = this.callback.bind(this);
 
     }
 
     getHome() {
-        let regex = /^[a-zA-Z]{2,30}$/;
         let emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/;
 
         console.log('email:', this.email);

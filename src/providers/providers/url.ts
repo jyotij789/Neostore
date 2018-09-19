@@ -1,4 +1,3 @@
-import { HTTP } from '@ionic-native/http';
 import { Injectable } from '@angular/core';
 
 @Injectable()

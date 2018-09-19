@@ -4,7 +4,6 @@ import { ProvidersGlobal } from '../../providers/providers/global';
 import { ProvidersApiservice } from '../../providers/providers/apiservice'
 import { ProvidersUrl } from '../../providers/providers/url';
 import { AlertController } from 'ionic-angular';
-import { MyordersPage } from '../myorders/myorders';
 import { ListAddressPage } from '../list-address/list-address';
 
 @IonicPage()
